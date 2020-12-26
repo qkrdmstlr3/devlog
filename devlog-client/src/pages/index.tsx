@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '../common/style/styled';
 
 const Div = styled.div`
-  background-color: black;
+  background-color:${(props) => props.theme.BLACK};
 `;
 
 function IndexPage(): React.ReactElement {
