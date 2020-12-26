@@ -1,8 +1,8 @@
 import React from 'react';
-import styled from '../common/style/styled';
+import styled, { EmotionStyleType } from '../common/style/styled';
 
-const Div = styled.div`
-  background-color:${(props) => props.theme.BLACK};
+const Div = styled.div<EmotionStyleType>`
+  background-color: ${(props) => props.theme.BLACK};
 `;
 
 function IndexPage(): React.ReactElement {
