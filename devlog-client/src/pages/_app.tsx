@@ -5,8 +5,8 @@ import { Helmet } from 'react-helmet';
 
 // Styles
 import { ThemeProvider } from '@emotion/react';
-import GlobalStyle from '../common/style/GlobalStyle';
-import { theme } from '../common/style/styled';
+import GlobalStyle from '@Style/GlobalStyle';
+import { theme } from '@Style/styled';
 
 export default class MyApp extends app {
   public render(): React.ReactElement {

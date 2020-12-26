@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { EmotionStyleType } from '../common/style/styled';
+import styled, { EmotionStyleType } from '@Style/styled';
 
 const Div = styled.div<EmotionStyleType>`
   background-color: ${(props) => props.theme.BLACK};
