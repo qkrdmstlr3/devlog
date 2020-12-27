@@ -1,5 +1,6 @@
 // Dependencies
 import React from 'react';
+import { useRouter } from 'next/router';
 import * as Style from './styled';
 
 function Layout({
@@ -7,11 +8,14 @@ function Layout({
 }: {
   children: React.ReactElement;
 }): React.ReactElement {
+  const { pathname } = useRouter();
+  const isPathMain = pathname === '/';
+
   return (
     <Style.Container>
-      <Style.Header />
+      <Style.Header isPathMain={isPathMain} />
       <Style.List />
-      <Style.Main />
+      <Style.Main isPathMain={isPathMain} />
       <Style.Blue />
       <Style.BottomList />
       <Style.Introduce />

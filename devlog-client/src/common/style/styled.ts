@@ -13,6 +13,7 @@ export const theme: ThemeType = {
   RED: '#F40604',
   BLUE: '#112576',
   YELLOW: '#F4E121',
+  WHITE: '#FFFFFF',
 };
 
 export default styled as CreateStyled;
