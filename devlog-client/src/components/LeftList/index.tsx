@@ -17,12 +17,14 @@ function LeftList(): React.ReactElement {
   return (
     <Style.List>
       <Style.HomeItem isSelected={!list}>
-        <Link href="/">Home</Link>
+        <Link href="/">HOME</Link>
         {!list ? <span>■</span> : <></>}
       </Style.HomeItem>
       {dummyItems.map((item) => (
         <Style.Item key={item.title} isSelected={list === item.title}>
-          <Link href={`/list/${item.title}`}>{item.title}</Link>
+          <Link href={`/list/${item.title}`}>
+            {item.title.toLocaleUpperCase()}
+          </Link>
           {list === item.title ? <span>{item.postCount}</span> : <></>}
         </Style.Item>
       ))}
