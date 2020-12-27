@@ -5,6 +5,7 @@ import * as Style from './styled';
 
 // Components
 import LeftList from '@Components/LeftList';
+import BottomList from '@Components/BottomList';
 
 function Layout({
   children,
@@ -22,7 +23,9 @@ function Layout({
       </Style.LeftList>
       <Style.Main isPathMain={isPathMain}>{children}</Style.Main>
       <Style.Blue />
-      <Style.BottomList />
+      <Style.BottomList>
+        <BottomList />
+      </Style.BottomList>
       <Style.Introduce />
       <Style.Yellow />
     </Style.Container>
