@@ -15,7 +15,7 @@ function Layout({
     <Style.Container>
       <Style.Header isPathMain={isPathMain} />
       <Style.List />
-      <Style.Main isPathMain={isPathMain} />
+      <Style.Main isPathMain={isPathMain}>{children}</Style.Main>
       <Style.Blue />
       <Style.BottomList />
       <Style.Introduce />

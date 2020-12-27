@@ -9,7 +9,7 @@ import GlobalStyle from '@Style/GlobalStyle';
 import { theme } from '@Style/styled';
 
 // Components
-import Layout from '@Components/layout';
+import Layout from '@Components/Layout';
 
 export default class MyApp extends app {
   public render(): React.ReactElement {
