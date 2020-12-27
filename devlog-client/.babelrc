@@ -6,6 +6,7 @@
       {
         "root": ["./"],
         "alias": {
+          "@Components": "./src/components",
           "@Style": "./src/common/style"
         }
       }
