@@ -9,7 +9,8 @@ export interface EmotionStyleType {
 }
 
 export const theme: ThemeType = {
-  BLACK: '#464646',
+  BLACK: '#000000',
+  GRAY: '#666666',
   RED: '#F40604',
   BLUE: '#112576',
   YELLOW: '#F4E121',

@@ -19,7 +19,7 @@ export const Header = styled.div<ItemProps>`
     props.isPathMain ? props.theme.WHITE : props.theme.RED};
 `;
 
-export const List = styled.div`
+export const LeftList = styled.div`
   border-top: 7px solid black;
   border-bottom: 10px solid black;
   grid-area: list;

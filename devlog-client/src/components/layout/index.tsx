@@ -3,6 +3,9 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import * as Style from './styled';
 
+// Components
+import LeftList from '@Components/LeftList';
+
 function Layout({
   children,
 }: {
@@ -14,7 +17,9 @@ function Layout({
   return (
     <Style.Container>
       <Style.Header isPathMain={isPathMain} />
-      <Style.List />
+      <Style.LeftList>
+        <LeftList />
+      </Style.LeftList>
       <Style.Main isPathMain={isPathMain}>{children}</Style.Main>
       <Style.Blue />
       <Style.BottomList />
