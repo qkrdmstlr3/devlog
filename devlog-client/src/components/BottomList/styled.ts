@@ -6,6 +6,7 @@ interface ItemProps extends EmotionStyleType {
 
 export const List = styled.ul`
   padding: 10px 35px;
+  color: inherit;
 `;
 
 export const Item = styled.li<ItemProps>`
@@ -19,7 +20,7 @@ export const Item = styled.li<ItemProps>`
   font-size: 1.2rem;
   font-weight: bold;
   cursor: pointer;
-  color: ${(props) => props.theme.BLACK};
+  color: inherit;
 
   span {
     font-size: 1rem;

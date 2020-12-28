@@ -38,7 +38,8 @@ export const Blue = styled.div<EmotionStyleType>`
   background-color: ${(props) => props.theme.BLUE};
 `;
 
-export const BottomList = styled.div`
+export const BottomList = styled.div<ItemProps>`
+  color: ${(props) => (props.isPathMain ? 'white' : 'black')};
   border-left: 10px solid black;
   border-right: 7px solid black;
   grid-area: bottomList;
@@ -47,6 +48,13 @@ export const BottomList = styled.div`
 export const Introduce = styled.div`
   border-bottom: 7px solid black;
   grid-area: introduce;
+  padding: 10px;
+`;
+
+export const IntroduceLink = styled.a<ItemProps>`
+  display: ${(props) => (props.isPathMain ? 'block' : 'none')};
+  font-size: 1.2rem;
+  font-weight: bold;
 `;
 
 export const Yellow = styled.div<EmotionStyleType>`
