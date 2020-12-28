@@ -1,19 +1,24 @@
 // Dependencies
-import React from 'react';
+import React, { useRef, RefObject } from 'react';
+import ReactMarkdown from 'react-markdown';
 import { useRouter } from 'next/router';
 import * as Style from './styled';
+
+// Utils
+import ReactShadowDom from '../../../utils/ReactShadowDom';
 
 const dummyPost = {
   id: 1,
   title: 'Webpack에 관하여1',
   createdAt: '2020-12-31',
-  content: '**Webpack에 관하여1**',
+  content: '# Webpack에 관하여1',
 };
 
 function BottomList(): React.ReactElement {
   const {
     query: { post },
   } = useRouter();
+  const contentRef = useRef<any>();
 
   return (
     <>
@@ -21,7 +26,11 @@ function BottomList(): React.ReactElement {
         <Style.Title>{dummyPost.title}</Style.Title>
         <Style.Date>/ {dummyPost.createdAt}</Style.Date>
       </Style.Header>
-      <Style.ContentContainer>{dummyPost.content}</Style.ContentContainer>
+      <Style.ContentContainer ref={contentRef}>
+        <ReactShadowDom parentDom={contentRef}>
+          <ReactMarkdown>{dummyPost.content}</ReactMarkdown>
+        </ReactShadowDom>
+      </Style.ContentContainer>
     </>
   );
 }
