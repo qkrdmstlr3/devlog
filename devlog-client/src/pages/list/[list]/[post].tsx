@@ -1,11 +1,11 @@
 // Dependencies
-import React, { useRef, RefObject } from 'react';
+import React, { useRef } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { useRouter } from 'next/router';
 import * as Style from './styled';
 
 // Utils
-import ReactShadowDom from '../../../utils/ReactShadowDom';
+import ReactShadowDom from '@Utils/ReactShadowDom';
 
 const dummyPost = {
   id: 1,
