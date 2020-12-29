@@ -23,7 +23,9 @@ const AdminProvider = ({ children }: AdminKeyProviderType): any => {
   const getAdmin = (password: string) => {
     if (config.secretKey === password) {
       setAdminKey(config.secretKey);
+      return;
     }
+    setAdminKey('');
   };
 
   const context = {
