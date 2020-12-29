@@ -1,41 +1,20 @@
 // Dependencies
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import * as Style from './styled';
 
-// Contexts
-import { AdminContext } from '@ContextAPI/admin';
+// Hooks
+import useAdminMenu from '@Hooks/components/useAdminMenu';
 
 function AdminMenu(): React.ReactElement {
   const {
-    query: { post },
-  } = useRouter();
-  const { getAdmin } = useContext(AdminContext);
-  const [inputValue, setInputValue] = useState('');
-
-  const createListNameHandler = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const check = window.confirm('정말 삭제하시겠습니까?');
-    if (check) {
-      // 생성하기
-    }
-  };
-
-  const inputValueHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value);
-  };
-
-  const deletePostHandler = () => {
-    const check = window.confirm('정말 삭제하시겠습니까?');
-    if (check) {
-      // 삭제하기
-    }
-  };
-
-  const removeAdmin = () => {
-    getAdmin('');
-  };
+    inputValue,
+    post,
+    inputValueHandler,
+    deletePostHandler,
+    removeAdmin,
+    createListNameHandler,
+  } = useAdminMenu();
 
   return (
     <>
