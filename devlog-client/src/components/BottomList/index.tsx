@@ -22,7 +22,7 @@ function BottomList(): React.ReactElement {
       {dummyPosts.map((item) => (
         <Style.Item key={item.title} isSelected={post === item.title}>
           {post === item.title ? <Style.BoxIcon>■</Style.BoxIcon> : <></>}
-          <Link href={`/list/${list}/${item.title}`}>
+          <Link href={`/list/${list}/${item.id}`}>
             {item.title.toLocaleUpperCase()}
           </Link>
         </Style.Item>

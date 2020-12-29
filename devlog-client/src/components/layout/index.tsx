@@ -6,6 +6,7 @@ import * as Style from './styled';
 // Components
 import LeftList from '@Components/LeftList';
 import BottomList from '@Components/BottomList';
+import AdminMenu from '@Components/AdminMenu';
 
 // Contexts
 import { AdminContext } from '@ContextAPI/admin';
@@ -19,7 +20,7 @@ function Layout({
 }): React.ReactElement {
   const [isInput, setIsInput] = useState(false);
   const [inputValue, setInputValue] = useState<string>('');
-  const { getAdmin } = useContext(AdminContext);
+  const { adminKey, getAdmin } = useContext(AdminContext);
   const { pathname } = useRouter();
   const isPathMain = pathname === '/';
 
@@ -69,7 +70,7 @@ function Layout({
           GitHub
         </Style.IntroduceLink>
       </Style.Introduce>
-      <Style.Yellow />
+      <Style.Yellow>{adminKey ? <AdminMenu /> : <></>}</Style.Yellow>
     </Style.Container>
   );
 }
