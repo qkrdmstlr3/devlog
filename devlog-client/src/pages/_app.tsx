@@ -11,6 +11,9 @@ import { theme } from '@Style/styled';
 // Components
 import Layout from '@Components/Layout';
 
+// Contexts
+import { AdminProvider } from '@ContextAPI/admin';
+
 export default class MyApp extends app {
   public render(): React.ReactElement {
     const { Component, pageProps } = this.props;
@@ -26,9 +29,11 @@ export default class MyApp extends app {
             content="조개소년, shellboy, devlog, 개발 블로그"
           />
         </Helmet>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <AdminProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </AdminProvider>
         <GlobalStyle />
       </ThemeProvider>
     );

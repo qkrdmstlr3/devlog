@@ -1,11 +1,14 @@
 // Dependencies
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { useRouter } from 'next/router';
 import * as Style from './styled';
 
 // Components
 import LeftList from '@Components/LeftList';
 import BottomList from '@Components/BottomList';
+
+// Contexts
+import { AdminContext } from '@ContextAPI/admin';
 
 const GITHUB_URL = 'https://github.com/qkrdmstlr3';
 
@@ -14,8 +17,25 @@ function Layout({
 }: {
   children: React.ReactElement;
 }): React.ReactElement {
+  const [isInput, setIsInput] = useState(false);
+  const [inputValue, setInputValue] = useState<string>('');
+  const { getAdmin } = useContext(AdminContext);
   const { pathname } = useRouter();
   const isPathMain = pathname === '/';
+
+  const inputOpenHandler = () => {
+    setIsInput(true);
+  };
+
+  const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    getAdmin(inputValue);
+    setIsInput(false);
+  };
+
+  const inputValueHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
+  };
 
   return (
     <Style.Container>
@@ -24,7 +44,19 @@ function Layout({
         <LeftList />
       </Style.LeftList>
       <Style.Main isPathMain={isPathMain}>{children}</Style.Main>
-      <Style.Blue />
+      <Style.Blue onClick={inputOpenHandler}>
+        {isInput ? (
+          <form onSubmit={submitHandler}>
+            <input
+              type="password"
+              value={inputValue}
+              onChange={inputValueHandler}
+            />
+          </form>
+        ) : (
+          <></>
+        )}
+      </Style.Blue>
       <Style.BottomList isPathMain={isPathMain}>
         <BottomList />
       </Style.BottomList>
