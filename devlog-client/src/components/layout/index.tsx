@@ -1,6 +1,5 @@
 // Dependencies
-import React, { useContext, useState } from 'react';
-import { useRouter } from 'next/router';
+import React from 'react';
 import * as Style from './styled';
 
 // Components
@@ -8,8 +7,8 @@ import LeftList from '@Components/LeftList';
 import BottomList from '@Components/BottomList';
 import AdminMenu from '@Components/AdminMenu';
 
-// Contexts
-import { AdminContext } from '@ContextAPI/admin';
+// Hooks
+import useLayout from '@Hooks/components/useLayout';
 
 const GITHUB_URL = 'https://github.com/qkrdmstlr3';
 
@@ -18,25 +17,15 @@ function Layout({
 }: {
   children: React.ReactElement;
 }): React.ReactElement {
-  const [isInput, setIsInput] = useState(false);
-  const [inputValue, setInputValue] = useState<string>('');
-  const { adminKey, getAdmin } = useContext(AdminContext);
-  const { pathname } = useRouter();
-  const isPathMain = pathname === '/';
-
-  const inputOpenHandler = () => {
-    setIsInput(true);
-  };
-
-  const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    getAdmin(inputValue);
-    setIsInput(false);
-  };
-
-  const inputValueHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value);
-  };
+  const {
+    isInput,
+    inputValue,
+    adminKey,
+    isPathMain,
+    inputOpenHandler,
+    submitHandler,
+    inputValueHandler,
+  } = useLayout();
 
   return (
     <Style.Container>
