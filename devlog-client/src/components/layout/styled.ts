@@ -43,6 +43,7 @@ export const BottomList = styled.div<ItemProps>`
   border-left: 10px solid black;
   border-right: 7px solid black;
   grid-area: bottomList;
+  pointer-events: ${(props) => (props.isPathMain ? 'none' : 'auto')};
 `;
 
 export const Introduce = styled.div`
