@@ -6,9 +6,10 @@
       {
         "root": ["./"],
         "alias": {
-          "@Config": ["src/config"],
-          "@ContextAPI": ["src/contextAPI"],
+          "@Config": "src/config",
+          "@ContextAPI": "src/contextAPI",
           "@Components": "./src/components",
+          "@Hooks": "./src/hooks",
           "@Style": "./src/common/style",
           "@Utils": "./src/utils"
         }
