@@ -1,9 +1,12 @@
 // Dependencies
-import React, { useState } from 'react';
+import React from 'react';
 import * as Style from './styled';
 
 // Types
 import { FormValueType } from '../../common/types';
+
+// Hooks
+import usePostForm from '@Hooks/components/usePostForm';
 
 interface PostFormProps {
   /** page 이름 */
@@ -33,23 +36,11 @@ function PostForm({
   content = '',
   submitHandler,
 }: PostFormProps): React.ReactElement {
-  const [formValue, setFormValue] = useState({
-    titleValue: title,
-    contentValue: content,
-    listNameValue: listName,
+  const { formValue, changeHandler } = usePostForm({
+    title,
+    content,
+    listName,
   });
-
-  const changeHandler = (
-    event: React.FormEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
-    name: string
-  ) => {
-    setFormValue({
-      ...formValue,
-      [name]: event.currentTarget.value,
-    });
-  };
 
   return (
     <Style.Form onSubmit={(event) => submitHandler(event, formValue)}>
