@@ -1,6 +1,8 @@
 // Dependencies
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
+import { createConnection } from 'typeorm';
+import "reflect-metadata";
 
 // Middleware
 import morgan from 'morgan';
@@ -25,6 +27,8 @@ app.use(morgan('dev'));
 app.use(compression());
 app.use(hpp());
 
-app.listen(port, () => {
-  console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
-});
+createConnection().then(() => {
+  app.listen(port, () => {
+    console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
+  });
+})
