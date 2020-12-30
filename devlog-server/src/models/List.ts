@@ -2,11 +2,9 @@
 import {
   BaseEntity,
   Column,
-  CreateDateColumn,
   Entity,
   OneToMany,
   PrimaryGeneratedColumn,
-  UpdateDateColumn,
 } from 'typeorm';
 
 // Models
@@ -22,12 +20,6 @@ export class List extends BaseEntity {
 
   @Column({ type: 'int', name: 'post_count' })
   postCount!: number;
-
-  @CreateDateColumn({ name: 'created_at' })
-  createdAt!: Date;
-
-  @UpdateDateColumn({ name: 'updated_at' })
-  updatedAt!: Date;
 
   // One To Many
   @OneToMany(() => Post, (post) => post.list, { onDelete: 'CASCADE' })

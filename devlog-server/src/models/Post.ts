@@ -19,12 +19,15 @@ export class Post extends BaseEntity {
   title!: string;
 
   @Column({ type: 'text' })
-  content!: number;
+  content!: string;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt!: Date;
 
   // Many To One
+  @Column({ type: 'int' })
+  listId!: number;
+
   @ManyToOne(() => List, (list) => list.posts, { onDelete: 'CASCADE' })
   list!: List;
 }
