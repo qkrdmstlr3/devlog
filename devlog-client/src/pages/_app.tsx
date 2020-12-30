@@ -28,6 +28,7 @@ export default class MyApp extends app {
             name="Keywords"
             content="조개소년, shellboy, devlog, 개발 블로그"
           />
+          <link rel="shortcut icon" href="/favicon.ico" />
         </Helmet>
         <AdminProvider>
           <Layout>
