@@ -20,8 +20,8 @@ export class List extends BaseEntity {
   @Column({ type: 'text' })
   title!: string;
 
-  @Column({ type: 'int' })
-  post_count!: number;
+  @Column({ type: 'int', name: 'post_count' })
+  postCount!: number;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt!: Date;
