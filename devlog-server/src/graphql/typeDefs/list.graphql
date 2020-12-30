@@ -1,0 +1,22 @@
+type List {
+  id: Int!
+  title: String!
+  postCount: Int!
+}
+
+type Query {
+  getLists: [List]
+}
+
+type Mutation {
+  createList(input: CreateListInput): Boolean!
+  deleteList(input: DeleteListInput): Boolean!
+}
+
+input CreateListInput {
+  title: String!
+}
+
+input DeleteListInput {
+  listId: Int!
+}
