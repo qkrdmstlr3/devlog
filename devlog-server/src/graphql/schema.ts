@@ -7,7 +7,9 @@ import {
 import path from 'path';
 
 const types = loadFilesSync(path.join(__dirname, './typeDefs/*.graphql'));
-const resolvers = loadFilesSync(path.join(__dirname, './resolvers/*.ts'));
+const resolvers = loadFilesSync(
+  path.join(__dirname, './resolvers/**/index.ts')
+);
 
 const schema = makeExecutableSchema({
   typeDefs: mergeTypeDefs(types),
