@@ -1,11 +1,30 @@
+// Dependencies
 import express from 'express';
+import { ApolloServer } from 'apollo-server-express';
+
+// Middleware
+import morgan from 'morgan';
+import compression from 'compression';
+import hpp from 'hpp';
+
+// etc
+import schema from './graphql/schema';
 
 const app = express();
+const server = new ApolloServer({
+    schema,
+    playground: true,
+  });
 
-app.get('/', (req, res) => {
-    res.send('hello world');
-});
+  server.applyMiddleware({ app, path: '/graphql' });
 
-app.listen(4000, () => {
-  console.log('hello World');
+const prod:boolean = process.env.NODE_ENV === 'production';
+const port = prod ? process.env.PORT : 4000;
+
+app.use(morgan('dev'));
+app.use(compression());
+app.use(hpp());
+
+app.listen(port, () => {
+  console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
 });
