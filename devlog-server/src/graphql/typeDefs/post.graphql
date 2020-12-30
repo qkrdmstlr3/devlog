@@ -1,0 +1,49 @@
+scalar Date
+
+type OnePost {
+  id: Int!
+  title: String!
+  content: String!
+  createdAt: Date!
+}
+
+type ManyPost {
+  id: Int!
+  title: String!
+}
+
+type Query {
+  getPosts(input: GetPostsInput): [ManyPost]
+  getPost(input: GetPostInput): OnePost
+}
+
+type Mutation {
+  createPost(input: CreatePostInput): Boolean!
+  deletePost(input: DeletePostInput): Boolean!
+  updatePost(input: UpdatePostInput): Boolean!
+}
+
+input GetPostsInput {
+  listId: Int!
+}
+
+input GetPostInput {
+  id: Int!
+}
+
+input CreatePostInput {
+  title: String!
+  content: String!
+  listId: Int!
+}
+
+input DeletePostInput {
+  id: Int!
+}
+
+input UpdatePostInput {
+  id: Int!
+  title: String!
+  content: String!
+  listId: Int!
+}
