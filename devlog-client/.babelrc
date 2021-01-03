@@ -11,7 +11,8 @@
           "@Components": "./src/components",
           "@Hooks": "./src/hooks",
           "@Style": "./src/common/style",
-          "@Utils": "./src/utils"
+          "@Utils": "./src/utils",
+          "@Libs": "./src/libs"
         }
       }
     ]
