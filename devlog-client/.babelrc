@@ -12,7 +12,8 @@
           "@Hooks": "./src/hooks",
           "@Style": "./src/common/style",
           "@Utils": "./src/utils",
-          "@Libs": "./src/libs"
+          "@Libs": "./src/libs",
+          "@RenderingData": "./src/common/rendering-data"
         }
       }
     ]

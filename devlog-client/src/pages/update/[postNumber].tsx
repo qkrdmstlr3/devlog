@@ -7,6 +7,9 @@ import PostForm from '@Components/PostForm';
 // Types
 import { FormValueType } from '../../common/types';
 
+// RenderingData
+import string from '@RenderingData/string';
+
 // apollo cache로 가져오면 되지 않을까..?
 const dummyPost = {
   id: 1,
@@ -27,7 +30,7 @@ function Update(): React.ReactElement {
 
   return (
     <PostForm
-      page="글 쓰기"
+      page={string.MODIFY}
       listName={dummyPost.listName}
       title={dummyPost.title}
       content={dummyPost.content}

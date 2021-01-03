@@ -7,6 +7,9 @@ import PostForm from '@Components/PostForm';
 // Types
 import { FormValueType } from '../../common/types';
 
+// RenderingData
+import string from '@RenderingData/string';
+
 function Create(): React.ReactElement {
   const createPost = (
     event: React.FormEvent<HTMLFormElement>,
@@ -16,7 +19,7 @@ function Create(): React.ReactElement {
     console.log(formValue);
   };
 
-  return <PostForm page="글 쓰기" submitHandler={createPost} />;
+  return <PostForm page={string.CREATE} submitHandler={createPost} />;
 }
 
 export default Create;

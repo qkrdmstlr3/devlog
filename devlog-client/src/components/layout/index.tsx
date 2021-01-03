@@ -10,7 +10,8 @@ import AdminMenu from '@Components/AdminMenu';
 // Hooks
 import useLayout from '@Hooks/components/useLayout';
 
-const GITHUB_URL = 'https://github.com/qkrdmstlr3';
+// RenderingData
+import string from '@RenderingData/string';
 
 function Layout({
   children,
@@ -52,11 +53,11 @@ function Layout({
       </Style.BottomList>
       <Style.Introduce>
         <Style.IntroduceLink
-          href={GITHUB_URL}
+          href={string.GITHUB_URL}
           target="_blank"
           isPathMain={isPathMain}
         >
-          GitHub
+          {string.GITHUB}
         </Style.IntroduceLink>
       </Style.Introduce>
       <Style.Yellow>{adminKey ? <AdminMenu /> : <></>}</Style.Yellow>

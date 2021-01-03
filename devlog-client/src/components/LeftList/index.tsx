@@ -4,6 +4,9 @@ import * as Style from './styled';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
+// RenderingData
+import string from '@RenderingData/string';
+
 const dummyItems = [
   { id: 1, title: 'Network', postCount: 10 },
   { id: 2, title: 'Database', postCount: 10 },
@@ -17,7 +20,7 @@ function LeftList(): React.ReactElement {
   return (
     <Style.List>
       <Style.HomeItem isSelected={!list}>
-        <Link href="/">HOME</Link>
+        <Link href="/">{string.HOME}</Link>
         {!list ? <span>■</span> : <></>}
       </Style.HomeItem>
       {dummyItems.map((item) => (
