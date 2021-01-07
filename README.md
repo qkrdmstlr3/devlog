@@ -4,13 +4,10 @@
 
 ![main](https://user-images.githubusercontent.com/26402298/103291427-0b64b600-4a2f-11eb-9a1e-14dfee528b69.PNG)
 
-## Design with Mondrian
+## Plan
 
-https://ovenapp.io/project/izYJBJtxIZ1W8djSP6uTDzNczQ4hFD42#AlNY9
+[Design with Mondrian](https://ovenapp.io/project/izYJBJtxIZ1W8djSP6uTDzNczQ4hFD42#AlNY9)
 
-## FeatureList
+[Feature List](https://docs.google.com/spreadsheets/d/1qAKk67e03SEMgFKsVcJd_LgXN5nxCntcV64-ckhcvjw/edit#gid=0)
 
-https://docs.google.com/spreadsheets/d/1qAKk67e03SEMgFKsVcJd_LgXN5nxCntcV64-ckhcvjw/edit#gid=0
-
-## ERD
-https://www.erdcloud.com/d/eDu82Hh6uepXnxXss
+[ERD](https://www.erdcloud.com/d/eDu82Hh6uepXnxXss)
