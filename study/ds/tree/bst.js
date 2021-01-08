@@ -83,10 +83,13 @@ class BST {
       let point = node.right;
       while (point.left) {
         if (!point.left.left) {
+          console.log(point.left.data);
           node.data = point.left.data;
           point.left = undefined;
         }
       }
+      node.data = node.right.data;
+      node.right = undefined;
     }
   }
 
@@ -116,7 +119,6 @@ bst.insert(3);
 bst.insert(1);
 bst.insert(6);
 bst.inorder();
+bst.remove(6);
 bst.remove(5);
-bst.inorder();
-bst.insert(5);
 bst.inorder();
