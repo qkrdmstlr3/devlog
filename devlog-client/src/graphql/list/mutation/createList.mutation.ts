@@ -2,6 +2,10 @@ import { gql } from '@apollo/client';
 
 export default gql`
   mutation createList($title: String!) {
-    createList(input: { title: $title })
+    createList(input: { title: $title }) {
+      id
+      title
+      postCount
+    }
   }
 `;
