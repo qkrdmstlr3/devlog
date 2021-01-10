@@ -8,6 +8,12 @@ import { FormValueType } from '../../common/types';
 // Hooks
 import usePostForm from '@Hooks/components/usePostForm';
 
+interface ListType {
+  id: number;
+  title: string;
+  postCount: number;
+}
+
 interface PostFormProps {
   /** page 이름 */
   page: string;
@@ -20,7 +26,8 @@ interface PostFormProps {
   /** submit할 때 호출될 함수 */
   submitHandler: (
     event: React.FormEvent<HTMLFormElement>,
-    formValue: FormValueType
+    formValue: FormValueType,
+    lists: ListType[]
   ) => void;
 }
 
@@ -38,7 +45,7 @@ function PostForm({
   });
 
   return (
-    <Style.Form onSubmit={(event) => submitHandler(event, formValue)}>
+    <Style.Form onSubmit={(event) => submitHandler(event, formValue, lists)}>
       <Style.Header>
         <Style.Dropdown
           value={formValue.listNameValue}
