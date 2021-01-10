@@ -42,6 +42,7 @@
       "@Config/*": ["src/config/*"],
       "@ContextAPI/*": ["src/contextAPI/*"],
       "@Components/*": ["src/components/*"],
+      "@Graphql/*": ["src/graphql/*"],
       "@Hooks/*": ["src/hooks/*"],
       "@Style/*": ["src/common/style/*"],
       "@Utils/*": ["src/utils/*"],
