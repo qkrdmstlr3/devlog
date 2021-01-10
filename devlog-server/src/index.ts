@@ -8,6 +8,7 @@ import 'reflect-metadata';
 import morgan from 'morgan';
 import compression from 'compression';
 import hpp from 'hpp';
+import cors from 'cors';
 
 // etc
 import schema from './graphql/schema';
@@ -26,6 +27,7 @@ const port = prod ? process.env.PORT : 4000;
 app.use(morgan('dev'));
 app.use(compression());
 app.use(hpp());
+app.use(cors({ credentials: true, origin: true }));
 
 createConnection().then(() => {
   app.listen(port, () => {
