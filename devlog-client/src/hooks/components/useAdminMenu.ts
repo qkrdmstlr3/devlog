@@ -5,6 +5,10 @@ import { useRouter } from 'next/router';
 // Contexts
 import { AdminContext } from '@ContextAPI/admin';
 
+// Graphql
+import { useMutation } from '@apollo/client';
+import CREATE_LIST_MUTATION from '@Graphql/list/mutation/createList.mutation';
+
 interface UseAdminMenuType {
   /** listName을 만드는 이름 */
   inputValue: string;
@@ -26,6 +30,7 @@ function useAdminMenu(): UseAdminMenuType {
   } = useRouter();
   const { getAdmin } = useContext(AdminContext);
   const [inputValue, setInputValue] = useState<string>('');
+  const [createList] = useMutation(CREATE_LIST_MUTATION);
 
   const inputValueHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
@@ -35,7 +40,7 @@ function useAdminMenu(): UseAdminMenuType {
     event.preventDefault();
     const check = window.confirm('정말 생성하시겠습니까?');
     if (check) {
-      // 생성하기
+      createList({ variables: { title: inputValue } });
     }
   };
 
