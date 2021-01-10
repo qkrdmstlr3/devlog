@@ -24,11 +24,6 @@ interface PostFormProps {
   ) => void;
 }
 
-const dummyItems = [
-  { id: 1, title: 'Network', postCount: 10 },
-  { id: 2, title: 'Database', postCount: 10 },
-];
-
 function PostForm({
   page,
   listName = '',
@@ -36,7 +31,7 @@ function PostForm({
   content = '',
   submitHandler,
 }: PostFormProps): React.ReactElement {
-  const { formValue, changeHandler } = usePostForm({
+  const { formValue, lists, changeHandler } = usePostForm({
     title,
     content,
     listName,
@@ -49,7 +44,7 @@ function PostForm({
           value={formValue.listNameValue}
           onChange={(event) => changeHandler(event, 'listNameValue')}
         >
-          {dummyItems.map((item) => (
+          {lists?.map((item) => (
             <option key={item.title} value={item.title}>
               {item.title}
             </option>
