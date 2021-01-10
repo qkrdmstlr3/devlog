@@ -5,11 +5,11 @@ type List {
 }
 
 type Query {
-  getLists: [List]
+  getLists: [List]!
 }
 
 type Mutation {
-  createList(input: CreateListInput): Boolean!
+  createList(input: CreateListInput): List!
   deleteList(input: DeleteListInput): Boolean!
 }
 
