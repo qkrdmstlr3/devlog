@@ -18,9 +18,9 @@ type Query {
 }
 
 type Mutation {
-  createPost(input: CreatePostInput): Boolean!
+  createPost(input: CreatePostInput): OnePost!
   deletePost(input: DeletePostInput): Boolean!
-  updatePost(input: UpdatePostInput): Boolean!
+  updatePost(input: UpdatePostInput): OnePost!
 }
 
 input GetPostsInput {

@@ -6,7 +6,7 @@ export const createPostMutation = async (
   title: string,
   content: string,
   listId: number
-): Promise<boolean> => {
+): Promise<Post> => {
   const list = await List.findOne({ where: { id: listId } });
   if (!list) {
     throw new GraphQLError('없는 리스트 목록입니다');
@@ -21,7 +21,7 @@ export const createPostMutation = async (
   list.postCount = list.postCount + 1;
   await list.save();
 
-  return true;
+  return post;
 };
 
 export const deletePostMutation = async (id: number): Promise<boolean> => {
@@ -46,7 +46,7 @@ export const updatePostMutation = async (
   title: string,
   content: string,
   listId: number
-): Promise<boolean> => {
+): Promise<Post> => {
   const post = await Post.findOne({ where: { id } });
   if (!post) {
     throw new GraphQLError('없는 게시글입니다');
@@ -56,5 +56,5 @@ export const updatePostMutation = async (
   post.listId = listId;
   await post.save();
 
-  return true;
+  return post;
 };
