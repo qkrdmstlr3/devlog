@@ -7,15 +7,14 @@ import { useRouter } from 'next/router';
 // RenderingData
 import string from '@RenderingData/string';
 
-const dummyItems = [
-  { id: 1, title: 'Network', postCount: 10 },
-  { id: 2, title: 'Database', postCount: 10 },
-];
+// Hooks
+import useLeftList from '@Hooks/components/useLeftList';
 
 function LeftList(): React.ReactElement {
   const {
     query: { list },
   } = useRouter();
+  const { lists } = useLeftList();
 
   return (
     <Style.List>
@@ -23,7 +22,7 @@ function LeftList(): React.ReactElement {
         <Link href="/">{string.HOME}</Link>
         {!list ? <span>■</span> : <></>}
       </Style.HomeItem>
-      {dummyItems.map((item) => (
+      {lists?.map((item) => (
         <Style.Item key={item.title} isSelected={list === item.title}>
           <Link href={`/list/${item.title}`}>
             {item.title.toLocaleUpperCase()}
