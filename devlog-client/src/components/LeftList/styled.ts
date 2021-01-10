@@ -25,7 +25,7 @@ export const Item = styled.li<ItemProps>`
   }
 `;
 
-export const HomeItem = styled.span<ItemProps>`
+export const HomeItem = styled.li<ItemProps>`
   width: 100%;
   display: flex;
   justify-content: space-between;

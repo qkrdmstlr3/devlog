@@ -19,13 +19,13 @@ export const Header = styled.div<ItemProps>`
     props.isPathMain ? props.theme.WHITE : props.theme.RED};
 `;
 
-export const LeftList = styled.div`
+export const LeftList = styled.nav`
   border-top: 7px solid black;
   border-bottom: 10px solid black;
   grid-area: list;
 `;
 
-export const Main = styled.div<ItemProps>`
+export const Main = styled.main<ItemProps>`
   border-left: 10px solid black;
   border-bottom: 10px solid black;
   grid-area: main;
