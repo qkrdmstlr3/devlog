@@ -24,7 +24,7 @@ function LeftList(): React.ReactElement {
       </Style.HomeItem>
       {lists?.map((item) => (
         <Style.Item key={item.title} isSelected={list === item.title}>
-          <Link href={`/list/${item.title}`}>
+          <Link href={`/list/${item.id}`}>
             {item.title.toLocaleUpperCase()}
           </Link>
           {list === item.title ? <span>{item.postCount}</span> : <></>}
