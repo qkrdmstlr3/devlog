@@ -5,11 +5,13 @@ type OnePost {
   title: String!
   content: String!
   createdAt: Date!
+  listId: Int!
 }
 
 type ManyPost {
   id: Int!
   title: String!
+  listId: Int!
 }
 
 type Query {
