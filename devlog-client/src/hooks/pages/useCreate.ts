@@ -7,6 +7,12 @@ import { FormValueType } from '../../common/types';
 // Graphql
 import { useMutation } from '@apollo/client';
 import CREATE_POST_MUTATION from '@Graphql/post/mutation/createPost.mutation';
+import GET_POSTS_QUERY from '@Graphql/post/query/getPosts.mutation';
+
+interface PostType {
+  id: number;
+  title: string;
+}
 
 interface ListType {
   id: number;
@@ -23,7 +29,22 @@ interface UseCreateType {
 }
 
 function useCreate(): UseCreateType {
-  const [createPost] = useMutation(CREATE_POST_MUTATION);
+  const [createPost] = useMutation(CREATE_POST_MUTATION, {
+    update(cache, { data: { createPost } }) {
+      const result = cache.readQuery<{ getPosts: PostType[] }>({
+        query: GET_POSTS_QUERY,
+        variables: { listId: createPost.id },
+      });
+
+      if (result) {
+        cache.writeQuery({
+          query: GET_POSTS_QUERY,
+          variables: { listId: createPost.id },
+          data: { getPosts: [...result.getPosts, createPost] },
+        });
+      }
+    },
+  });
   const handleCreatePost = (
     event: React.FormEvent<HTMLFormElement>,
     formValue: FormValueType,
