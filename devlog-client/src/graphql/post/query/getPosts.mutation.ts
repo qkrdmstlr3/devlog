@@ -5,6 +5,7 @@ export default gql`
     getPosts(input: { listId: $listId }) {
       id
       title
+      listId
     }
   }
 `;

@@ -33,13 +33,13 @@ function useCreate(): UseCreateType {
     update(cache, { data: { createPost } }) {
       const result = cache.readQuery<{ getPosts: PostType[] }>({
         query: GET_POSTS_QUERY,
-        variables: { listId: createPost.id },
+        variables: { listId: createPost.listId },
       });
 
       if (result) {
         cache.writeQuery({
           query: GET_POSTS_QUERY,
-          variables: { listId: createPost.id },
+          variables: { listId: createPost.listId },
           data: { getPosts: [...result.getPosts, createPost] },
         });
       }
