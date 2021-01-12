@@ -38,12 +38,13 @@ function PostForm({
   content = '',
   submitHandler,
 }: PostFormProps): React.ReactElement {
-  const { formValue, lists, changeHandler } = usePostForm({
+  const { formValue, lists, loading, changeHandler } = usePostForm({
     title,
     content,
     listName,
   });
 
+  if (loading) return <></>;
   return (
     <Style.Form onSubmit={(event) => submitHandler(event, formValue, lists)}>
       <Style.Header>

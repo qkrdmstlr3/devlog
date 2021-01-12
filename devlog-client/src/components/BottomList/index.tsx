@@ -11,8 +11,9 @@ function BottomList(): React.ReactElement {
   const {
     query: { list, post },
   } = useRouter();
-  const { posts } = useBottomList({ listId: Number(list) });
+  const { posts, loading } = useBottomList({ listId: Number(list) });
 
+  if (loading) return <></>;
   return (
     <Style.List>
       {posts.map((item) => (

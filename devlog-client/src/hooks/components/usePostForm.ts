@@ -1,5 +1,5 @@
 // Dependencies
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 // Types
 import { FormValueType } from '../../common/types';
@@ -28,6 +28,8 @@ interface UsePostFormType {
   formValue: FormValueType;
   /** 서버에서 가져온 리스트 목록 */
   lists: ListType[];
+  /** 리스트 데이터 로딩 여부 */
+  loading: boolean;
   /** form의 값을 바꾸는 함수 */
   changeHandler: (
     event: React.FormEvent<
@@ -42,19 +44,12 @@ function usePostForm({
   content,
   listName,
 }: UsePostFormProps): UsePostFormType {
-  const [lists, setLists] = useState<ListType[]>([]);
   const { data, loading } = useQuery(GET_LISTS_QUERY);
   const [formValue, setFormValue] = useState<FormValueType>({
     titleValue: title,
     contentValue: content,
     listNameValue: listName,
   });
-
-  useEffect(() => {
-    if (!loading) {
-      setLists(data.getLists);
-    }
-  }, []);
 
   const changeHandler = (
     event: React.FormEvent<
@@ -69,7 +64,8 @@ function usePostForm({
   };
 
   return {
-    lists,
+    lists: data?.getLists,
+    loading,
     formValue,
     changeHandler,
   };

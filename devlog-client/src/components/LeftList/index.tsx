@@ -14,7 +14,9 @@ function LeftList(): React.ReactElement {
   const {
     query: { list },
   } = useRouter();
-  const { lists } = useLeftList();
+  const { lists, loading } = useLeftList();
+
+  if (loading) return <></>;
 
   return (
     <Style.List>
