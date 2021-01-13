@@ -62,7 +62,6 @@ export const getServerSideProps = async ({ query }: SSRType) => {
       postId: Number(post),
     },
   });
-  console.log(apolloClient.cache.extract());
 
   /**
    * apolloClient를 사용해서 만든 캐시와 hook사용해서 만든 캐시의 저장소 공간이 다른 것 같다.
