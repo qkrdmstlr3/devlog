@@ -11,9 +11,12 @@ import {
   NormalizedCacheObject,
 } from '@apollo/client';
 import merge from 'deepmerge';
+import isEqual from 'lodash/isEqual';
 
 // Config
 import config from '@Config/index';
+
+export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__';
 
 let apolloClient: ApolloClient<NormalizedCacheObject>;
 
@@ -35,20 +38,37 @@ export function initilizeApollo(
   if (initialState) {
     const existingCache = _apolloClient.extract();
 
-    const data = merge(initialState as any, existingCache);
+    const data = merge(initialState as any, existingCache, {
+      arrayMerge: (destinationArray, sourceArray) => [
+        ...sourceArray,
+        ...destinationArray.filter((d) =>
+          sourceArray.every((s) => !isEqual(d, s))
+        ),
+      ],
+    });
 
     _apolloClient.cache.restore(data);
   }
 
-  if (typeof window === 'undefined') return _apolloClient;
   if (!apolloClient) apolloClient = _apolloClient;
 
   return _apolloClient;
 }
 
-export function useApollo(
-  initialState = null
-): ApolloClient<NormalizedCacheObject> {
-  const store = useMemo(() => initilizeApollo(initialState), [initialState]);
+export function addApolloState(
+  client: ApolloClient<NormalizedCacheObject>,
+  pageProps: any
+): any {
+  if (pageProps?.props) {
+    pageProps.props[APOLLO_STATE_PROP_NAME] = client.cache.extract();
+  }
+
+  console.log(pageProps);
+  return pageProps;
+}
+
+export function useApollo(pageProps: any): ApolloClient<NormalizedCacheObject> {
+  const state = pageProps[APOLLO_STATE_PROP_NAME];
+  const store = useMemo(() => initilizeApollo(state), [state]);
   return store;
 }

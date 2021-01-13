@@ -14,6 +14,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/lodash": "^4.14.167",
     "@types/node": "^14.14.16",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
@@ -39,6 +40,7 @@
     "emotion-reset": "^3.0.0",
     "emotion-theming": "^11.0.0",
     "graphql": "^15.4.0",
+    "lodash": "^4.17.20",
     "next": "^10.0.4",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
