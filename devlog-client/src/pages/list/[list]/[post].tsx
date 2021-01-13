@@ -1,38 +1,59 @@
 // Dependencies
-import React, { useRef } from 'react';
+import React from 'react';
 import ReactMarkdown from 'react-markdown';
-import { useRouter } from 'next/router';
 import * as Style from './styled';
 
 // Utils
 import ReactShadowDom from '@Utils/ReactShadowDom';
+import getDateFormat from '@Utils/dateFortmat';
 
-const dummyPost = {
-  id: 1,
-  title: 'Webpack에 관하여1',
-  createdAt: '2020-12-31',
-  content: '# Webpack에 관하여1',
-};
+// Graphql
+import { initilizeApollo, addApolloState } from '@Libs/apolloClient';
+import GET_POST_QUERY from '@Graphql/post/query/getPost.mutation';
+
+// Hooks
+import usePost from '@Hooks/pages/usePost';
 
 function BottomList(): React.ReactElement {
-  const {
-    query: { post },
-  } = useRouter();
-  const contentRef = useRef<any>();
+  const { contentRef, loading, data } = usePost();
 
+  if (loading) return <></>;
   return (
     <>
       <Style.Header>
-        <Style.Title>{dummyPost.title}</Style.Title>
-        <Style.Date>/ {dummyPost.createdAt}</Style.Date>
+        <Style.Title>{data?.getPost.title}</Style.Title>
+        <Style.Date>/ {getDateFormat(data?.getPost.createdAt)}</Style.Date>
       </Style.Header>
       <Style.ContentContainer ref={contentRef}>
         <ReactShadowDom parentDom={contentRef}>
-          <ReactMarkdown>{dummyPost.content}</ReactMarkdown>
+          <ReactMarkdown>{data?.getPost.content}</ReactMarkdown>
         </ReactShadowDom>
       </Style.ContentContainer>
     </>
   );
 }
+
+interface SSRType {
+  query: {
+    [name: string]: string;
+  };
+}
+
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export const getServerSideProps = async ({ query }: SSRType) => {
+  const apolloClient = initilizeApollo();
+  const { post } = query;
+
+  await apolloClient.query({
+    query: GET_POST_QUERY,
+    variables: {
+      postId: Number(post),
+    },
+  });
+
+  return addApolloState(apolloClient, {
+    props: {},
+  });
+};
 
 export default BottomList;
