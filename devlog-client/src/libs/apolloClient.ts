@@ -50,6 +50,7 @@ export function initilizeApollo(
     _apolloClient.cache.restore(data);
   }
 
+  // if (window === undefined) return _apolloClient;
   if (!apolloClient) apolloClient = _apolloClient;
 
   return _apolloClient;
@@ -63,7 +64,6 @@ export function addApolloState(
     pageProps.props[APOLLO_STATE_PROP_NAME] = client.cache.extract();
   }
 
-  console.log(pageProps);
   return pageProps;
 }
 
