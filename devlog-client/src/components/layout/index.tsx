@@ -6,6 +6,7 @@ import * as Style from './styled';
 import LeftList from '@Components/LeftList';
 import BottomList from '@Components/BottomList';
 import AdminMenu from '@Components/AdminMenu';
+import AdminInput from '@Components/AdminInput';
 
 // Hooks
 import useLayout from '@Hooks/components/useLayout';
@@ -18,15 +19,7 @@ function Layout({
 }: {
   children: React.ReactElement;
 }): React.ReactElement {
-  const {
-    isInput,
-    inputValue,
-    adminKey,
-    isPathMain,
-    inputOpenHandler,
-    submitHandler,
-    inputValueHandler,
-  } = useLayout();
+  const { isInput, adminKey, isPathMain, inputOpenHandler } = useLayout();
 
   return (
     <Style.Container>
@@ -35,18 +28,8 @@ function Layout({
         <LeftList />
       </Style.LeftList>
       <Style.Main isPathMain={isPathMain}>{children}</Style.Main>
-      <Style.Blue onClick={inputOpenHandler}>
-        {isInput ? (
-          <form onSubmit={submitHandler}>
-            <input
-              type="password"
-              value={inputValue}
-              onChange={inputValueHandler}
-            />
-          </form>
-        ) : (
-          <></>
-        )}
+      <Style.Blue onDoubleClick={inputOpenHandler}>
+        {isInput && <AdminInput />}
       </Style.Blue>
       <Style.BottomList isPathMain={isPathMain}>
         <BottomList />
