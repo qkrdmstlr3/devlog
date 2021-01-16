@@ -83,7 +83,6 @@ class BST {
       let point = node.right;
       while (point.left) {
         if (!point.left.left) {
-          console.log(point.left.data);
           node.data = point.left.data;
           point.left = undefined;
         }
