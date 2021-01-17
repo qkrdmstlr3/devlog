@@ -17,8 +17,6 @@ interface ListType {
 interface PostFormProps {
   /** page 이름 */
   page: string;
-  /** 수정할 때 현재 포스트의 리스트 이름 */
-  listName?: string;
   /** 수정할 때 현재 포스트의 이름 */
   title?: string;
   /** 수정할 때 현재 포스트의 내용 */
@@ -33,7 +31,6 @@ interface PostFormProps {
 
 function PostForm({
   page,
-  listName = '',
   title = '',
   content = '',
   submitHandler,
@@ -41,7 +38,6 @@ function PostForm({
   const { formValue, lists, loading, changeHandler } = usePostForm({
     title,
     content,
-    listName,
   });
 
   if (loading) return <></>;

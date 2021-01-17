@@ -13,8 +13,6 @@ interface UsePostFormProps {
   title: string;
   /** 포스트 내용 */
   content: string;
-  /** 포스트가 속한 리스트 이름 */
-  listName: string;
 }
 
 interface ListType {
@@ -39,16 +37,12 @@ interface UsePostFormType {
   ) => void;
 }
 
-function usePostForm({
-  title,
-  content,
-  listName,
-}: UsePostFormProps): UsePostFormType {
+function usePostForm({ title, content }: UsePostFormProps): UsePostFormType {
   const { data, loading } = useQuery(GET_LISTS_QUERY);
   const [formValue, setFormValue] = useState<FormValueType>({
     titleValue: title,
     contentValue: content,
-    listNameValue: listName,
+    listNameValue: '',
   });
 
   const changeHandler = (
