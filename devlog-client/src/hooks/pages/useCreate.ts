@@ -45,12 +45,17 @@ function useCreate(): UseCreateType {
       }
     },
   });
+
   const handleCreatePost = (
     event: React.FormEvent<HTMLFormElement>,
     formValue: FormValueType,
     lists: ListType[]
   ) => {
     event.preventDefault();
+    if (!formValue.listNameValue) {
+      alert('list이름을 설정해주세요');
+      return;
+    }
     const listId = lists.filter(
       (list) => list.title === formValue.listNameValue
     )[0].id;
