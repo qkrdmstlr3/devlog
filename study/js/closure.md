@@ -33,6 +33,7 @@ var arr = [];
 for (var i = 0; i < 5; i++) {
   arr[i] = function () {
     // lexical scope에 의해 i는 외부의 i를 참조하는 것 따라서 호출 할 때 i는 5가 되어있다
+    // i는 var로 선언되어 있기 때문에 전역변수로 처리된다. let으로 바꾸면 지역변수가 됨으로 해결되는 방법도 있다.
     return i;
   };
 }
