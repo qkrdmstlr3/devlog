@@ -6,7 +6,7 @@
 
 ## 배포
 
-[배포주소](https://devlog.qkrdmstlr3.vercel.app/)
+[배포주소](https://shellboylog.com/)
 
 - 현재 클라이언트만 배포
 
