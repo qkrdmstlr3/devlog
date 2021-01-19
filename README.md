@@ -4,6 +4,12 @@
 
 ![main](https://user-images.githubusercontent.com/26402298/103291427-0b64b600-4a2f-11eb-9a1e-14dfee528b69.PNG)
 
+## 배포
+
+[배포주소](https://devlog.qkrdmstlr3.vercel.app/)
+
+- 현재 클라이언트만 배포
+
 ## Plan
 
 [Design with Mondrian](https://ovenapp.io/project/izYJBJtxIZ1W8djSP6uTDzNczQ4hFD42#AlNY9)
