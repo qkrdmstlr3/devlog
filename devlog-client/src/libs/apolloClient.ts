@@ -4,12 +4,8 @@
  */
 // Dependencies
 import { useMemo } from 'react';
-import {
-  ApolloClient,
-  HttpLink,
-  InMemoryCache,
-  NormalizedCacheObject,
-} from '@apollo/client';
+import { ApolloClient, HttpLink } from '@apollo/client/core';
+import { InMemoryCache, NormalizedCacheObject } from '@apollo/client/cache';
 import merge from 'deepmerge';
 import isEqual from 'lodash/isEqual';
 
