@@ -23,11 +23,11 @@ function Layout({
 
   return (
     <Style.Container>
+      <Style.Main isPathMain={isPathMain}>{children}</Style.Main>
       <Style.Header isPathMain={isPathMain} />
       <Style.LeftList>
         <LeftList />
       </Style.LeftList>
-      <Style.Main isPathMain={isPathMain}>{children}</Style.Main>
       <Style.Blue onDoubleClick={inputOpenHandler}>
         {isInput && <AdminInput />}
       </Style.Blue>

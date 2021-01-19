@@ -16,7 +16,7 @@ function BottomList(): React.ReactElement {
   if (loading) return <></>;
   return (
     <Style.List>
-      {posts.map((item) => (
+      {posts?.map((item) => (
         <Style.Item key={item.title} isSelected={post === item.title}>
           {post === item.title ? <Style.BoxIcon>■</Style.BoxIcon> : <></>}
           <Link href={`/list/${list}/${item.id}`}>

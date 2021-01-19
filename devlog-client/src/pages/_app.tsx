@@ -30,24 +30,24 @@ export default function App({
 
   return (
     <ThemeProvider theme={theme}>
-      <Helmet>
-        <title>Shellboy DevLog</title>
-        <meta charSet="utf-8" />
-        <meta name="description" content="조개소년 개발 블로그" />
-        <meta
-          name="Keywords"
-          content="조개소년, shellboy, devlog, 개발 블로그"
-        />
-        <link rel="shortcut icon" href="/favicon.ico" />
-      </Helmet>
-      <AdminProvider>
-        <ApolloProvider client={apolloClient}>
+      <ApolloProvider client={apolloClient}>
+        <Helmet>
+          <title>Shellboy DevLog</title>
+          <meta charSet="utf-8" />
+          <meta name="description" content="조개소년 개발 블로그" />
+          <meta
+            name="Keywords"
+            content="조개소년, shellboy, devlog, 개발 블로그"
+          />
+          <link rel="shortcut icon" href="/favicon.ico" />
+        </Helmet>
+        <AdminProvider>
+          <GlobalStyle />
           <Layout>
             <Component {...pageProps} />
           </Layout>
-        </ApolloProvider>
-      </AdminProvider>
-      <GlobalStyle />
+        </AdminProvider>
+      </ApolloProvider>
     </ThemeProvider>
   );
 }
