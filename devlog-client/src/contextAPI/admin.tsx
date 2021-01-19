@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-import config from '@Config/index';
+// import config from '@Config/index';
 
 interface InitialStateType {
   adminKey: string;
@@ -21,8 +21,8 @@ const AdminProvider = ({ children }: AdminKeyProviderType): any => {
   const [adminKey, setAdminKey] = useState<string>('');
 
   const getAdmin = (password: string) => {
-    if (config.secretKey === password) {
-      setAdminKey(config.secretKey);
+    if (process.env.SECRET_KEY === password) {
+      setAdminKey(process.env.SECRET_KEY);
       return;
     }
     setAdminKey('');
