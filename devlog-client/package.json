@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
+    "build:analyze": "ANALYZE=true next build",
     "start": "next start",
     "type-check": "tsc",
     "lint": "eslint ."
@@ -36,6 +37,7 @@
     "@apollo/client": "^3.3.6",
     "@emotion/react": "^11.1.4",
     "@emotion/styled": "^11.0.0",
+    "@next/bundle-analyzer": "^10.0.5",
     "deepmerge": "^4.2.2",
     "emotion-reset": "^3.0.0",
     "emotion-theming": "^11.0.0",
