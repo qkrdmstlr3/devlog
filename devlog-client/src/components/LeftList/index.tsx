@@ -16,24 +16,26 @@ function LeftList(): React.ReactElement {
   } = useRouter();
   const { lists, loading } = useLeftList();
 
-  if (loading) return <></>;
-
-  return (
-    <Style.List>
-      <Style.HomeItem isSelected={!list}>
-        <Link href="/">{string.HOME}</Link>
-        {!list ? <span>■</span> : <></>}
-      </Style.HomeItem>
-      {lists?.map((item) => (
-        <Style.Item key={item.title} isSelected={list === item.title}>
-          <Link href={`/list/${item.id}`}>
-            {item.title.toLocaleUpperCase()}
-          </Link>
-          {list === item.title ? <span>{item.postCount}</span> : <></>}
-        </Style.Item>
-      ))}
-    </Style.List>
-  );
+  const renderer = React.useMemo(() => {
+    if (loading) return <></>;
+    return (
+      <Style.List>
+        <Style.HomeItem isSelected={!list}>
+          <Link href="/">{string.HOME}</Link>
+          {!list ? <span>■</span> : <></>}
+        </Style.HomeItem>
+        {lists?.map((item) => (
+          <Style.Item key={item.title} isSelected={list === item.title}>
+            <Link href={`/list/${item.id}`}>
+              {item.title.toLocaleUpperCase()}
+            </Link>
+            {list === item.title ? <span>{item.postCount}</span> : <></>}
+          </Style.Item>
+        ))}
+      </Style.List>
+    );
+  }, [lists, list]);
+  return renderer;
 }
 
 export default LeftList;
