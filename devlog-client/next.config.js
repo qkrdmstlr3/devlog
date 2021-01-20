@@ -10,6 +10,9 @@ module.exports = withBundleAnalyzer({
     let prod = process.env.NODE_ENV === 'production';
     return {
       ...config,
+      node: {
+        fs: 'empty',
+      },
       mode: prod ? 'production' : 'development',
       devtool: prod ? 'hidden-source-map' : 'eval',
     };
