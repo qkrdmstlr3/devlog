@@ -34,7 +34,7 @@ function LeftList(): React.ReactElement {
         ))}
       </Style.List>
     );
-  }, [lists, list]);
+  }, [lists?.length, list]);
   return renderer;
 }
 
