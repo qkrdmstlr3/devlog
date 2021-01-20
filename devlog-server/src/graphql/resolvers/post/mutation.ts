@@ -51,10 +51,21 @@ export const updatePostMutation = async (
   if (!post) {
     throw new GraphQLError('없는 게시글입니다');
   }
+  const beforeList = await List.findOne({ where: { id: post?.listId } });
+  const afterList = await List.findOne({ where: { id: listId } });
+  if (!beforeList || !afterList) {
+    throw new GraphQLError('없는 리스트입니다');
+  }
+
   post.title = title;
   post.content = content;
   post.listId = listId;
+  beforeList.postCount = beforeList.postCount - 1;
+  afterList.postCount = afterList.postCount + 1;
+
   await post.save();
+  await beforeList.save();
+  await afterList.save();
 
   return post;
 };
