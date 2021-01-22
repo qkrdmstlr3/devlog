@@ -1,14 +1,10 @@
 import styled, { EmotionStyleType } from '@Style/styled';
 
-interface ItemProps extends EmotionStyleType {
-  isSelected: boolean;
-}
-
 export const List = styled.ul`
   padding: 10px;
 `;
 
-export const Item = styled.li<ItemProps>`
+export const Item = styled.li<EmotionStyleType>`
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -25,7 +21,7 @@ export const Item = styled.li<ItemProps>`
   }
 `;
 
-export const HomeItem = styled.li<ItemProps>`
+export const HomeItem = styled.li<EmotionStyleType>`
   width: 100%;
   display: flex;
   justify-content: space-between;
