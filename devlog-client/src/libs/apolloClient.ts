@@ -10,7 +10,7 @@ import merge from 'deepmerge';
 import isEqual from 'lodash/isEqual';
 
 // Config
-// import config from '@Config/index';
+import config from '@Config/index';
 
 export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__';
 
@@ -20,7 +20,7 @@ function createApolloClient(): ApolloClient<NormalizedCacheObject> {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
     link: new HttpLink({
-      uri: 'http://localhost:4000/graphql',
+      uri: config.serverUrl,
       credentials: 'same-origin',
     }),
     cache: new InMemoryCache(),
