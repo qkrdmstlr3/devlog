@@ -10,7 +10,7 @@ type Query {
 
 type Mutation {
   createList(input: CreateListInput): List!
-  deleteList(input: DeleteListInput): Boolean!
+  deleteList(input: DeleteListInput): Int!
 }
 
 input CreateListInput {
