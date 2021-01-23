@@ -8,6 +8,9 @@ import { FormValueType } from '../../common/types';
 // Hooks
 import usePostForm from '@Hooks/components/usePostForm';
 
+// Components
+import WysiwygEditor from '@Components/WysiwygEditor';
+
 interface ListType {
   id: number;
   title: string;
@@ -35,7 +38,13 @@ function PostForm({
   content = '',
   submitHandler,
 }: PostFormProps): React.ReactElement {
-  const { formValue, lists, loading, changeHandler } = usePostForm({
+  const {
+    formValue,
+    lists,
+    loading,
+    changeHandler,
+    changeContentHandler,
+  } = usePostForm({
     title,
     content,
   });
@@ -62,10 +71,9 @@ function PostForm({
         value={formValue.titleValue}
         onChange={(event) => changeHandler(event, 'titleValue')}
       />
-      <Style.ContentInput
-        placeholder="내용 입력"
-        value={formValue.contentValue}
-        onChange={(event) => changeHandler(event, 'contentValue')}
+      <WysiwygEditor
+        initialValue={formValue.contentValue}
+        onChangeHandler={changeContentHandler}
       />
       <Style.SubmitButton>제출하기</Style.SubmitButton>
     </Style.Form>

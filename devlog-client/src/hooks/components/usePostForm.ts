@@ -30,11 +30,11 @@ interface UsePostFormType {
   loading: boolean;
   /** form의 값을 바꾸는 함수 */
   changeHandler: (
-    event: React.FormEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
+    event: React.FormEvent<HTMLInputElement | HTMLSelectElement>,
     name: string
   ) => void;
+  /** form값 중 content를 바꾸는 함수 */
+  changeContentHandler: (content: string) => void;
 }
 
 function usePostForm({ title, content }: UsePostFormProps): UsePostFormType {
@@ -46,9 +46,7 @@ function usePostForm({ title, content }: UsePostFormProps): UsePostFormType {
   });
 
   const changeHandler = (
-    event: React.FormEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
+    event: React.FormEvent<HTMLInputElement | HTMLSelectElement>,
     name: string
   ) => {
     setFormValue({
@@ -57,11 +55,19 @@ function usePostForm({ title, content }: UsePostFormProps): UsePostFormType {
     });
   };
 
+  const changeContentHandler = (content: string) => {
+    setFormValue({
+      ...formValue,
+      contentValue: content,
+    });
+  };
+
   return {
     lists: data?.getLists,
     loading,
     formValue,
     changeHandler,
+    changeContentHandler,
   };
 }
 
