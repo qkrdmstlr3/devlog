@@ -2,7 +2,7 @@
 import React, { forwardRef, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import { Editor as EditorType, EditorProps } from '@toast-ui/react-editor';
-import { TuiEditorWithForwardedProps } from './TuiEditorwrapper';
+import { TuiEditorWithForwardedProps } from './TuiEditorWrapper';
 import 'codemirror/lib/codemirror.css';
 import '@toast-ui/editor/dist/toastui-editor.css';
 
@@ -11,7 +11,7 @@ interface EditorPropsWithHandlers extends EditorProps {
 }
 
 const Editor = dynamic<TuiEditorWithForwardedProps>(
-  () => import('./TuiEditorwrapper'),
+  () => import('./TuiEditorWrapper'),
   { ssr: false }
 );
 const EditorWithForwardedRef = forwardRef<
