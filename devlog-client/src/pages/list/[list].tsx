@@ -1,6 +1,9 @@
+// Dependencies
 import React from 'react';
 import styled, { EmotionStyleType } from '@Style/styled';
-import { useRouter } from 'next/router';
+
+// Hooks
+import useList from '@Hooks/pages/usetList';
 
 const Title = styled.h1<EmotionStyleType>`
   padding: 15px;
@@ -12,10 +15,9 @@ const Title = styled.h1<EmotionStyleType>`
 `;
 
 function List(): React.ReactElement {
-  const {
-    query: { list },
-  } = useRouter();
-  return <Title>{list}</Title>;
+  const { listName } = useList();
+
+  return <Title>{listName}</Title>;
 }
 
 export default List;
