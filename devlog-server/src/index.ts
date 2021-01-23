@@ -29,6 +29,10 @@ app.use(compression());
 app.use(hpp());
 // app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 
+app.use('/', (req, res) => {
+  res.send('hello world');
+});
+
 createConnection().then(() => {
   app.listen(port, () => {
     console.log(
