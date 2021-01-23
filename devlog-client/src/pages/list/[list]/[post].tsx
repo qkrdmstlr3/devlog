@@ -1,10 +1,14 @@
 // Dependencies
 import React from 'react';
-import ReactMarkdown from 'react-markdown';
 import * as Style from './styled';
 
+// WysiwygEditor
+import 'codemirror/lib/codemirror.css';
+import '@toast-ui/editor/dist/toastui-editor.css';
+import dynamic from 'next/dynamic';
+import { ViewerProps } from '@toast-ui/react-editor';
+
 // Utils
-import ReactShadowDom from '@Utils/ReactShadowDom';
 import getDateFormat from '@Utils/dateFortmat';
 
 // Graphql
@@ -28,6 +32,10 @@ interface BottomListProps {
 
 function BottomList({ data }: BottomListProps): React.ReactElement {
   const { contentRef } = usePost();
+  const Viewer = dynamic<ViewerProps>(
+    () => import('@toast-ui/react-editor').then((m) => m.Viewer),
+    { ssr: false }
+  );
 
   return (
     <>
@@ -36,9 +44,7 @@ function BottomList({ data }: BottomListProps): React.ReactElement {
         <Style.Date>/ {getDateFormat(data?.getPost.createdAt)}</Style.Date>
       </Style.Header>
       <Style.ContentContainer ref={contentRef}>
-        <ReactShadowDom parentDom={contentRef}>
-          <ReactMarkdown>{data?.getPost.content}</ReactMarkdown>
-        </ReactShadowDom>
+        <Viewer initialValue={data?.getPost.content} />
       </Style.ContentContainer>
     </>
   );
