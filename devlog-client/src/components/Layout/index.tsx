@@ -19,10 +19,16 @@ function Layout({
 }: {
   children: React.ReactElement;
 }): React.ReactElement {
-  const { isInput, adminKey, isPathMain, inputOpenHandler } = useLayout();
+  const {
+    isInput,
+    isPostPage,
+    adminKey,
+    isPathMain,
+    inputOpenHandler,
+  } = useLayout();
 
   return (
-    <Style.Container>
+    <Style.Container isPostPage={isPostPage}>
       <Style.Main isPathMain={isPathMain}>{children}</Style.Main>
       <Style.Header isPathMain={isPathMain} />
       <Style.LeftList>

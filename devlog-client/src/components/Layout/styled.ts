@@ -4,11 +4,19 @@ interface ItemProps extends EmotionStyleType {
   isPathMain: boolean;
 }
 
-export const Container = styled.div`
+interface ContainerProps {
+  isPostPage: boolean;
+}
+
+const POST_PAGE = '2.5fr 4fr 0.7fr 0.7fr';
+const NOT_POST_PAGE = '2.5fr 4fr 1.25fr 1.25fr';
+
+export const Container = styled.div<ContainerProps>`
   height: 100vh;
   display: grid;
   grid-template-columns: 1.2fr 7.5fr 1.2fr;
-  grid-template-rows: 2.5fr 4fr 1.25fr 1.25fr;
+  grid-template-rows: ${(props) =>
+    props.isPostPage ? POST_PAGE : NOT_POST_PAGE};
   grid-template-areas: 'header main main' 'list main main' 'blue bottomList introduce' 'blue bottomList yellow';
 `;
 
@@ -29,6 +37,7 @@ export const Main = styled.main<ItemProps>`
   border-left: 10px solid black;
   border-bottom: 10px solid black;
   grid-area: main;
+  overflow-y: scroll;
   background-color: ${(props) =>
     props.isPathMain ? props.theme.RED : props.theme.WHITE};
 `;

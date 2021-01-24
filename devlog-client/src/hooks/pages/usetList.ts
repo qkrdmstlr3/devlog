@@ -32,7 +32,7 @@ function useList(): UseListType {
         setListName(listName.title.toUpperCase());
       }
     }
-  }, [loading]);
+  }, [loading, list]);
 
   return {
     listName,
