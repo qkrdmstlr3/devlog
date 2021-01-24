@@ -1,10 +1,12 @@
 import styled, { EmotionStyleType } from '@Style/styled';
 
 export const Header = styled.header`
+  width: 825px;
+  margin: 0 auto;
+  margin-top: 50px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: flex-end;
-  padding: 15px;
 `;
 
 export const Title = styled.h1<EmotionStyleType>`
@@ -18,7 +20,8 @@ export const Date = styled.span`
 `;
 
 export const ContentContainer = styled.div`
+  padding-top: 20px;
+  width: 825px;
+  margin: 0 auto;
   height: calc(100% - 62px);
-  padding: 0 30px;
-  overflow-y: scroll;
 `;
