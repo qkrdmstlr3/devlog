@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "devlog",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "shellboy devlog",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "shellboy <qkrdmstlr3@naver.com>",
   "dependencies": {
     "@emotion/react": "^11.1.4",
     "@emotion/styled": "^11.0.0",
@@ -51,9 +51,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/qkrdmstlr3/devlog"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/qkrdmstlr3/devlog/issues"
   }
 }
