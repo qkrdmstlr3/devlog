@@ -12,7 +12,7 @@
 
 ## Plan
 
-[Design with Mondrian](https://ovenapp.io/project/izYJBJtxIZ1W8djSP6uTDzNczQ4hFD42#AlNY9)
+[Design with Renewal](https://ovenapp.io/project/izYJBJtxIZ1W8djSP6uTDzNczQ4hFD42#AlNY9)
 
 [Feature List](https://docs.google.com/spreadsheets/d/1qAKk67e03SEMgFKsVcJd_LgXN5nxCntcV64-ckhcvjw/edit#gid=0)
 
