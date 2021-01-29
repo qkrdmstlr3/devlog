@@ -1,6 +1,6 @@
 // Dependencies
 import React from 'react';
-import Layout from '../components/Layout/index';
+import Layout from '../layout/index';
 import { graphql } from 'gatsby';
 
 const IndexPage = ({ data }): React.ReactElement => {

@@ -1,5 +1,6 @@
 import React from 'react';
-import GlobalStyle from '../../common/style/GlobalStyle';
+import GlobalStyle from '../common/style/GlobalStyle';
+import * as Style from './styled';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -7,10 +8,10 @@ interface LayoutProps {
 
 function Layout({ children }: LayoutProps) {
   return (
-    <div>
+    <Style.Layout>
       <GlobalStyle />
       {children}
-    </div>
+    </Style.Layout>
   );
 }
 

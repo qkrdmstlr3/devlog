@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../components/Layout';
+import Layout from '../layout';
 import { ITemplateProps } from '../interface';
 
 type IPostTemplateProps = ITemplateProps<{
