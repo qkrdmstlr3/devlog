@@ -10,6 +10,9 @@ function GlobalStyle(): React.ReactElement {
         * {
           box-sizing: border-box;
         }
+        body {
+          font-family: neodgm;
+        }
         a {
           text-decoration: none;
           color: inherit;
@@ -21,6 +24,11 @@ function GlobalStyle(): React.ReactElement {
         }
         input:focus {
           outline: none;
+        }
+
+        @font-face {
+          font-family: 'neodgm';
+          src: url('../fonts/neodgm.woff') format('woff');
         }
       `}
     />
