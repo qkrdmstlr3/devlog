@@ -6,7 +6,7 @@ import { graphql } from 'gatsby';
 const IndexPage = ({ data }): React.ReactElement => {
   console.log(data);
 
-  return <Layout>hello world</Layout>;
+  return <Layout>폰트 테스트</Layout>;
 };
 
 export const query = graphql`

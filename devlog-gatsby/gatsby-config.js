@@ -19,6 +19,13 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'fonts',
+        path: `${__dirname}/posts/fonts`,
+      },
+    },
+    {
       resolve: `gatsby-plugin-generate-typings`,
       options: {
         dest: `./src/graphql-types.d.ts`,

@@ -28,7 +28,9 @@ function GlobalStyle(): React.ReactElement {
 
         @font-face {
           font-family: 'neodgm';
-          src: url('../fonts/neodgm.woff') format('woff');
+          src: local('neodgm'), url('fonts/neodgm.woff2') format('woff2'),
+            url('fonts/neodgm.woff') format('woff'),
+            url('fonts/neodgm.ttf') format('truetype');
         }
       `}
     />
