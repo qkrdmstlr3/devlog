@@ -28,11 +28,6 @@ const GlobalStyle = () => (
       input:focus {
         outline: none;
       }
-
-      @font-face {
-        font-family: 'DungGeunMo';
-        src: url('../src/common/fonts/DungGeunMo.ttf');
-      }
     `}
   />
 );

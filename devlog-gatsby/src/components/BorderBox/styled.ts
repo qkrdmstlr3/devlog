@@ -28,7 +28,7 @@ export const InnerWrapper = styled.div<WrapperProps>`
 
   border: 3px solid black;
   border-top: 6px solid black;
-  font-family: 'DungGeunMo';
+  font-family: neodgm, sans-serif;
 `;
 
 // 일단 사용 보류 스타일이 안 어울림
