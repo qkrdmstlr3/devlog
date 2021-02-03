@@ -1,5 +1,5 @@
 // Dependencies
-import styled from '../../common/style/styled';
+import styled from '../../../common/style/styled';
 
 interface WrapperProps {
   width: string;

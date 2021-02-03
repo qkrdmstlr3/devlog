@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from '../../common/style/styled';
-import { SizeEnum } from '../types';
+import styled from '../../../common/style/styled';
+import { SizeEnum } from '../../types';
 import Icon from '.';
 
 export default {

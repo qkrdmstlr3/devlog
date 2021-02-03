@@ -10,9 +10,6 @@ function GlobalStyle(): React.ReactElement {
         * {
           box-sizing: border-box;
         }
-        body {
-          font-family: neodgm;
-        }
         a {
           text-decoration: none;
           color: inherit;

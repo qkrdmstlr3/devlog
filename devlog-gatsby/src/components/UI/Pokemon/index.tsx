@@ -8,7 +8,7 @@ import EnemyHP from '../EnemyHP';
 import Icon from '../Icon';
 
 // Types
-import { IconNameType, SizeEnum } from '../types';
+import { IconNameType, SizeEnum } from '../../types';
 
 interface PokemonProps {
   /** 내 포켓몬인지 */

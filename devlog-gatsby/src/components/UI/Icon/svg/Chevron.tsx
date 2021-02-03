@@ -2,7 +2,7 @@
 import React from 'react';
 
 // Types
-import { IconSizeType, SizeEnum } from '../../types';
+import { IconSizeType, SizeEnum } from '../../../types';
 
 export type ChevronProps = {
   /** 크기 */

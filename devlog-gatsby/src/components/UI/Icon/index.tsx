@@ -3,7 +3,7 @@ import React from 'react';
 import * as icons from './svg';
 
 // Types
-import { IconSizeType } from '../types';
+import { IconSizeType } from '../../types';
 
 export type IconType = keyof typeof icons;
 
