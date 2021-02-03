@@ -8,7 +8,7 @@ export const Name = styled.span`
   display: inline-block;
   margin-left: 100px;
   font-size: 40px;
-  font-family: neodgn;
+  font-family: neodgm, sans-serif;
   font-weight: bold;
 `;
 
@@ -35,7 +35,7 @@ export const HPCenter = styled.div`
   background-color: white;
   border-bottom-right-radius: 10px;
   border-top-right-radius: 10px;
-  font-family: neodgn;
+  font-family: neodgm, sans-serif;
   font-size: 30px;
   font-weight: bold;
   letter-spacing: 12px;
@@ -49,7 +49,7 @@ export const HPText = styled.span`
   color: #ecd482;
   font-size: 22px;
   font-weight: bold;
-  font-family: neodgn;
+  font-family: neodgm, sans-serif;
 
   &::before {
     content: '';

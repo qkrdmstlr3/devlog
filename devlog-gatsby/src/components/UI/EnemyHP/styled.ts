@@ -9,7 +9,7 @@ export const Name = styled.span`
   width: 350px;
   text-align: right;
   font-size: 40px;
-  font-family: neodgn;
+  font-family: neodgm, sans-serif;
   font-weight: bold;
 `;
 
@@ -45,11 +45,12 @@ export const HPBar = styled.div`
 export const HPText = styled.span`
   display: inline-block;
   margin-top: 4px;
+  padding-left: 5px;
 
   color: #ecd482;
   font-size: 22px;
   font-weight: bold;
-  font-family: neodgn;
+  font-family: neodgm, sans-serif;
 `;
 
 export const HPStick = styled.div`

@@ -26,14 +26,14 @@ interface PokemonProps {
 function Pokemon({ isMyPokemon, icon, hp, mp = 0, name }: PokemonProps) {
   if (isMyPokemon) {
     return (
-      <Style.Wrapper>
+      <Style.Wrapper isMyPokemon={isMyPokemon}>
         <Icon icon={icon} size={SizeEnum.large} />
         <MyHP name={name} hp={hp} mp={mp} />
       </Style.Wrapper>
     );
   }
   return (
-    <Style.Wrapper>
+    <Style.Wrapper isMyPokemon={isMyPokemon}>
       <EnemyHP name={name} hp={hp} />
       <Icon icon={icon} size={SizeEnum.large} />
     </Style.Wrapper>
