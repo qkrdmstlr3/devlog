@@ -11,6 +11,14 @@ function Layout({ children }: LayoutProps) {
     <Style.Layout>
       <GlobalStyle />
       {children}
+      <Style.Footer>
+        <Style.Copyright>Copyright © 2021 Shellboy</Style.Copyright>
+        <Style.Information>
+          <Style.Github href="https://github.com/qkrdmstlr3">
+            Github
+          </Style.Github>
+        </Style.Information>
+      </Style.Footer>
     </Style.Layout>
   );
 }
