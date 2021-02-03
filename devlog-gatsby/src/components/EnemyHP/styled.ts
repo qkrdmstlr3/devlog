@@ -4,6 +4,15 @@ interface HPStickBarProps {
   hp: number;
 }
 
+export const Name = styled.span`
+  display: inline-block;
+  width: 350px;
+  text-align: right;
+  font-size: 40px;
+  font-family: neodgn;
+  font-weight: bold;
+`;
+
 export const HPWrapper = styled.div`
   position: relative;
   width: 400px;

@@ -7,4 +7,4 @@ export default {
   component: EnemyHP,
 };
 
-export const enemyHP = () => <EnemyHP hp={100} />;
+export const enemyHP = () => <EnemyHP name="리액트: L99" hp={100} />;

@@ -7,9 +7,15 @@ export default {
 };
 
 export const myPokemon = () => (
-  <Pokemon isMyPokemon={true} hp={100} mp={20} icon="react" />
+  <Pokemon
+    name="리액트: L99"
+    isMyPokemon={true}
+    hp={100}
+    mp={20}
+    icon="react"
+  />
 );
 
 export const enemyPokemon = () => (
-  <Pokemon isMyPokemon={false} hp={100} icon="react" />
+  <Pokemon name="리액트: L99" isMyPokemon={false} hp={100} icon="react" />
 );
