@@ -3,10 +3,15 @@ import React from 'react';
 import Layout from '../layout/index';
 import { graphql } from 'gatsby';
 
-const IndexPage = ({ data }): React.ReactElement => {
-  console.log(data);
+// Components
+import IndexPage from '../components/pages/indexPage';
 
-  return <Layout>폰트 테스트</Layout>;
+const Index = (): React.ReactElement => {
+  return (
+    <Layout>
+      <IndexPage />
+    </Layout>
+  );
 };
 
 export const query = graphql`
@@ -26,4 +31,4 @@ export const query = graphql`
   }
 `;
 
-export default IndexPage;
+export default Index;

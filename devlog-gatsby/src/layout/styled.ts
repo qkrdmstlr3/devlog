@@ -3,7 +3,7 @@ import styled from '../common/style/styled';
 
 export const Layout = styled.main`
   position: relative;
-  max-width: 1200px;
+  max-width: 1000px;
   height: 100vh;
   margin: 0 auto;
   padding-top: 30px;
