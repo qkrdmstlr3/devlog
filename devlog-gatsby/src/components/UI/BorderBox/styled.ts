@@ -13,13 +13,13 @@ export const OutWrapper = styled.div<WrapperProps>`
 
   overflow: hidden;
   border: 3px solid black;
-  border-bottom: 6px solid black;
+  border-bottom: 8px solid black;
   z-index: 0;
 `;
 
 export const InnerWrapper = styled.div<WrapperProps>`
   width: ${(props) => `calc(${props.width} - 15px)`};
-  height: ${(props) => `calc(${props.height} - 15px)`};
+  height: ${(props) => `calc(${props.height} - 20px)`};
   position: absolute;
   top: 50%;
   left: 50%;
@@ -27,8 +27,10 @@ export const InnerWrapper = styled.div<WrapperProps>`
   padding: 10px;
 
   border: 3px solid black;
-  border-top: 6px solid black;
+  border-top: 8px solid black;
+  font-size: 50px;
   font-family: neodgm, sans-serif;
+  line-height: 60px;
 `;
 
 // 일단 사용 보류 스타일이 안 어울림

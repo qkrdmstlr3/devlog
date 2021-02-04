@@ -17,7 +17,10 @@ function IndexPage(props) {
         mp={20}
         icon="react"
       />
-      <BorderBox height="200px">앗! 야생의 뭐시기가 나타났다!</BorderBox>
+      <BorderBox height="200px">
+        앗! 야생의 <br />
+        리액트(이)가 나타났다!
+      </BorderBox>
     </Style.Wrapper>
   );
 }

@@ -3,16 +3,18 @@ import styled from '../common/style/styled';
 
 export const Layout = styled.main`
   position: relative;
-  max-width: 1000px;
+  max-width: 1250px;
   height: 100vh;
   margin: 0 auto;
-  padding-top: 30px;
+  padding: 30px 25px 0 25px;
+  background-color: white;
 `;
 
 export const Footer = styled.footer`
   position: absolute;
+  margin: 0 auto;
   bottom: 20px;
-  width: 100%;
+  width: 90%;
   display: flex;
   justify-content: space-between;
 

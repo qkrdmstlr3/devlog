@@ -7,6 +7,9 @@ function GlobalStyle(): React.ReactElement {
     <Global
       styles={css`
         ${emotionReset}
+        body {
+          background-color: #ddd;
+        }
         * {
           box-sizing: border-box;
         }

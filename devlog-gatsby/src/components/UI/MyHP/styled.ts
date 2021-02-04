@@ -6,39 +6,39 @@ interface HPStickBarProps {
 
 export const Name = styled.span`
   display: inline-block;
-  margin-left: 100px;
-  font-size: 40px;
+  margin-left: 160px;
+  font-size: 50px;
   font-family: neodgm, sans-serif;
   font-weight: bold;
 `;
 
 export const HPWrapper = styled.div`
   position: relative;
-  width: 400px;
-  height: 80px;
+  width: 600px;
+  height: 160px;
 
   background-color: black;
-  border-bottom-right-radius: 15px;
-  border-top-right-radius: 15px;
+  border-bottom-right-radius: 30px;
+  border-top-right-radius: 30px;
 `;
 
 export const HPCenter = styled.div`
   position: absolute;
-  top: 30px;
-  width: 380px;
-  height: 40px;
+  top: 45px;
+  width: 570px;
+  height: 105px;
   display: flex;
   justify-content: flex-end;
-  align-items: center;
-  padding-right: 50px;
+  padding: 15px 30px 0 0;
 
   background-color: white;
-  border-bottom-right-radius: 10px;
-  border-top-right-radius: 10px;
+  border-bottom-right-radius: 30px;
+  border-top-right-radius: 30px;
   font-family: neodgm, sans-serif;
-  font-size: 30px;
+  font-size: 50px;
   font-weight: bold;
   letter-spacing: 12px;
+  word-spacing: 20px;
 `;
 
 export const HPText = styled.span`
@@ -47,13 +47,13 @@ export const HPText = styled.span`
   padding: 4px 0 0 45px;
 
   color: #ecd482;
-  font-size: 22px;
+  font-size: 40px;
   font-weight: bold;
   font-family: neodgm, sans-serif;
 
   &::before {
     content: '';
-    height: 30px;
+    height: 45px;
     width: 40px;
     position: absolute;
     left: 0px;
@@ -65,15 +65,15 @@ export const HPText = styled.span`
 export const HPStick = styled.div`
   position: absolute;
   top: 0px;
-  right: 30px;
-  width: 275px;
-  height: 20px;
+  right: 50px;
+  width: 400px;
+  height: 35px;
   background-color: white;
 `;
 
 export const HPStickBar = styled.div<HPStickBarProps>`
-  margin-top: 4px;
+  margin-top: 10px;
   width: ${(props) => props.hp}%;
-  height: 10px;
+  height: 15px;
   background-color: #2fe408;
 `;

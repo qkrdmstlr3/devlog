@@ -23,7 +23,7 @@ function Chevron({ size = SizeEnum.medium }: ChevronProps): React.ReactElement {
       xmlns="http://www.w3.org/2000/svg"
       width={sizes[size]}
       height={sizes[size]}
-      viewBox="0 0 841.9 595.3"
+      viewBox="100 100 700 400"
     >
       <path
         fill="#61DAFB"
