@@ -19,6 +19,7 @@ export const OutWrapper = styled.div<WrapperProps>`
   border-bottom: 10px solid black;
   border-radius: 10px;
   z-index: 0;
+  background-color: white;
 `;
 
 export const InnerWrapper = styled.div<WrapperProps>`
@@ -31,7 +32,7 @@ export const InnerWrapper = styled.div<WrapperProps>`
   border-radius: 10px;
   font-size: 50px;
   font-family: neodgm, sans-serif;
-  line-height: 60px;
+  background-color: white;
 `;
 
 // 일단 사용 보류 스타일이 안 어울림

@@ -4,7 +4,7 @@ import * as Style from './styled';
 
 interface BorderBoxProps {
   /** 하위 element들 */
-  children: React.ReactNode;
+  children?: React.ReactNode;
   /** 주어진 넓이 */
   width?: string;
   /** 주어진 높이 */
