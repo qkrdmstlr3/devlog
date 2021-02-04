@@ -3,9 +3,9 @@ import React from 'react';
 import * as Style from './styled';
 
 // Components
-import Pokemon from '../UI/Pokemon';
-import BorderBox from '../UI/BorderBox';
-import SelectBox from '../UI/SelectBox';
+import Pokemon from '../../UI/Pokemon';
+import BorderBox from '../../UI/BorderBox';
+import SelectBox from '../../UI/SelectBox';
 
 function IndexPage() {
   return (
