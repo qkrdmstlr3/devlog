@@ -10,24 +10,25 @@ export const OutWrapper = styled.div<WrapperProps>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   overflow: hidden;
-  border: 3px solid black;
-  border-bottom: 8px solid black;
+  border: 5px solid black;
+  border-bottom: 10px solid black;
+  border-radius: 10px;
   z-index: 0;
 `;
 
 export const InnerWrapper = styled.div<WrapperProps>`
-  width: ${(props) => `calc(${props.width} - 15px)`};
-  height: ${(props) => `calc(${props.height} - 20px)`};
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: calc(100% - 15px);
+  height: calc(100% - 20px);
   padding: 10px;
 
-  border: 3px solid black;
-  border-top: 8px solid black;
+  border: 5px solid black;
+  border-top: 10px solid black;
+  border-radius: 10px;
   font-size: 50px;
   font-family: neodgm, sans-serif;
   line-height: 60px;
