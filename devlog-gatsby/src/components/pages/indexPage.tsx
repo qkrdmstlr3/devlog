@@ -5,6 +5,7 @@ import * as Style from './styled';
 // Components
 import Pokemon from '../UI/Pokemon';
 import BorderBox from '../UI/BorderBox';
+import SelectBox from '../UI/SelectBox';
 
 function IndexPage() {
   return (
@@ -19,10 +20,7 @@ function IndexPage() {
           icon="react"
         />
       </Style.PokemonContainer>
-      <BorderBox height="30%">
-        앗! 야생의 <br />
-        리액트(이)가 나타났다!
-      </BorderBox>
+      <SelectBox />
     </Style.Wrapper>
   );
 }

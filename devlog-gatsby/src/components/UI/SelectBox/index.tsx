@@ -9,7 +9,7 @@ import BorderBox from '../BorderBox';
 function SelectBox() {
   return (
     <Style.Wrapper>
-      <BorderBox height="30%" />
+      <BorderBox height="100%" />
       <Style.NavContainer>
         <BorderBox width="100%" height="100%">
           <Style.Nav>

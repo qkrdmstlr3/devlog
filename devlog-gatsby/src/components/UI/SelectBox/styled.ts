@@ -3,7 +3,7 @@ import styled from '../../../common/style/styled';
 export const Wrapper = styled.div`
   position: relative;
   display: flex;
-  height: 100%;
+  height: 30%;
 `;
 
 export const Nav = styled.nav`
@@ -11,6 +11,7 @@ export const Nav = styled.nav`
   align-content: space-between;
   flex-wrap: wrap;
   height: 100%;
+  padding: 20px;
 `;
 
 export const NavContainer = styled.div`
@@ -18,7 +19,7 @@ export const NavContainer = styled.div`
   width: 50%;
   right: 0;
   top: 0;
-  height: 30%;
+  height: 100%;
 `;
 
 export const NavItem = styled.h2`
@@ -26,5 +27,6 @@ export const NavItem = styled.h2`
   width: 50%;
 
   font-family: neodgm, sans-serif;
-  font-size: 40px;
+  font-size: 60px;
+  cursor: pointer;
 `;
