@@ -24,7 +24,7 @@ export const ItemContainer = styled.li`
 
 export const ItemTitle = styled.h2`
   font-size: 2.5rem;
-  color: #2a52be;
+  /* color: #2a52be; */
 `;
 
 export const ItemContent = styled.p`
