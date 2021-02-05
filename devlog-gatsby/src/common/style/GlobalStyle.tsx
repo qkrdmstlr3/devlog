@@ -7,7 +7,9 @@ function GlobalStyle(): React.ReactElement {
     <Global
       styles={css`
         ${emotionReset}
+
         body {
+          font-size: 62.5%;
           background-color: #ddd;
         }
         * {

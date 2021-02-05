@@ -3,7 +3,7 @@ import styled from '../../../common/style/styled';
 export const Wrapper = styled.div`
   position: relative;
   display: flex;
-  height: 30%;
+  height: 35%;
 `;
 
 export const Nav = styled.nav`
