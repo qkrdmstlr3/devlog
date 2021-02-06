@@ -1,17 +1,13 @@
 // Dependencies
-import React, { useEffect } from 'react';
+import React from 'react';
 import Layout from '../../layout';
 import { ITemplateProps } from '../../interface';
 import * as Style from './styled';
-
-// Wysiwyg
-// import 'codemirror/lib/codemirror.css';
-// import '@toast-ui/editor/dist/toastui-editor.css';
-// import { Viewer } from '@toast-ui/react-editor';
+import { Link } from 'gatsby';
 
 type IPostTemplateProps = ITemplateProps<{
+  html: string;
   title: string;
-  markdown: string;
   date: string;
   category: string;
 }>;
@@ -19,15 +15,26 @@ type IPostTemplateProps = ITemplateProps<{
 const PostTemplate = ({
   pageResources: {
     json: {
-      pageContext: { title, markdown, date, category },
+      pageContext: { html, title, date, category },
     },
   },
 }: IPostTemplateProps): React.ReactElement => {
   return (
     <Layout>
       <Style.Wrapper>
+        <Style.Header>
+          <Style.Back>
+            <Link to="/list">◀뒤로가기</Link>
+          </Style.Back>
+          <Style.Category>
+            {category}
+            <Style.Date>/ {date}</Style.Date>
+          </Style.Category>
+        </Style.Header>
         <Style.Title>{title}</Style.Title>
-        {/* <Viewer initialValue={markdown} /> */}
+        <Style.WysiwygStyle>
+          <div dangerouslySetInnerHTML={{ __html: html }} />
+        </Style.WysiwygStyle>
       </Style.Wrapper>
     </Layout>
   );

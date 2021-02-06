@@ -11,7 +11,7 @@ export async function createPages({ actions, graphql }: CreatePagesArgs) {
       allMarkdownRemark {
         edges {
           node {
-            rawMarkdownBody
+            html
             frontmatter {
               title
               date
@@ -32,7 +32,7 @@ export async function createPages({ actions, graphql }: CreatePagesArgs) {
         node.frontmatter.title
       )}`,
       context: {
-        markdown: node.rawMarkdownBody,
+        html: node.html,
         title: String(node.frontmatter.title),
         date: String(node.frontmatter.date),
         category: String(node.frontmatter.category),
