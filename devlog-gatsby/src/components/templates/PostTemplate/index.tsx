@@ -1,7 +1,7 @@
 // Dependencies
 import React from 'react';
-import Layout from '../../layout';
-import { ITemplateProps } from '../../interface';
+import Layout from '../../../layout';
+import { ITemplateProps } from '../../../interface';
 import * as Style from './styled';
 import { Link } from 'gatsby';
 

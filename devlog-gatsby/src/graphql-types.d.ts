@@ -2562,7 +2562,6 @@ export type SitePageConnectionGroupArgs = {
 export type SitePageContext = {
   __typename?: 'SitePageContext';
   html?: Maybe<Scalars['String']>;
-  markdown?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
   date?: Maybe<Scalars['Date']>;
   category?: Maybe<Scalars['String']>;
@@ -2570,7 +2569,6 @@ export type SitePageContext = {
 
 export type SitePageContextFilterInput = {
   html?: Maybe<StringQueryOperatorInput>;
-  markdown?: Maybe<StringQueryOperatorInput>;
   title?: Maybe<StringQueryOperatorInput>;
   date?: Maybe<DateQueryOperatorInput>;
   category?: Maybe<StringQueryOperatorInput>;
@@ -2677,7 +2675,6 @@ export type SitePageFieldsEnum =
   | 'internal___type'
   | 'isCreatedByStatefulCreatePages'
   | 'context___html'
-  | 'context___markdown'
   | 'context___title'
   | 'context___date'
   | 'context___category'

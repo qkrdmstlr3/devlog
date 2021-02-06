@@ -37,7 +37,10 @@ export async function createPages({ actions, graphql }: CreatePagesArgs) {
         date: String(node.frontmatter.date),
         category: String(node.frontmatter.category),
       },
-      component: path.resolve(__dirname, '../templates/PostTemplate/index.tsx'),
+      component: path.resolve(
+        __dirname,
+        '../components/templates/PostTemplate/index.tsx'
+      ),
     });
   });
 }

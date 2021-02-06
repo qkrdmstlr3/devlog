@@ -1,4 +1,4 @@
-import styled from '../../common/style/styled';
+import styled from '../../../common/style/styled';
 
 export const Wrapper = styled.article`
   margin: 0 auto;
