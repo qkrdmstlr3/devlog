@@ -1,5 +1,5 @@
 // Dependencies
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Layout from '../../../layout';
 import { ITemplateProps } from '../../../interface';
 import * as Style from './styled';
@@ -13,12 +13,32 @@ type IPostTemplateProps = ITemplateProps<{
 }>;
 
 const PostTemplate = ({
-  pageResources: {
-    json: {
-      pageContext: { html, title, date, category },
-    },
-  },
+  pageResources,
 }: IPostTemplateProps): React.ReactElement => {
+  const [info, setInfo] = useState({
+    html: '',
+    title: '',
+    date: '',
+    category: '',
+  });
+
+  useEffect(() => {
+    if (pageResources) {
+      const {
+        json: {
+          pageContext: { html, title, date, category },
+        },
+      } = pageResources;
+
+      setInfo({
+        html,
+        title,
+        date,
+        category,
+      });
+    }
+  }, []);
+
   return (
     <Layout>
       <Style.Wrapper>
@@ -27,13 +47,13 @@ const PostTemplate = ({
             <Link to="/list">◀뒤로가기</Link>
           </Style.Back>
           <Style.Category>
-            {category}
-            <Style.Date>/ {date}</Style.Date>
+            {info.category}
+            <Style.Date>/ {info.date}</Style.Date>
           </Style.Category>
         </Style.Header>
-        <Style.Title>{title}</Style.Title>
+        <Style.Title>{info.title}</Style.Title>
         <Style.WysiwygStyle>
-          <div dangerouslySetInnerHTML={{ __html: html }} />
+          <div dangerouslySetInnerHTML={{ __html: info.html }} />
         </Style.WysiwygStyle>
       </Style.Wrapper>
     </Layout>
