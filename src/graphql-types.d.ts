@@ -2727,8 +2727,6 @@ export type SitePageFieldsEnum =
   | 'pluginCreator___pluginOptions___plugins___nodeAPIs'
   | 'pluginCreator___pluginOptions___plugins___browserAPIs'
   | 'pluginCreator___pluginOptions___plugins___pluginFilepath'
-  | 'pluginCreator___pluginOptions___name'
-  | 'pluginCreator___pluginOptions___path'
   | 'pluginCreator___pluginOptions___dest'
   | 'pluginCreator___pluginOptions___sourceMap'
   | 'pluginCreator___pluginOptions___autoLabel'
@@ -2753,6 +2751,8 @@ export type SitePageFieldsEnum =
   | 'pluginCreator___pluginOptions___loading'
   | 'pluginCreator___pluginOptions___disableBgImageOnAlpha'
   | 'pluginCreator___pluginOptions___disableBgImage'
+  | 'pluginCreator___pluginOptions___name'
+  | 'pluginCreator___pluginOptions___path'
   | 'pluginCreator___pluginOptions___pathCheck'
   | 'pluginCreator___nodeAPIs'
   | 'pluginCreator___browserAPIs'
@@ -2964,8 +2964,6 @@ export type SitePluginFieldsEnum =
   | 'pluginOptions___plugins___nodeAPIs'
   | 'pluginOptions___plugins___browserAPIs'
   | 'pluginOptions___plugins___pluginFilepath'
-  | 'pluginOptions___name'
-  | 'pluginOptions___path'
   | 'pluginOptions___dest'
   | 'pluginOptions___sourceMap'
   | 'pluginOptions___autoLabel'
@@ -2990,6 +2988,8 @@ export type SitePluginFieldsEnum =
   | 'pluginOptions___loading'
   | 'pluginOptions___disableBgImageOnAlpha'
   | 'pluginOptions___disableBgImage'
+  | 'pluginOptions___name'
+  | 'pluginOptions___path'
   | 'pluginOptions___pathCheck'
   | 'nodeAPIs'
   | 'browserAPIs'
@@ -3110,8 +3110,6 @@ export type SitePluginPackageJsonPeerDependenciesFilterListInput = {
 export type SitePluginPluginOptions = {
   __typename?: 'SitePluginPluginOptions';
   plugins?: Maybe<Array<Maybe<SitePluginPluginOptionsPlugins>>>;
-  name?: Maybe<Scalars['String']>;
-  path?: Maybe<Scalars['String']>;
   dest?: Maybe<Scalars['String']>;
   sourceMap?: Maybe<Scalars['Boolean']>;
   autoLabel?: Maybe<Scalars['String']>;
@@ -3136,13 +3134,13 @@ export type SitePluginPluginOptions = {
   loading?: Maybe<Scalars['String']>;
   disableBgImageOnAlpha?: Maybe<Scalars['Boolean']>;
   disableBgImage?: Maybe<Scalars['Boolean']>;
+  name?: Maybe<Scalars['String']>;
+  path?: Maybe<Scalars['String']>;
   pathCheck?: Maybe<Scalars['Boolean']>;
 };
 
 export type SitePluginPluginOptionsFilterInput = {
   plugins?: Maybe<SitePluginPluginOptionsPluginsFilterListInput>;
-  name?: Maybe<StringQueryOperatorInput>;
-  path?: Maybe<StringQueryOperatorInput>;
   dest?: Maybe<StringQueryOperatorInput>;
   sourceMap?: Maybe<BooleanQueryOperatorInput>;
   autoLabel?: Maybe<StringQueryOperatorInput>;
@@ -3167,6 +3165,8 @@ export type SitePluginPluginOptionsFilterInput = {
   loading?: Maybe<StringQueryOperatorInput>;
   disableBgImageOnAlpha?: Maybe<BooleanQueryOperatorInput>;
   disableBgImage?: Maybe<BooleanQueryOperatorInput>;
+  name?: Maybe<StringQueryOperatorInput>;
+  path?: Maybe<StringQueryOperatorInput>;
   pathCheck?: Maybe<BooleanQueryOperatorInput>;
 };
 
