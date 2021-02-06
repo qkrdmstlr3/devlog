@@ -1,7 +1,6 @@
 // Dependencies
 import React from 'react';
 import * as Style from './styled';
-import { Link } from 'gatsby';
 
 // Components
 import BorderBox from '../BorderBox';

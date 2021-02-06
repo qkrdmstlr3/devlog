@@ -11,9 +11,11 @@ export async function createPages({ actions, graphql }: CreatePagesArgs) {
       allMarkdownRemark {
         edges {
           node {
-            html
+            rawMarkdownBody
             frontmatter {
               title
+              date
+              category
             }
           }
         }
@@ -26,12 +28,16 @@ export async function createPages({ actions, graphql }: CreatePagesArgs) {
 
   data.allMarkdownRemark.edges.forEach(({ node }: any) => {
     createPage({
-      path: String(node.frontmatter.title),
+      path: `${String(node.frontmatter.category)}/${String(
+        node.frontmatter.title
+      )}`,
       context: {
-        html: node.html,
+        markdown: node.rawMarkdownBody,
         title: String(node.frontmatter.title),
+        date: String(node.frontmatter.date),
+        category: String(node.frontmatter.category),
       },
-      component: path.resolve(__dirname, '../templates/PostTemplate.tsx'),
+      component: path.resolve(__dirname, '../templates/PostTemplate/index.tsx'),
     });
   });
 }
