@@ -31,7 +31,7 @@ export const InnerWrapper = styled.div<WrapperProps>`
   border-top: 10px solid black;
   border-radius: 10px;
   font-size: 50px;
-  font-family: neodgm, sans-serif;
+  font-family: 'NeoDunggeunmo', sans-serif;
   background-color: white;
 `;
 

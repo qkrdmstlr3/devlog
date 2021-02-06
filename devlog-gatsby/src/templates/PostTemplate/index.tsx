@@ -5,9 +5,9 @@ import { ITemplateProps } from '../../interface';
 import * as Style from './styled';
 
 // Wysiwyg
-import 'codemirror/lib/codemirror.css';
-import '@toast-ui/editor/dist/toastui-editor.css';
-import { Viewer } from '@toast-ui/react-editor';
+// import 'codemirror/lib/codemirror.css';
+// import '@toast-ui/editor/dist/toastui-editor.css';
+// import { Viewer } from '@toast-ui/react-editor';
 
 type IPostTemplateProps = ITemplateProps<{
   title: string;
@@ -27,7 +27,7 @@ const PostTemplate = ({
     <Layout>
       <Style.Wrapper>
         <Style.Title>{title}</Style.Title>
-        <Viewer initialValue={markdown} />
+        {/* <Viewer initialValue={markdown} /> */}
       </Style.Wrapper>
     </Layout>
   );

@@ -26,7 +26,7 @@ export const NavItem = styled.h2`
   display: inline-block;
   width: 50%;
 
-  font-family: neodgm, sans-serif;
+  font-family: 'NeoDunggeunmo', sans-serif;
   font-size: 60px;
   cursor: pointer;
 `;

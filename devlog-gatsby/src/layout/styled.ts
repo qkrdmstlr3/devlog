@@ -21,7 +21,7 @@ export const Footer = styled.footer`
 
   opacity: 0.8;
   font-size: 1.2rem;
-  font-family: neodgm, sans-serif;
+  font-family: 'NeoDunggeunmo', sans-serif;
 `;
 
 export const Copyright = styled.span``;

@@ -18,7 +18,7 @@ export const ItemContainer = styled.li`
   flex-direction: column;
   margin-bottom: 15px;
 
-  font-family: neodgm, sans-serif;
+  font-family: 'NeoDunggeunmo', sans-serif;
   cursor: pointer;
 `;
 
@@ -49,7 +49,7 @@ export const ListWrapper = styled.ul`
 export const ListName = styled.li`
   position: relative;
   padding-right: 100px;
-  font-family: neodgm, sans-serif;
+  font-family: 'NeoDunggeunmo', sans-serif;
   cursor: pointer;
 `;
 
@@ -63,7 +63,7 @@ export const Select = styled.div`
 
 export const BackButton = styled.span`
   font-size: 30px;
-  font-family: neodgm, sans-serif;
+  font-family: 'NeoDunggeunmo', sans-serif;
   background-color: transparent;
   border: none;
   cursor: pointer;

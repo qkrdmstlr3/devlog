@@ -6,6 +6,7 @@ function GlobalStyle(): React.ReactElement {
   return (
     <Global
       styles={css`
+        @import url('//cdn.jsdelivr.net/gh/Dalgona/neodgm-webfont@1.510/neodgm/style.css');
         ${emotionReset}
 
         body {
@@ -28,12 +29,12 @@ function GlobalStyle(): React.ReactElement {
           outline: none;
         }
 
-        @font-face {
+        /* @font-face {
           font-family: 'neodgm';
-          src: local('neodgm'), url('fonts/neodgm.woff2') format('woff2'),
-            url('fonts/neodgm.woff') format('woff'),
-            url('fonts/neodgm.ttf') format('truetype');
-        }
+          src: local('neodgm'), url('/fonts/neodgm.woff2') format('woff2'),
+            url('/fonts/neodgm.woff') format('woff'),
+            url('/fonts/neodgm.ttf') format('truetype');
+        } */
       `}
     />
   );

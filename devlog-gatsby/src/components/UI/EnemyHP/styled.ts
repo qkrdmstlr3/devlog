@@ -9,7 +9,7 @@ export const Name = styled.span`
   width: 450px;
   text-align: right;
   font-size: 50px;
-  font-family: neodgm, sans-serif;
+  font-family: 'NeoDunggeunmo', sans-serif;
   font-weight: bold;
 `;
 
@@ -51,7 +51,7 @@ export const HPText = styled.span`
   color: #ecd482;
   font-size: 40px;
   font-weight: bold;
-  font-family: neodgm, sans-serif;
+  font-family: 'NeoDunggeunmo', sans-serif;
 `;
 
 export const HPStick = styled.div`

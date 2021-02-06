@@ -8,7 +8,7 @@ export const Name = styled.span`
   display: inline-block;
   margin-left: 160px;
   font-size: 50px;
-  font-family: neodgm, sans-serif;
+  font-family: 'NeoDunggeunmo', sans-serif;
   font-weight: bold;
 `;
 
@@ -34,7 +34,7 @@ export const HPCenter = styled.div`
   background-color: white;
   border-bottom-right-radius: 30px;
   border-top-right-radius: 30px;
-  font-family: neodgm, sans-serif;
+  font-family: 'NeoDunggeunmo', sans-serif;
   font-size: 50px;
   font-weight: bold;
   letter-spacing: 12px;
@@ -49,7 +49,7 @@ export const HPText = styled.span`
   color: #ecd482;
   font-size: 40px;
   font-weight: bold;
-  font-family: neodgm, sans-serif;
+  font-family: 'NeoDunggeunmo', sans-serif;
 
   &::before {
     content: '';
