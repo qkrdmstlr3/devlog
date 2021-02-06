@@ -1,6 +1,7 @@
 // Dependencies
 import React, { useState, useEffect } from 'react';
 import * as Style from './styled';
+import { Link } from 'gatsby';
 
 // Components
 import BorderBox from '../../UI/BorderBox';
@@ -58,15 +59,19 @@ function ListPage({
           )
             return (
               <Style.ItemContainer key={node.frontmatter.title}>
-                <Style.ItemTitle>
-                  [{node.frontmatter.category}] {node.frontmatter.title}
-                </Style.ItemTitle>
-                <Style.ItemContent>{node.excerpt}</Style.ItemContent>
+                <Link
+                  to={`/${node.frontmatter.category}/${node.frontmatter.title}`}
+                >
+                  <Style.ItemTitle>
+                    [{node.frontmatter.category}] {node.frontmatter.title}
+                  </Style.ItemTitle>
+                  <Style.ItemContent>{node.excerpt}</Style.ItemContent>
+                </Link>
               </Style.ItemContainer>
             );
         })}
       </Style.ItemWrapper>
-      <BorderBox height="30%">
+      <BorderBox height="20%">
         <Style.ListWrapper>
           <Style.ListName
             key={ALL_POSTS}
