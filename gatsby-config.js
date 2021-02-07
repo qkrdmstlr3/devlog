@@ -1,8 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `shellboylog.com`,
+    description: `shellboy's devlog`,
+    author: `shellboy`,
+    siteUrl: 'https://shellboylog.com',
   },
   plugins: [
     {
@@ -30,6 +31,7 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-transformer-remark`,
       options: {
@@ -50,6 +52,14 @@ module.exports = {
             },
           },
         ],
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://shellboylog.com',
+        sitemap: 'https://shellboylog.com/sitemap.xml',
+        policy: [{ userAgent: '*', allow: '/' }],
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
