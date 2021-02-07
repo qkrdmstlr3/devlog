@@ -7,6 +7,15 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: 'shellboy devlog',
+        short_name: 'shellboy devlog',
+        start_url: '/',
+        icon: 'posts/icon/favicon.png',
+      },
+    },
+    {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'contents',
