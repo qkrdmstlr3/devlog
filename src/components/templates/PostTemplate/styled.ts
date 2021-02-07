@@ -1,4 +1,5 @@
 import styled from '../../../common/style/styled';
+import postStyle from '../../../common/style/postStyle';
 
 export const Wrapper = styled.article`
   margin: 0 auto;
@@ -35,7 +36,6 @@ export const Back = styled.button`
 `;
 
 export const WysiwygStyle = styled.div`
-  p {
-    font-size: 1.2rem !important;
-  }
+  ${postStyle};
+  font-family: 'Noto Sans KR', sans-serif;
 `;
