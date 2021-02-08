@@ -4,13 +4,14 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
+  position: absolute;
+  top: 30px;
+  bottom: 50px;
 `;
 
 export const ItemWrapper = styled.ul`
   display: flex;
   flex-direction: column;
-  overflow-y: scroll;
 `;
 
 export const ItemContainer = styled.li`
