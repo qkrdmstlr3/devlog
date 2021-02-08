@@ -6,9 +6,10 @@ import * as Style from './styled';
 import { Link } from 'gatsby';
 import ReactShadowDom from '../../../utils/ReactShadowDOM';
 import ReactMarkdown from 'react-markdown';
+import gfm from 'remark-gfm';
 
 // Components
-import CodeBlock from './CodeBlock';
+import renderers from './renderer';
 
 type IPostTemplateProps = ITemplateProps<{
   html: string;
@@ -17,30 +18,6 @@ type IPostTemplateProps = ITemplateProps<{
   category: string;
   markdown: string;
 }>;
-
-const renderers = {
-  image: ({
-    alt,
-    src,
-    title,
-  }: {
-    alt?: string;
-    src?: string;
-    title?: string;
-  }) => (
-    <img
-      alt={alt}
-      src={src}
-      title={title}
-      style={{
-        display: 'block',
-        maxWidth: 475,
-        margin: '0 auto',
-      }}
-    />
-  ),
-  code: CodeBlock,
-};
 
 const PostTemplate = ({
   pageResources,
@@ -87,7 +64,11 @@ const PostTemplate = ({
         <Style.Title>{info.title}</Style.Title>
         <Style.WysiwygStyle ref={postRef}>
           <ReactShadowDom parentDom={postRef}>
-            <ReactMarkdown source={info.markdown} renderers={renderers} />
+            <ReactMarkdown
+              source={info.markdown}
+              renderers={renderers}
+              plugins={[gfm as any]}
+            />
             {/* <div dangerouslySetInnerHTML={{ __html: info.html }} /> */}
           </ReactShadowDom>
         </Style.WysiwygStyle>
