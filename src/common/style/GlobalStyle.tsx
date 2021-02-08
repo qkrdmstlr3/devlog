@@ -10,8 +10,8 @@ function GlobalStyle(): React.ReactElement {
         ${emotionReset}
 
         body {
-          font-size: 62.5%;
           background-color: #ddd;
+          overflow-y: scroll;
         }
         * {
           box-sizing: border-box;

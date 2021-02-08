@@ -4,7 +4,7 @@ import styled from '../common/style/styled';
 export const Layout = styled.main`
   position: relative;
   max-width: 1250px;
-  height: 100vh;
+  height: 100%;
   margin: 0 auto;
   padding: 30px 25px 50px 25px;
   background-color: white;

@@ -4,8 +4,8 @@ import postStyle from '../../../common/style/postStyle';
 export const Wrapper = styled.article`
   margin: 0 auto;
   max-width: 850px;
+  height: 100%;
 
-  font-size: 3rem;
   font-family: 'NeoDunggeunmo', sans-serif;
 `;
 
