@@ -8,6 +8,7 @@ import {
   tableHead,
   link,
   listItem,
+  heading,
 } from './styled';
 
 export default {
@@ -20,4 +21,5 @@ export default {
   tableHead,
   link,
   listItem,
+  heading,
 };

@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from '../../../../common/style/styled';
-import CodeBlock from './CodeBlock';
 
 /** Image */
 interface ImageProps {
@@ -49,14 +48,15 @@ export const inlineCode = ({ value }: InlineCodeProps) => {
 interface ChildrenProps {
   children: string;
   href?: string;
+  level?: number;
 }
 
 export const paragraph = ({ children }: ChildrenProps) => {
   return (
     <p
       style={{
-        lineHeight: '25px',
-        fontSize: '18px',
+        lineHeight: '30px',
+        fontSize: '17px',
         margin: '10px 0',
       }}
     >
@@ -100,4 +100,58 @@ export const link = ({ children, href }: ChildrenProps) => {
       {children}
     </a>
   );
+};
+
+/** heading */
+export const heading = ({ level, children }) => {
+  switch (level) {
+    case 1:
+      return (
+        <h1 style={{ paddingTop: '15px', fontFamily: 'NeoDunggeunmo' }}>
+          {children}
+        </h1>
+      );
+    case 2:
+      return (
+        <h2 style={{ paddingTop: '15px', fontFamily: 'NeoDunggeunmo' }}>
+          {children}
+        </h2>
+      );
+    case 3:
+      return (
+        <h3
+          style={{
+            paddingTop: '15px',
+            fontFamily: 'NeoDunggeunmo',
+            fontSize: '20px',
+          }}
+        >
+          {children}
+        </h3>
+      );
+    case 4:
+      return (
+        <h4 style={{ paddingTop: '15px', fontFamily: 'NeoDunggeunmo' }}>
+          {children}
+        </h4>
+      );
+    case 5:
+      return (
+        <h5 style={{ paddingTop: '15px', fontFamily: 'NeoDunggeunmo' }}>
+          {children}
+        </h5>
+      );
+    case 6:
+      return (
+        <h6 style={{ paddingTop: '15px', fontFamily: 'NeoDunggeunmo' }}>
+          {children}
+        </h6>
+      );
+    default:
+      return (
+        <h1 style={{ paddingTop: '15px', fontFamily: 'NeoDunggeunmo' }}>
+          {children}
+        </h1>
+      );
+  }
 };
