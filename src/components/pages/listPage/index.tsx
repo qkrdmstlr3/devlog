@@ -71,7 +71,7 @@ function ListPage({
             );
         })}
       </Style.ItemWrapper>
-      <BorderBox height="20%">
+      <BorderBox height="20%" width="calc(100% - 25px)">
         <Style.ListWrapper>
           <Style.ListName
             key={ALL_POSTS}

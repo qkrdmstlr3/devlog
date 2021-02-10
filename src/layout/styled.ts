@@ -11,7 +11,8 @@ export const Layout = styled.main`
   background-color: white;
 
   ${mq(SizeEnum.small)} {
-    height: 100%;
+    min-height: -webkit-fill-available;
+    padding: 10px;
   }
 `;
 

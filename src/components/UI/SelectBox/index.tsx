@@ -15,7 +15,7 @@ function SelectBox() {
           <Style.Nav>
             <Style.NavItem>싸우기</Style.NavItem>
             <Style.NavItem>
-              <Link to="/list">글 목록</Link>
+              <Link to="/list">글목록</Link>
             </Style.NavItem>
             <Style.NavItem>포켓몬</Style.NavItem>
             <Style.NavItem>가방</Style.NavItem>
