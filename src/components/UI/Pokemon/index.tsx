@@ -1,6 +1,7 @@
 // Dependencies
 import React from 'react';
 import * as Style from './styled';
+import { motion } from 'framer-motion';
 
 // Components
 import MyHP from '../MyHP';
@@ -27,7 +28,9 @@ function Pokemon({ isMyPokemon, icon, hp, mp = 0, name }: PokemonProps) {
   if (isMyPokemon) {
     return (
       <Style.Wrapper isMyPokemon={isMyPokemon}>
-        <Icon icon={icon} size={SizeEnum.large} />
+        <motion.div animate={{ x: [1200, 0] }} transition={{ duration: 2 }}>
+          <Icon icon={icon} size={SizeEnum.large} />
+        </motion.div>
         <MyHP name={name} hp={hp} mp={mp} />
       </Style.Wrapper>
     );
@@ -35,7 +38,9 @@ function Pokemon({ isMyPokemon, icon, hp, mp = 0, name }: PokemonProps) {
   return (
     <Style.Wrapper isMyPokemon={isMyPokemon}>
       <EnemyHP name={name} hp={hp} />
-      <Icon icon={icon} size={SizeEnum.large} />
+      <motion.div animate={{ x: [-1200, 0] }} transition={{ duration: 2 }}>
+        <Icon icon={icon} size={SizeEnum.large} />
+      </motion.div>
     </Style.Wrapper>
   );
 }
