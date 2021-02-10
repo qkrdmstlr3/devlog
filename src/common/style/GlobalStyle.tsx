@@ -9,9 +9,13 @@ function GlobalStyle(): React.ReactElement {
         @import url('//cdn.jsdelivr.net/gh/Dalgona/neodgm-webfont@1.510/neodgm/style.css');
         ${emotionReset}
 
+        html {
+          height: 100%;
+        }
         body {
           background-color: #ddd;
           overflow-y: scroll;
+          height: 100%;
         }
         * {
           box-sizing: border-box;
