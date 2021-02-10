@@ -6,6 +6,7 @@ interface WrapperProps {
 
 export const Wrapper = styled.div<WrapperProps>`
   width: 90%;
+  height: 50%;
   display: flex;
   justify-content: space-between;
   align-items: ${(props) => (props.isMyPokemon ? 'center' : 'flex-start')};

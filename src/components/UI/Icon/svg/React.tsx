@@ -12,7 +12,7 @@ export type ChevronProps = {
 const sizes = {
   [SizeEnum.small]: '100',
   [SizeEnum.medium]: '200',
-  [SizeEnum.large]: '300',
+  [SizeEnum.large]: '70%',
 };
 
 function Chevron({ size = SizeEnum.medium }: ChevronProps): React.ReactElement {
@@ -21,9 +21,9 @@ function Chevron({ size = SizeEnum.medium }: ChevronProps): React.ReactElement {
       version="1.1"
       id="Layer_2_1_"
       xmlns="http://www.w3.org/2000/svg"
-      width={sizes[size]}
+      width="100%"
       height={sizes[size]}
-      viewBox="100 100 700 400"
+      viewBox="70 75 700 450"
     >
       <path
         fill="#61DAFB"

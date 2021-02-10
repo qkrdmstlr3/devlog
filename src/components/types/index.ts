@@ -10,3 +10,6 @@ export enum SizeEnum {
 /** Icon */
 export type IconSizeType = SizeEnum.small | SizeEnum.medium | SizeEnum.large;
 export type IconNameType = 'react' | 'rightChevron';
+
+/** Media query */
+export type MediaQueryType = SizeEnum.small | SizeEnum.medium | SizeEnum.large;
