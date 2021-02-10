@@ -36,6 +36,6 @@ export const NavItem = styled.h2`
   cursor: pointer;
 
   ${mq(SizeEnum.small)} {
-    font-size: 0.5rem;
+    font-size: 1rem;
   }
 `;

@@ -9,6 +9,10 @@ export const Layout = styled.main`
   margin: 0 auto;
   padding: 30px 25px 50px 25px;
   background-color: white;
+
+  ${mq(SizeEnum.small)} {
+    min-height: -webkit-fill-available;
+  }
 `;
 
 export const Footer = styled.footer`
