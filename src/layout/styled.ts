@@ -1,5 +1,6 @@
 // Dependencies
-import styled from '../common/style/styled';
+import styled, { mq } from '../common/style/styled';
+import { SizeEnum } from '../components/types';
 
 export const Layout = styled.main`
   position: relative;
@@ -22,6 +23,11 @@ export const Footer = styled.footer`
   opacity: 0.8;
   font-size: 1.2rem;
   font-family: 'NeoDunggeunmo', sans-serif;
+
+  ${mq(SizeEnum.small)} {
+    font-size: 0.8rem;
+    bottom: 10px;
+  }
 `;
 
 export const Copyright = styled.span``;

@@ -15,7 +15,7 @@ function EnemyHP({ hp, name }: EnemyHPProps) {
       <Style.HPWrapper>
         <Style.HPWrapperInner>
           <Style.HPBar>
-            <Style.HPText>HP :</Style.HPText>
+            <Style.HPText>HP:</Style.HPText>
             <Style.HPStick>
               <Style.HPStickBar hp={hp} />
             </Style.HPStick>

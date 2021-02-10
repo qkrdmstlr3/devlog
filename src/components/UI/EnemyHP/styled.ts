@@ -1,4 +1,5 @@
-import styled from '../../../common/style/styled';
+import styled, { mq } from '../../../common/style/styled';
+import { SizeEnum } from '../../types';
 
 interface HPStickBarProps {
   hp: number;
@@ -11,6 +12,11 @@ export const Name = styled.span`
   font-size: 50px;
   font-family: 'NeoDunggeunmo', sans-serif;
   font-weight: bold;
+
+  ${mq(SizeEnum.small)} {
+    width: 150px;
+    font-size: 1.2rem;
+  }
 `;
 
 export const HPWrapper = styled.div`
@@ -20,6 +26,13 @@ export const HPWrapper = styled.div`
 
   background-color: black;
   border-bottom-left-radius: 30px;
+
+  ${mq(SizeEnum.small)} {
+    height: 50px;
+    width: 180px;
+
+    border-bottom-left-radius: 15px;
+  }
 `;
 
 export const HPWrapperInner = styled.div`
@@ -31,6 +44,13 @@ export const HPWrapperInner = styled.div`
 
   background-color: white;
   border-bottom-left-radius: 30px;
+
+  ${mq(SizeEnum.small)} {
+    height: 45px;
+    width: 160px;
+
+    border-bottom-left-radius: 15px;
+  }
 `;
 
 export const HPBar = styled.div`
@@ -41,6 +61,12 @@ export const HPBar = styled.div`
   right: 10px;
 
   background-color: black;
+  ${mq(SizeEnum.small)} {
+    top: 5px;
+    right: 5px;
+    height: 20px;
+    width: 90%;
+  }
 `;
 
 export const HPText = styled.span`
@@ -52,6 +78,10 @@ export const HPText = styled.span`
   font-size: 40px;
   font-weight: bold;
   font-family: 'NeoDunggeunmo', sans-serif;
+  ${mq(SizeEnum.small)} {
+    margin-top: 0;
+    font-size: 1.4rem;
+  }
 `;
 
 export const HPStick = styled.div`
@@ -61,6 +91,11 @@ export const HPStick = styled.div`
   width: 400px;
   height: 35px;
   background-color: white;
+  ${mq(SizeEnum.small)} {
+    width: 100px;
+    height: 14px;
+    right: 5px;
+  }
 `;
 
 export const HPStickBar = styled.div<HPStickBarProps>`
@@ -68,4 +103,9 @@ export const HPStickBar = styled.div<HPStickBarProps>`
   width: ${(props) => props.hp}%;
   height: 15px;
   background-color: #2fe408;
+
+  ${mq(SizeEnum.small)} {
+    margin-top: 4px;
+    height: 7px;
+  }
 `;

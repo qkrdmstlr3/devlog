@@ -1,4 +1,5 @@
-import styled from '../../../common/style/styled';
+import styled, { mq } from '../../../common/style/styled';
+import { SizeEnum } from '../../types';
 
 export const Wrapper = styled.div`
   position: relative;
@@ -12,6 +13,10 @@ export const Nav = styled.nav`
   flex-wrap: wrap;
   height: 100%;
   padding: 20px;
+
+  ${mq(SizeEnum.small)} {
+    padding: 3px;
+  }
 `;
 
 export const NavContainer = styled.div`
@@ -29,4 +34,8 @@ export const NavItem = styled.h2`
   font-family: 'NeoDunggeunmo', sans-serif;
   font-size: 60px;
   cursor: pointer;
+
+  ${mq(SizeEnum.small)} {
+    font-size: 0.5rem;
+  }
 `;

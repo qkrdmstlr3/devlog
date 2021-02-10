@@ -1,4 +1,5 @@
-import styled from '../../../common/style/styled';
+import styled, { mq } from '../../../common/style/styled';
+import { SizeEnum } from '../../types';
 
 interface HPStickBarProps {
   hp: number;
@@ -10,6 +11,11 @@ export const Name = styled.span`
   font-size: 50px;
   font-family: 'NeoDunggeunmo', sans-serif;
   font-weight: bold;
+
+  ${mq(SizeEnum.small)} {
+    font-size: 1.2rem;
+    margin-left: 50px;
+  }
 `;
 
 export const HPWrapper = styled.div`
@@ -20,6 +26,14 @@ export const HPWrapper = styled.div`
   background-color: black;
   border-bottom-right-radius: 30px;
   border-top-right-radius: 30px;
+
+  ${mq(SizeEnum.small)} {
+    height: 60px;
+    width: 180px;
+
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+  }
 `;
 
 export const HPCenter = styled.div`
@@ -39,6 +53,19 @@ export const HPCenter = styled.div`
   font-weight: bold;
   letter-spacing: 12px;
   word-spacing: 20px;
+
+  ${mq(SizeEnum.small)} {
+    top: 20px;
+    height: 35px;
+    width: 160px;
+    padding: 5px 10px 0 0;
+
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+    font-size: 1.2rem;
+    letter-spacing: 5px;
+    word-spacing: 5px;
+  }
 `;
 
 export const HPText = styled.span`
@@ -51,6 +78,11 @@ export const HPText = styled.span`
   font-weight: bold;
   font-family: 'NeoDunggeunmo', sans-serif;
 
+  ${mq(SizeEnum.small)} {
+    font-size: 1.4rem;
+    padding: 0 0 0 25px;
+  }
+
   &::before {
     content: '';
     height: 45px;
@@ -59,6 +91,10 @@ export const HPText = styled.span`
     left: 0px;
     top: 0px;
     background-color: white;
+
+    ${mq(SizeEnum.small)} {
+      width: 20px;
+    }
   }
 `;
 
@@ -69,6 +105,12 @@ export const HPStick = styled.div`
   width: 400px;
   height: 35px;
   background-color: white;
+
+  ${mq(SizeEnum.small)} {
+    width: 100px;
+    height: 14px;
+    right: 20px;
+  }
 `;
 
 export const HPStickBar = styled.div<HPStickBarProps>`
@@ -76,4 +118,9 @@ export const HPStickBar = styled.div<HPStickBarProps>`
   width: ${(props) => props.hp}%;
   height: 15px;
   background-color: #2fe408;
+
+  ${mq(SizeEnum.small)} {
+    margin-top: 4px;
+    height: 7px;
+  }
 `;

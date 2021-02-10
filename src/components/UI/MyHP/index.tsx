@@ -15,7 +15,7 @@ function MyHP({ hp, mp, name }: MyHPProps) {
     <div>
       <Style.Name>{name}</Style.Name>
       <Style.HPWrapper>
-        <Style.HPText>HP :</Style.HPText>
+        <Style.HPText>HP:</Style.HPText>
         <Style.HPCenter>
           {mp} / {mp}
         </Style.HPCenter>
