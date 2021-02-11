@@ -2,6 +2,7 @@ import React from 'react';
 import GlobalStyle from '../common/style/GlobalStyle';
 import * as Style from './styled';
 import { Helmet } from 'react-helmet';
+import { RecoilRoot } from 'recoil';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -20,7 +21,7 @@ function Layout({ children }: LayoutProps) {
         />
       </Helmet>
       <GlobalStyle />
-      {children}
+      <RecoilRoot>{children}</RecoilRoot>
       <Style.Footer>
         <Style.Copyright>Copyright © 2021 Shellboy</Style.Copyright>
         <Style.Information>

@@ -10,7 +10,7 @@ interface BorderBoxProps {
   /** 주어진 높이 */
   height?: string;
   /** 클릭이벤트 */
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 function BorderBox({

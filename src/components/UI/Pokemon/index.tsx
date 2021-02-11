@@ -1,7 +1,11 @@
 // Dependencies
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as Style from './styled';
 import { motion } from 'framer-motion';
+
+// Recoil
+import { useRecoilState } from 'recoil';
+import { gameState } from '../../../lib/recoil/game';
 
 // Components
 import MyHP from '../MyHP';
@@ -25,20 +29,39 @@ interface PokemonProps {
 }
 
 function Pokemon({ isMyPokemon, icon, hp, mp = 0, name }: PokemonProps) {
+  const [gameStatus, setGameStatus] = useRecoilState(gameState);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setGameStatus({
+        ...gameStatus,
+        loading: false,
+      });
+    }, 2000);
+  }, []);
+
+  useEffect(() => {}, [gameStatus.loading]);
+
   if (isMyPokemon) {
     return (
       <Style.Wrapper isMyPokemon={isMyPokemon}>
-        <motion.div animate={{ x: [1200, 0] }} transition={{ duration: 2 }}>
+        <motion.div
+          animate={{ x: gameStatus.loading ? [1200, 0] : 0 }}
+          transition={{ duration: 2 }}
+        >
           <Icon icon={icon} size={SizeEnum.large} />
         </motion.div>
-        <MyHP name={name} hp={hp} mp={mp} />
+        {gameStatus.loading ? <div /> : <MyHP name={name} hp={hp} mp={mp} />}
       </Style.Wrapper>
     );
   }
   return (
     <Style.Wrapper isMyPokemon={isMyPokemon}>
-      <EnemyHP name={name} hp={hp} />
-      <motion.div animate={{ x: [-1200, 0] }} transition={{ duration: 2 }}>
+      {gameStatus.loading ? <div /> : <EnemyHP name={name} hp={hp} />}
+      <motion.div
+        animate={{ x: gameStatus.loading ? [-1200, 0] : 0 }}
+        transition={{ duration: 2 }}
+      >
         <Icon icon={icon} size={SizeEnum.large} />
       </motion.div>
     </Style.Wrapper>
