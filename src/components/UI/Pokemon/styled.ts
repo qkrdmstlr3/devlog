@@ -12,3 +12,10 @@ export const Wrapper = styled.div<WrapperProps>`
   align-items: ${(props) => (props.isMyPokemon ? 'center' : 'flex-start')};
   margin-left: ${(props) => (props.isMyPokemon ? '10%' : 0)};
 `;
+
+export const Person = styled.div`
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  background-color: black;
+`;

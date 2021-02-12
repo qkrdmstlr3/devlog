@@ -11,6 +11,7 @@ import { gameState } from '../../../lib/recoil/game';
 import MyHP from '../MyHP';
 import EnemyHP from '../EnemyHP';
 import Icon from '../Icon';
+import MonsterBall from '../MonsterBall';
 
 // Types
 import { IconNameType, SizeEnum } from '../../types';
@@ -49,11 +50,22 @@ function Pokemon({ isMyPokemon, icon, hp, mp = 0, name }: PokemonProps) {
           animate={{ x: gameStatus.loading ? [1200, 0] : 0 }}
           transition={{ duration: 2 }}
         >
-          <Icon icon={icon} size={SizeEnum.large} />
+          <Style.Person />
         </motion.div>
-        {gameStatus.loading ? <div /> : <MyHP name={name} hp={hp} mp={mp} />}
+        {gameStatus.loading ? <div /> : <MonsterBall />}
       </Style.Wrapper>
     );
+    // return (
+    //   <Style.Wrapper isMyPokemon={isMyPokemon}>
+    //     <motion.div
+    //       animate={{ x: gameStatus.loading ? [1200, 0] : 0 }}
+    //       transition={{ duration: 2 }}
+    //     >
+    //       <Icon icon={icon} size={SizeEnum.large} />
+    //     </motion.div>
+    //     {gameStatus.loading ? <div /> : <MyHP name={name} hp={hp} mp={mp} />}
+    //   </Style.Wrapper>
+    // );
   }
   return (
     <Style.Wrapper isMyPokemon={isMyPokemon}>
