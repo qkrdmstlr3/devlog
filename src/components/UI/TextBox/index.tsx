@@ -1,6 +1,10 @@
 // Dependencies
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as Style from './styled';
+
+// Recoil
+import { useRecoilState } from 'recoil';
+import { gameState } from '../../../lib/recoil/game';
 
 // Components
 import BorderBox from '../BorderBox';
@@ -8,14 +12,38 @@ import BorderBox from '../BorderBox';
 // Hooks
 import typingHook from '../../../hooks/typingHook';
 
+// Data
+import { textData } from '../../../common/data/string';
+
 function TextBox(): React.ReactElement {
+  const [recoilGameState, setGameState] = useRecoilState(gameState);
   const [text, isTypingEnd] = typingHook({
-    content: '앗! 야생의\n 리액트(이)가 나타났다!',
+    content: textData[recoilGameState.gameStatus](),
   });
+
+  useEffect(() => {}, [recoilGameState.gameStatus]);
 
   const handleClick = () => {
     if (!isTypingEnd) return;
-    alert('hi');
+
+    switch (recoilGameState.gameStatus) {
+      case 1: {
+        setGameState({
+          ...recoilGameState,
+          gameStatus: 2,
+        });
+        return;
+      }
+      case 2: {
+        setGameState({
+          ...recoilGameState,
+          gameStatus: 3,
+        });
+        return;
+      }
+      default:
+        return;
+    }
   };
 
   return (
