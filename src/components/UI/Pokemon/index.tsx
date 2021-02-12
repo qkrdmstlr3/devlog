@@ -59,17 +59,8 @@ function Pokemon({ isMyPokemon, icon, hp, mp = 0, name }: PokemonProps) {
     }
     return (
       <Style.Wrapper isMyPokemon={isMyPokemon}>
-        <motion.div
-          animate={{ x: recoilGameState.loading ? [1200, 0] : 0 }}
-          transition={{ duration: 2 }}
-        >
-          <Icon icon={icon} size={SizeEnum.large} />
-        </motion.div>
-        {recoilGameState.loading ? (
-          <div />
-        ) : (
-          <MyHP name={name} hp={hp} mp={mp} />
-        )}
+        <Icon icon={icon} size={SizeEnum.large} />
+        <MyHP name={name} hp={hp} mp={mp} />
       </Style.Wrapper>
     );
   }
