@@ -59,7 +59,12 @@ function Pokemon({ isMyPokemon, icon, hp, mp = 0, name }: PokemonProps) {
     }
     return (
       <Style.Wrapper isMyPokemon={isMyPokemon}>
+        {/* <motion.div
+          animate={{ scale: [0, 1], x: 0 }}
+          transition={{ duration: 0.7, delay: 1 }}
+        > */}
         <Icon icon={icon} size={SizeEnum.large} />
+        {/* </motion.div> */}
         <MyHP name={name} hp={hp} mp={mp} />
       </Style.Wrapper>
     );

@@ -1,3 +1,4 @@
+import { keyframes } from '@emotion/react';
 import styled from '../../../common/style/styled';
 
 interface WrapperProps {
@@ -18,4 +19,5 @@ export const Person = styled.div`
   height: 200px;
   border-radius: 100px;
   background-color: black;
+  margin-left: 120px;
 `;
