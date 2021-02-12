@@ -13,7 +13,7 @@ import TextBox from '../../UI/TextBox';
 import BorderBox from '../../UI/BorderBox';
 
 function IndexPage() {
-  const { loading } = useRecoilValue(gameState);
+  const { loading, gameStatus } = useRecoilValue(gameState);
 
   return (
     <Style.Wrapper>
@@ -27,8 +27,13 @@ function IndexPage() {
           icon="react"
         />
       </Style.PokemonContainer>
-      {/* <SelectBox /> */}
-      {loading ? <BorderBox height="35%" /> : <TextBox />}
+      {loading ? (
+        <BorderBox height="35%" />
+      ) : gameStatus === 3 ? (
+        <SelectBox />
+      ) : (
+        <TextBox />
+      )}
     </Style.Wrapper>
   );
 }
