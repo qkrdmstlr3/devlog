@@ -26,6 +26,7 @@ function TextBox(): React.ReactElement {
   const handleClick = () => {
     if (!isTypingEnd) return;
 
+    /** 이거 recoil selector처리로 가능하지 않을까? */
     switch (recoilGameState.gameStatus) {
       case 1: {
         setGameState({

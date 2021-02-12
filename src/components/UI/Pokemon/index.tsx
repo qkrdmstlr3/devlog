@@ -30,48 +30,54 @@ interface PokemonProps {
 }
 
 function Pokemon({ isMyPokemon, icon, hp, mp = 0, name }: PokemonProps) {
-  const [gameStatus, setGameStatus] = useRecoilState(gameState);
+  const [recoilGameState, setGameStatus] = useRecoilState(gameState);
 
   useEffect(() => {
     setTimeout(() => {
       setGameStatus({
-        ...gameStatus,
+        ...recoilGameState,
         loading: false,
       });
     }, 2000);
   }, []);
 
-  useEffect(() => {}, [gameStatus.loading]);
+  useEffect(() => {}, [recoilGameState.loading]);
 
   if (isMyPokemon) {
+    if (recoilGameState.gameStatus < 3) {
+      return (
+        <Style.Wrapper isMyPokemon={isMyPokemon}>
+          <motion.div
+            animate={{ x: recoilGameState.loading ? [1200, 0] : 0 }}
+            transition={{ duration: 2 }}
+          >
+            <Style.Person />
+          </motion.div>
+          {recoilGameState.loading ? <div /> : <MonsterBall />}
+        </Style.Wrapper>
+      );
+    }
     return (
       <Style.Wrapper isMyPokemon={isMyPokemon}>
         <motion.div
-          animate={{ x: gameStatus.loading ? [1200, 0] : 0 }}
+          animate={{ x: recoilGameState.loading ? [1200, 0] : 0 }}
           transition={{ duration: 2 }}
         >
-          <Style.Person />
+          <Icon icon={icon} size={SizeEnum.large} />
         </motion.div>
-        {gameStatus.loading ? <div /> : <MonsterBall />}
+        {recoilGameState.loading ? (
+          <div />
+        ) : (
+          <MyHP name={name} hp={hp} mp={mp} />
+        )}
       </Style.Wrapper>
     );
-    // return (
-    //   <Style.Wrapper isMyPokemon={isMyPokemon}>
-    //     <motion.div
-    //       animate={{ x: gameStatus.loading ? [1200, 0] : 0 }}
-    //       transition={{ duration: 2 }}
-    //     >
-    //       <Icon icon={icon} size={SizeEnum.large} />
-    //     </motion.div>
-    //     {gameStatus.loading ? <div /> : <MyHP name={name} hp={hp} mp={mp} />}
-    //   </Style.Wrapper>
-    // );
   }
   return (
     <Style.Wrapper isMyPokemon={isMyPokemon}>
-      {gameStatus.loading ? <div /> : <EnemyHP name={name} hp={hp} />}
+      {recoilGameState.loading ? <div /> : <EnemyHP name={name} hp={hp} />}
       <motion.div
-        animate={{ x: gameStatus.loading ? [-1200, 0] : 0 }}
+        animate={{ x: recoilGameState.loading ? [-1200, 0] : 0 }}
         transition={{ duration: 2 }}
       >
         <Icon icon={icon} size={SizeEnum.large} />
