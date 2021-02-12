@@ -2,12 +2,12 @@
 import React from 'react';
 import * as Style from './styled';
 
-function MyCharacter() {
+function MonsterBall() {
   return (
     <Style.BallWrapper>
       <Style.InnerWrapper>
-        {[...Array(6)].map(() => (
-          <Style.Ball>
+        {[...Array(6)].map((_, index) => (
+          <Style.Ball key={index}>
             <Style.RedPart />
             <Style.BlackPart>
               <Style.CenterPart />
@@ -19,4 +19,4 @@ function MyCharacter() {
   );
 }
 
-export default MyCharacter;
+export default MonsterBall;

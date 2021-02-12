@@ -22,7 +22,7 @@ function typingHook({ content }: TypingHookProps) {
 
   useEffect(() => {
     typingText();
-  }, []);
+  }, [content]);
 
   return [text, isTypingEnd];
 }
