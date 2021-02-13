@@ -13,12 +13,19 @@ function Layout({ children }: LayoutProps) {
     <Style.Layout>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>ShellboyLog</title>
+        <title>조개소년 개발블로그</title>
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
           href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
           rel="stylesheet"
         />
+        <meta name="title" content="shellboylog" />
+        <meta
+          name="keyword"
+          content="shellboylog, 조개소년 개발블로그, shellboy"
+        />
+        <meta name="author" content="shellboy" />
+        <meta name="description" content="조개소년의 개발 블로그입니다" />
       </Helmet>
       <GlobalStyle />
       <RecoilRoot>{children}</RecoilRoot>
