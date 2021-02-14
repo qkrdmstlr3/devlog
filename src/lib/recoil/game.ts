@@ -1,4 +1,6 @@
+import { number } from 'prop-types';
 import { atomFamily, atom, selector } from 'recoil';
+import { EnemyPokemon, MyPokemon } from '../../common/data/pokemon';
 
 /**
  * Current Status : 현재 게임 상태
@@ -8,14 +10,26 @@ import { atomFamily, atom, selector } from 'recoil';
  * 4 : 상대 포켓몬 공격 [TextBox Component]
  * 5 : 내 포켓몬의 닳은 체력 [TextBox Component]
  * 6 : 내 포켓몬 공격 [TextBox Component]
- * 7 : 적 포켓몬의 달흔 체력 [TextBox Component]
+ * 7 : 적 포켓몬의 닳은 체력 [TextBox Component]
  * 8 : 내 포켓몬 교체 [TextBox Component]
  */
 
 export const gameState = atom({
   key: 'gameState',
   default: {
+    /** 게임 로딩 중 */
     loading: true,
+    /** 게임 진행 상태 */
     gameStatus: 1,
+    /** 현재 내 포켓몬 종류 */
+    name: 'react',
+    /** 적 포켓몬 전체 체력 */
+    enemyFullHP: EnemyPokemon.hp,
+    /** 적 포켓몬 현재 체력 */
+    enemyCurrentHP: EnemyPokemon.hp,
+    /** 내 포켓몬 전체 체력 */
+    myFullHP: MyPokemon['react'].hp,
+    /** 내 포켓몬 현재 체력 */
+    myCurrentHP: MyPokemon['react'].hp,
   },
 });
