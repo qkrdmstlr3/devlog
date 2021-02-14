@@ -16,6 +16,9 @@ import MonsterBall from '../MonsterBall';
 // Types
 import { IconNameType, SizeEnum } from '../../types';
 
+// Data
+import { MyPokemon, EnemyPokemon } from '../../../common/data/pokemon';
+
 interface PokemonProps {
   /** 내 포켓몬인지 */
   isMyPokemon: boolean;
@@ -65,18 +68,27 @@ function Pokemon({ isMyPokemon, icon, hp, mp = 0, name }: PokemonProps) {
         > */}
         <Icon icon={icon} size={SizeEnum.large} />
         {/* </motion.div> */}
-        <MyHP name={name} hp={hp} mp={mp} />
+        <MyHP name={name} hp={hp} />
       </Style.Wrapper>
     );
   }
   return (
     <Style.Wrapper isMyPokemon={isMyPokemon}>
-      {recoilGameState.loading ? <div /> : <EnemyHP name={name} hp={hp} />}
+      {recoilGameState.loading ? (
+        <div />
+      ) : (
+        <EnemyHP
+          name={`${EnemyPokemon.name}: L${EnemyPokemon.level}`}
+          hp={
+            (recoilGameState.enemyCurrentHP / recoilGameState.enemyFullHP) * 100
+          }
+        />
+      )}
       <motion.div
         animate={{ x: recoilGameState.loading ? [-1200, 0] : 0 }}
         transition={{ duration: 2 }}
       >
-        <Icon icon={icon} size={SizeEnum.large} />
+        <Icon icon={EnemyPokemon.sort} size={SizeEnum.large} />
       </motion.div>
     </Style.Wrapper>
   );
