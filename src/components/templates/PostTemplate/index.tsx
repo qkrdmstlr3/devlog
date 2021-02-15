@@ -1,5 +1,6 @@
 // Dependencies
 import React, { useState, useEffect, useRef } from 'react';
+import { Helmet } from 'react-helmet';
 import Layout from '../../../layout';
 import { ITemplateProps } from '../../../interface';
 import * as Style from './styled';
@@ -51,6 +52,15 @@ const PostTemplate = ({
 
   return (
     <Layout>
+      <Helmet>
+        <title>{info.title}</title>
+        <meta name="title" content={info.title} />
+        <meta name="author" content="shellboy" />
+        <meta name="description" content={info.markdown.slice(0, 100)} />
+        <meta property="og:title" content={info.title} />
+        <meta name="og:author" content="shellboy" />
+        <meta property="og:description" content={info.markdown.slice(0, 100)} />
+      </Helmet>
       <Style.Wrapper>
         <Style.Header>
           <Style.Back>

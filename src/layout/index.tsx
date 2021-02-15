@@ -25,7 +25,16 @@ function Layout({ children }: LayoutProps) {
           content="shellboylog, 조개소년 개발블로그, shellboy"
         />
         <meta name="author" content="shellboy" />
-        <meta name="description" content="조개소년의 개발 블로그입니다" />
+        <meta
+          name="description"
+          content="개발자 조개소년의 개발 블로그입니다"
+        />
+        <meta property="og:title" content="조개소년 개발블로그" />
+        <meta property="og:author" content="shellboy" />
+        <meta
+          property="og:description"
+          content="개발자 조개소년의 개발 블로그입니다"
+        />
       </Helmet>
       <GlobalStyle />
       <RecoilRoot>{children}</RecoilRoot>
