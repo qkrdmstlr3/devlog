@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: `shellboylog.com`,
-    description: `shellboy's devlog`,
+    title: `조개소년 개발블로그`,
+    description: `개발자 조개소년의 개발블로그`,
     author: `shellboy`,
     siteUrl: 'https://shellboylog.com',
   },
