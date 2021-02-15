@@ -1,6 +1,5 @@
 // Dependencies
 import React, { useState, useEffect, useRef } from 'react';
-import { Helmet } from 'react-helmet';
 import Layout from '../../../layout';
 import { ITemplateProps } from '../../../interface';
 import * as Style from './styled';
@@ -11,6 +10,9 @@ import gfm from 'remark-gfm';
 
 // Components
 import renderers from './renderer';
+
+// Utils
+import Seo from '../../../utils/Seo';
 
 type IPostTemplateProps = ITemplateProps<{
   html: string;
@@ -52,15 +54,7 @@ const PostTemplate = ({
 
   return (
     <Layout>
-      <Helmet>
-        <title>{info.title}</title>
-        <meta name="title" content={info.title} />
-        <meta name="author" content="shellboy" />
-        <meta name="description" content={info.markdown.slice(0, 100)} />
-        <meta property="og:title" content={info.title} />
-        <meta name="og:author" content="shellboy" />
-        <meta property="og:description" content={info.markdown.slice(0, 100)} />
-      </Helmet>
+      <Seo title={info.title} description={info.markdown.slice(0, 150)} />
       <Style.Wrapper>
         <Style.Header>
           <Style.Back>
