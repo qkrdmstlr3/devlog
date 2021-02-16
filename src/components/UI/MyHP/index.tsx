@@ -6,15 +6,21 @@ interface MyHPProps {
   hp: number;
   /** 포켓몬 이름 */
   name: string;
+  /** 현재 hp */
+  currentHP: number;
+  /** 풀 hp */
+  fullHP: number;
 }
 
-function MyHP({ hp, name }: MyHPProps) {
+function MyHP({ hp, name, currentHP, fullHP }: MyHPProps) {
   return (
     <div>
       <Style.Name>{name}</Style.Name>
       <Style.HPWrapper>
         <Style.HPText>HP:</Style.HPText>
-        <Style.HPCenter>20 / 20</Style.HPCenter>
+        <Style.HPCenter>
+          {currentHP} / {fullHP}
+        </Style.HPCenter>
         <Style.HPStick>
           <Style.HPStickBar hp={hp} />
         </Style.HPStick>
