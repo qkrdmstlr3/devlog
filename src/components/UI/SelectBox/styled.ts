@@ -21,10 +21,12 @@ export const Nav = styled.nav`
 
 export const NavContainer = styled.div`
   position: absolute;
-  width: 50%;
+  width: 52%;
   right: 0;
   top: 0;
   height: 100%;
+  background-color: white;
+  padding-left: 2%;
 `;
 
 export const NavItem = styled.h2`
