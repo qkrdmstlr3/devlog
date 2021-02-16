@@ -11,6 +11,7 @@ import Pokemon from '../../UI/Pokemon';
 import SelectBox from '../../UI/SelectBox';
 import TextBox from '../../UI/TextBox';
 import BorderBox from '../../UI/BorderBox';
+import FightBox from '../../UI/FightBox';
 
 function IndexPage() {
   const { loading, gameStatus } = useRecoilValue(gameState);
@@ -31,6 +32,8 @@ function IndexPage() {
         <BorderBox height="35%" />
       ) : gameStatus === 3 ? (
         <SelectBox />
+      ) : gameStatus === 4 ? (
+        <FightBox />
       ) : (
         <TextBox />
       )}
