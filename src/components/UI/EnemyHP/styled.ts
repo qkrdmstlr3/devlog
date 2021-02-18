@@ -1,6 +1,9 @@
 import styled, { mq } from '../../../common/style/styled';
 import { SizeEnum } from '../../types';
 
+// Utils
+import barColor from '../../../utils/barColor';
+
 interface HPStickBarProps {
   hp: number;
 }
@@ -102,7 +105,7 @@ export const HPStickBar = styled.div<HPStickBarProps>`
   margin-top: 10px;
   width: ${(props) => props.hp}%;
   height: 15px;
-  background-color: #2fe408;
+  background-color: ${(props) => barColor(props.hp)};
 
   ${mq(SizeEnum.small)} {
     margin-top: 4px;

@@ -20,7 +20,7 @@ function Layout({ children }: LayoutProps) {
       <Style.Footer>
         <Style.Copyright>Copyright © 2021 Shellboy</Style.Copyright>
         <Style.Information>
-          <Style.Github href="https://github.com/qkrdmstlr3">
+          <Style.Github href="https://github.com/qkrdmstlr3/devlog">
             Github
           </Style.Github>
         </Style.Information>
