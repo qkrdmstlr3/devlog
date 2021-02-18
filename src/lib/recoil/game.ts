@@ -12,7 +12,8 @@ import { EnemyPokemon, MyPokemon } from '../../common/data/pokemon';
  * 6 : 내 포켓몬의 닳은 체력 [TextBox Component]
  * 7 : 내 포켓몬 공격 [TextBox Component]
  * 8 : 적 포켓몬의 닳은 체력 [TextBox Component]
- * 9 : 내 포켓몬 교체 [TextBox Component]
+ * 9 : 적 포켓몬이 죽음
+ * 10 : 내 포켓몬 교체 [TextBox Component]
  */
 
 export const gameState = atom({
@@ -32,5 +33,9 @@ export const gameState = atom({
     myFullHP: MyPokemon['react'].hp,
     /** 내 포켓몬 현재 체력 */
     myCurrentHP: MyPokemon['react'].hp,
+    /** 내 포켓몬 스킬 index */
+    mySkill: -1,
+    /** 적 포켓몬 스킬 index */
+    enemySkill: -1,
   },
 });

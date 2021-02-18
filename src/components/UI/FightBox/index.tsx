@@ -14,16 +14,29 @@ import { MyPokemon } from '../../../common/data/pokemon';
 
 function FightBox() {
   const [currentSkill, setCurrentSkill] = useState(0);
-  const [{ name }, setGameState] = useRecoilState(gameState);
+  const [recoilGameState, setGameState] = useRecoilState(gameState);
 
   const mouseEnterHandler = (index: number) => {
-    if (index === currentSkill || MyPokemon[name].skill[index].name === '-')
-      return;
+    const isNotSkill =
+      index === currentSkill ||
+      MyPokemon[recoilGameState.name].skill[index].name === '-';
+    if (isNotSkill) return;
+
     setCurrentSkill(index);
   };
 
   const clickHandler = (index: number) => {
-    // gameStatus 5번으로 설정 후 textBox에서 6 7 8일 경우에 따라서 설정
+    const isNotSkill =
+      MyPokemon[recoilGameState.name].skill[index].name === '-';
+    if (isNotSkill) return;
+
+    const enemySkill = Math.floor(Math.random() * 4);
+    setGameState({
+      ...recoilGameState,
+      gameStatus: 5,
+      mySkill: currentSkill,
+      enemySkill,
+    });
   };
 
   return (
@@ -31,7 +44,7 @@ function FightBox() {
       <Style.LeftWrapper>
         <BorderBox>
           <Style.SkillBox>
-            {MyPokemon[name].skill.map((skill, index) => (
+            {MyPokemon[recoilGameState.name].skill.map((skill, index) => (
               <Style.Skill
                 key={index}
                 onMouseEnter={() => mouseEnterHandler(index)}
@@ -47,7 +60,8 @@ function FightBox() {
       <Style.RightWrapper>
         <BorderBox>
           <Style.SkillTypeBox>
-            기술 타입 / {MyPokemon[name].skill[currentSkill].skillType}
+            기술 타입 /{' '}
+            {MyPokemon[recoilGameState.name].skill[currentSkill].skillType}
           </Style.SkillTypeBox>
         </BorderBox>
       </Style.RightWrapper>
