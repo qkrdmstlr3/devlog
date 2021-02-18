@@ -5,7 +5,9 @@ interface SkillType {
   /** 스킬 명 */
   name: string;
   /** 입힐 수 있는 데미지 평균 */
-  damage: number;
+  damage?: number;
+  /** 기술 타입 */
+  skillType?: string;
 }
 
 interface PokemonType {
@@ -33,8 +35,10 @@ export const MyPokemon: MyPokemonType = {
     level: 90,
     hp: 20,
     skill: [
-      { name: '스킬1', damage: 3 },
-      { name: '스킬2', damage: 5 },
+      { name: '스킬1', damage: 3, skillType: '노멀' },
+      { name: '스킬2', damage: 5, skillType: '노멀' },
+      { name: '-' },
+      { name: '-' },
     ],
   },
 };
