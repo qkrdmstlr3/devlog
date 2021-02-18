@@ -21,6 +21,7 @@ function typingHook({ content }: TypingHookProps) {
   };
 
   useEffect(() => {
+    setIsTypingEnd(false);
     typingText();
   }, [content]);
 
