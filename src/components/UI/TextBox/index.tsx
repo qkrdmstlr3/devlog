@@ -1,6 +1,7 @@
 // Dependencies
 import React, { useEffect } from 'react';
 import * as Style from './styled';
+import { navigate } from 'gatsby';
 
 // Recoil
 import { useRecoilState } from 'recoil';
@@ -14,11 +15,16 @@ import typingHook from '../../../hooks/typingHook';
 
 // Data
 import { textData } from '../../../common/data/string';
+import { MyPokemon, EnemyPokemon } from '../../../common/data/pokemon';
 
 function TextBox(): React.ReactElement {
   const [recoilGameState, setGameState] = useRecoilState(gameState);
   const [text, isTypingEnd] = typingHook({
-    content: textData[recoilGameState.gameStatus](),
+    content: textData[recoilGameState.gameStatus](
+      MyPokemon[recoilGameState.name].skill[recoilGameState.mySkill]?.name,
+      EnemyPokemon.skill[recoilGameState.enemySkill]?.name,
+      recoilGameState.name
+    ),
   });
 
   useEffect(() => {}, [recoilGameState.gameStatus]);
@@ -40,6 +46,64 @@ function TextBox(): React.ReactElement {
           ...recoilGameState,
           gameStatus: 3,
         });
+        return;
+      }
+      case 5: {
+        const damagedHP =
+          recoilGameState.myCurrentHP -
+            EnemyPokemon.skill[recoilGameState.enemySkill].damage || 0;
+        setGameState({
+          ...recoilGameState,
+          gameStatus: 6,
+          myCurrentHP: damagedHP < 0 ? 0 : damagedHP,
+        });
+        return;
+      }
+      case 6: {
+        // 내 포켓몬이 죽으면 예외처리를 따로 해주어야함
+        setGameState({
+          ...recoilGameState,
+          gameStatus: 7,
+          enemySkill: -1,
+        });
+        return;
+      }
+      case 7: {
+        const damagedHP =
+          recoilGameState.enemyCurrentHP -
+            MyPokemon[recoilGameState.name].skill[recoilGameState.mySkill]
+              .damage || 0;
+        setGameState({
+          ...recoilGameState,
+          gameStatus: 8,
+          enemyCurrentHP: damagedHP < 0 ? 0 : damagedHP,
+        });
+        return;
+      }
+      case 8: {
+        if (recoilGameState.enemyCurrentHP <= 0) {
+          setGameState({
+            ...recoilGameState,
+            gameStatus: 9,
+          });
+          return;
+        }
+
+        setGameState({
+          ...recoilGameState,
+          gameStatus: 3,
+        });
+        return;
+      }
+      case 9: {
+        setGameState({
+          ...recoilGameState,
+          gameStatus: 11,
+        });
+        return;
+      }
+      case 11: {
+        navigate('/list');
         return;
       }
       default:
