@@ -23,7 +23,7 @@ function TextBox(): React.ReactElement {
     content: textData[recoilGameState.gameStatus](
       MyPokemon[recoilGameState.name].skill[recoilGameState.mySkill]?.name,
       EnemyPokemon.skill[recoilGameState.enemySkill]?.name,
-      recoilGameState.name
+      MyPokemon[recoilGameState.name].name
     ),
   });
 
