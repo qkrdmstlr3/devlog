@@ -2775,6 +2775,7 @@ export type SitePageFieldsEnum =
   | 'pluginCreator___pluginOptions___policy___allow'
   | 'pluginCreator___pluginOptions___color'
   | 'pluginCreator___pluginOptions___showSpinner'
+  | 'pluginCreator___pluginOptions___minimum'
   | 'pluginCreator___pluginOptions___pathCheck'
   | 'pluginCreator___nodeAPIs'
   | 'pluginCreator___browserAPIs'
@@ -3030,6 +3031,7 @@ export type SitePluginFieldsEnum =
   | 'pluginOptions___policy___allow'
   | 'pluginOptions___color'
   | 'pluginOptions___showSpinner'
+  | 'pluginOptions___minimum'
   | 'pluginOptions___pathCheck'
   | 'nodeAPIs'
   | 'browserAPIs'
@@ -3192,6 +3194,7 @@ export type SitePluginPluginOptions = {
   policy?: Maybe<Array<Maybe<SitePluginPluginOptionsPolicy>>>;
   color?: Maybe<Scalars['String']>;
   showSpinner?: Maybe<Scalars['Boolean']>;
+  minimum?: Maybe<Scalars['Float']>;
   pathCheck?: Maybe<Scalars['Boolean']>;
 };
 
@@ -3239,6 +3242,7 @@ export type SitePluginPluginOptionsFilterInput = {
   policy?: Maybe<SitePluginPluginOptionsPolicyFilterListInput>;
   color?: Maybe<StringQueryOperatorInput>;
   showSpinner?: Maybe<BooleanQueryOperatorInput>;
+  minimum?: Maybe<FloatQueryOperatorInput>;
   pathCheck?: Maybe<BooleanQueryOperatorInput>;
 };
 
