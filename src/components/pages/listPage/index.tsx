@@ -51,6 +51,27 @@ function ListPage({
 
   return (
     <Style.Wrapper>
+      <Style.BackButton>
+        <Link to="/">홈으로</Link>
+      </Style.BackButton>
+      <Style.ListWrapper>
+        <Style.ListName
+          key={ALL_POSTS}
+          onClick={() => handleCurrentCategory(ALL_POSTS)}
+        >
+          {currentCategory === ALL_POSTS && <Style.Select>▶</Style.Select>}
+          {ALL_POSTS}
+        </Style.ListName>
+        {categorys.map((category) => (
+          <Style.ListName
+            key={category}
+            onClick={() => handleCurrentCategory(category)}
+          >
+            {currentCategory === category && <Style.Select>▶</Style.Select>}
+            {category}
+          </Style.ListName>
+        ))}
+      </Style.ListWrapper>
       <Style.ItemWrapper>
         {edges.map(({ node }) => {
           if (
@@ -71,26 +92,6 @@ function ListPage({
             );
         })}
       </Style.ItemWrapper>
-      <BorderBox height="20%" width="calc(100% - 25px)">
-        <Style.ListWrapper>
-          <Style.ListName
-            key={ALL_POSTS}
-            onClick={() => handleCurrentCategory(ALL_POSTS)}
-          >
-            {currentCategory === ALL_POSTS && <Style.Select>▶</Style.Select>}
-            {ALL_POSTS}
-          </Style.ListName>
-          {categorys.map((category) => (
-            <Style.ListName
-              key={category}
-              onClick={() => handleCurrentCategory(category)}
-            >
-              {currentCategory === category && <Style.Select>▶</Style.Select>}
-              {category}
-            </Style.ListName>
-          ))}
-        </Style.ListWrapper>
-      </BorderBox>
     </Style.Wrapper>
   );
 }

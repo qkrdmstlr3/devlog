@@ -4,7 +4,6 @@ import { SizeEnum } from '../../types';
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   position: absolute;
   top: 30px;
   bottom: 50px;
@@ -54,7 +53,7 @@ export const ItemContent = styled.p`
 export const ListWrapper = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  padding: 5px 40px;
+  padding: 5px 40px 20px 40px;
 
   ${mq(SizeEnum.small)} {
     padding: 5px 10px;
@@ -65,6 +64,7 @@ export const ListName = styled.li`
   position: relative;
   padding-right: 100px;
   font-family: 'NeoDunggeunmo', sans-serif;
+  font-size: 40px;
   cursor: pointer;
 
   ${mq(SizeEnum.small)} {
@@ -87,9 +87,14 @@ export const Select = styled.div`
 `;
 
 export const BackButton = styled.span`
-  font-size: 30px;
+  font-size: 20px;
+  margin-bottom: 15px;
   font-family: 'NeoDunggeunmo', sans-serif;
   background-color: transparent;
   border: none;
   cursor: pointer;
+
+  ${mq(SizeEnum.small)} {
+    font-size: 13px;
+  }
 `;
