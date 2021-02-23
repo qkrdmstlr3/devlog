@@ -23,7 +23,8 @@ function TextBox(): React.ReactElement {
     content: textData[recoilGameState.gameStatus](
       MyPokemon[recoilGameState.name].skill[recoilGameState.mySkill]?.name,
       EnemyPokemon.skill[recoilGameState.enemySkill]?.name,
-      MyPokemon[recoilGameState.name].name
+      MyPokemon[recoilGameState.name].name,
+      recoilGameState.myCurrentHP
     ),
   });
 
@@ -60,7 +61,6 @@ function TextBox(): React.ReactElement {
         return;
       }
       case 6: {
-        // 내 포켓몬이 죽으면 예외처리를 따로 해주어야함
         setGameState({
           ...recoilGameState,
           gameStatus: 7,
@@ -69,6 +69,16 @@ function TextBox(): React.ReactElement {
         return;
       }
       case 7: {
+        // 내 포켓몬이 쓰러졌을 경우
+        if (recoilGameState.myCurrentHP <= 0) {
+          setGameState({
+            ...recoilGameState,
+            gameStatus: 3,
+            isPokemonListOpen: true,
+          });
+          return;
+        }
+
         const damagedHP =
           recoilGameState.enemyCurrentHP -
             MyPokemon[recoilGameState.name].skill[recoilGameState.mySkill]

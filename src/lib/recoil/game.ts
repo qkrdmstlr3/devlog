@@ -1,4 +1,3 @@
-import { number } from 'prop-types';
 import { atomFamily, atom, selector } from 'recoil';
 import { EnemyPokemon, MyPokemon } from '../../common/data/pokemon';
 
@@ -13,7 +12,7 @@ import { EnemyPokemon, MyPokemon } from '../../common/data/pokemon';
  * 7 : 내 포켓몬 공격 [TextBox Component]
  * 8 : 적 포켓몬의 닳은 체력 [TextBox Component]
  * 9 : 적 포켓몬이 죽음
- * 10 : 내 포켓몬 교체 [TextBox Component]
+ * 10 : 내 포켓몬 교체 [TextBox Component] > 3과 동일?
  */
 
 export const gameState = atom({
