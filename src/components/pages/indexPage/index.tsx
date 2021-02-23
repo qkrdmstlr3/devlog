@@ -7,6 +7,7 @@ import { useRecoilValue } from 'recoil';
 import { gameState } from '../../../lib/recoil/game';
 
 // Components
+import PokemonListModal from '../../UI/PokemonModal';
 import Pokemon from '../../UI/Pokemon';
 import SelectBox from '../../UI/SelectBox';
 import TextBox from '../../UI/TextBox';
@@ -14,7 +15,11 @@ import BorderBox from '../../UI/BorderBox';
 import FightBox from '../../UI/FightBox';
 
 function IndexPage() {
-  const { loading, gameStatus } = useRecoilValue(gameState);
+  const { loading, gameStatus, isPokemonListOpen } = useRecoilValue(gameState);
+
+  if (isPokemonListOpen) {
+    return <PokemonListModal />;
+  }
 
   return (
     <Style.Wrapper>
