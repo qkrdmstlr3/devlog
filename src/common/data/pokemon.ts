@@ -23,26 +23,6 @@ interface PokemonType {
   skill: SkillType[];
 }
 
-type MyPokemonType = {
-  /** 포켓몬 종류 */
-  [name: string]: PokemonType;
-};
-
-export const MyPokemon: MyPokemonType = {
-  react: {
-    sort: 'react',
-    name: '리액트',
-    level: 50,
-    hp: 20,
-    skill: [
-      { name: '스킬1', damage: 3, skillType: '노멀' },
-      { name: '스킬2', damage: 5, skillType: '노멀' },
-      { name: '-', damage: 0 },
-      { name: '-', damage: 0 },
-    ],
-  },
-};
-
 export const EnemyPokemon: PokemonType = {
   sort: 'react',
   name: '리액트',

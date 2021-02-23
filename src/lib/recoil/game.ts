@@ -1,5 +1,5 @@
 import { atomFamily, atom, selector } from 'recoil';
-import { EnemyPokemon, MyPokemon } from '../../common/data/pokemon';
+import { EnemyPokemon } from '../../common/data/pokemon';
 
 /**
  * Current Status : 현재 게임 상태
@@ -28,10 +28,6 @@ export const gameState = atom({
     enemyFullHP: EnemyPokemon.hp,
     /** 적 포켓몬 현재 체력 */
     enemyCurrentHP: EnemyPokemon.hp,
-    /** 내 포켓몬 전체 체력 */
-    myFullHP: MyPokemon['react'].hp,
-    /** 내 포켓몬 현재 체력 */
-    myCurrentHP: MyPokemon['react'].hp,
     /** 내 포켓몬 스킬 index */
     mySkill: -1,
     /** 적 포켓몬 스킬 index */
