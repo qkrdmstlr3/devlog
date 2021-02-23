@@ -22,14 +22,14 @@ export const textData = {
     return `상대 리액트의 ${enemySkill ? enemySkill : mySkill}!`;
   },
   6: (_: string, __: string, name: string): string =>
-    `내 ${name}이 피해를 입었다!`,
+    `내 ${name}(이)가 피해를 입었다!`,
   7: (mySkill: string, enemySkill: string, name: string, myHP: number) => {
     if (myHP <= 0) {
       return `내 ${name}(이)가 쓰러졌다!`;
     }
     return `내 ${name}의 ${enemySkill ? enemySkill : mySkill}!`;
   },
-  8: () => `상대 리액트가 피해를 입었다!`,
+  8: () => `상대 리액트(이)가 피해를 입었다!`,
   9: () => '상대 리액트는 쓰러졌다!',
   10: () => '',
   11: () => '목록으로 이동한다!',

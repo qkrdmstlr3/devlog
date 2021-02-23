@@ -3,23 +3,22 @@ import React, { useState } from 'react';
 import * as Style from './styled';
 
 // Recoil
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { gameState } from '../../../lib/recoil/game';
+import { myPokemonState } from '../../../lib/recoil/myPokemon';
 
 // Components
 import BorderBox from '../BorderBox';
 
-// Data
-import { MyPokemon } from '../../../common/data/pokemon';
-
 function FightBox() {
   const [currentSkill, setCurrentSkill] = useState(0);
   const [recoilGameState, setGameState] = useRecoilState(gameState);
+  const recoilMyPokemonState = useRecoilValue(myPokemonState);
 
   const mouseEnterHandler = (index: number) => {
     const isNotSkill =
       index === currentSkill ||
-      MyPokemon[recoilGameState.name].skill[index].name === '-';
+      recoilMyPokemonState[recoilGameState.name].skill[index].name === '-';
     if (isNotSkill) return;
 
     setCurrentSkill(index);
@@ -27,7 +26,7 @@ function FightBox() {
 
   const clickHandler = (index: number) => {
     const isNotSkill =
-      MyPokemon[recoilGameState.name].skill[index].name === '-';
+      recoilMyPokemonState[recoilGameState.name].skill[index].name === '-';
     if (isNotSkill) return;
 
     const enemySkill = Math.floor(Math.random() * 4);
@@ -44,16 +43,18 @@ function FightBox() {
       <Style.LeftWrapper>
         <BorderBox>
           <Style.SkillBox>
-            {MyPokemon[recoilGameState.name].skill.map((skill, index) => (
-              <Style.Skill
-                key={index}
-                onMouseEnter={() => mouseEnterHandler(index)}
-                onClick={() => clickHandler(index)}
-              >
-                {index === currentSkill && <Style.Select>▶</Style.Select>}
-                {skill.name}
-              </Style.Skill>
-            ))}
+            {recoilMyPokemonState[recoilGameState.name].skill.map(
+              (skill, index) => (
+                <Style.Skill
+                  key={index}
+                  onMouseEnter={() => mouseEnterHandler(index)}
+                  onClick={() => clickHandler(index)}
+                >
+                  {index === currentSkill && <Style.Select>▶</Style.Select>}
+                  {skill.name}
+                </Style.Skill>
+              )
+            )}
           </Style.SkillBox>
         </BorderBox>
       </Style.LeftWrapper>
@@ -61,7 +62,10 @@ function FightBox() {
         <BorderBox>
           <Style.SkillTypeBox>
             기술 타입 /{' '}
-            {MyPokemon[recoilGameState.name].skill[currentSkill].skillType}
+            {
+              recoilMyPokemonState[recoilGameState.name].skill[currentSkill]
+                .skillType
+            }
           </Style.SkillTypeBox>
         </BorderBox>
       </Style.RightWrapper>

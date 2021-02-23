@@ -6,6 +6,7 @@ import { navigate } from 'gatsby';
 // Recoil
 import { useRecoilState } from 'recoil';
 import { gameState } from '../../../lib/recoil/game';
+import { myPokemonState } from '../../../lib/recoil/myPokemon';
 
 // Components
 import BorderBox from '../BorderBox';
@@ -15,16 +16,20 @@ import typingHook from '../../../hooks/typingHook';
 
 // Data
 import { textData } from '../../../common/data/string';
-import { MyPokemon, EnemyPokemon } from '../../../common/data/pokemon';
+import { EnemyPokemon } from '../../../common/data/pokemon';
 
 function TextBox(): React.ReactElement {
   const [recoilGameState, setGameState] = useRecoilState(gameState);
+  const [recoilMyPokemonState, setMyPokemonState] = useRecoilState(
+    myPokemonState
+  );
   const [text, isTypingEnd] = typingHook({
     content: textData[recoilGameState.gameStatus](
-      MyPokemon[recoilGameState.name].skill[recoilGameState.mySkill]?.name,
+      recoilMyPokemonState[recoilGameState.name].skill[recoilGameState.mySkill]
+        ?.name,
       EnemyPokemon.skill[recoilGameState.enemySkill]?.name,
-      MyPokemon[recoilGameState.name].name,
-      recoilGameState.myCurrentHP
+      recoilMyPokemonState[recoilGameState.name].name,
+      recoilMyPokemonState[recoilGameState.name].currentHP
     ),
   });
 
@@ -51,12 +56,19 @@ function TextBox(): React.ReactElement {
       }
       case 5: {
         const damagedHP =
-          recoilGameState.myCurrentHP -
+          recoilMyPokemonState[recoilGameState.name].currentHP -
             EnemyPokemon.skill[recoilGameState.enemySkill].damage || 0;
+
+        setMyPokemonState({
+          ...recoilMyPokemonState,
+          [recoilGameState.name]: {
+            ...recoilMyPokemonState[recoilGameState.name],
+            currentHP: damagedHP < 0 ? 0 : damagedHP,
+          },
+        });
         setGameState({
           ...recoilGameState,
           gameStatus: 6,
-          myCurrentHP: damagedHP < 0 ? 0 : damagedHP,
         });
         return;
       }
@@ -70,7 +82,7 @@ function TextBox(): React.ReactElement {
       }
       case 7: {
         // 내 포켓몬이 쓰러졌을 경우
-        if (recoilGameState.myCurrentHP <= 0) {
+        if (recoilMyPokemonState[recoilGameState.name].currentHP <= 0) {
           setGameState({
             ...recoilGameState,
             gameStatus: 3,
@@ -81,8 +93,9 @@ function TextBox(): React.ReactElement {
 
         const damagedHP =
           recoilGameState.enemyCurrentHP -
-            MyPokemon[recoilGameState.name].skill[recoilGameState.mySkill]
-              .damage || 0;
+            recoilMyPokemonState[recoilGameState.name].skill[
+              recoilGameState.mySkill
+            ].damage || 0;
         setGameState({
           ...recoilGameState,
           gameStatus: 8,

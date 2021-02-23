@@ -4,8 +4,9 @@ import * as Style from './styled';
 import { motion } from 'framer-motion';
 
 // Recoil
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { gameState } from '../../../lib/recoil/game';
+import { myPokemonState } from '../../../lib/recoil/myPokemon';
 
 // Components
 import MyHP from '../MyHP';
@@ -17,23 +18,18 @@ import MonsterBall from '../MonsterBall';
 import { IconNameType, SizeEnum } from '../../types';
 
 // Data
-import { MyPokemon, EnemyPokemon } from '../../../common/data/pokemon';
+import { EnemyPokemon } from '../../../common/data/pokemon';
 
 interface PokemonProps {
   /** 내 포켓몬인지 */
   isMyPokemon: boolean;
   /** 포켓몬 종류 */
   icon: IconNameType;
-  /** hp */
-  hp: number;
-  /** mp */
-  mp?: number;
-  /** 포켓몬 이름 */
-  name: string;
 }
 
-function Pokemon({ isMyPokemon, icon, hp, mp = 0, name }: PokemonProps) {
+function Pokemon({ isMyPokemon, icon }: PokemonProps) {
   const [recoilGameState, setGameStatus] = useRecoilState(gameState);
+  const recoilMyPokemonState = useRecoilValue(myPokemonState);
 
   useEffect(() => {
     setTimeout(() => {
@@ -69,12 +65,16 @@ function Pokemon({ isMyPokemon, icon, hp, mp = 0, name }: PokemonProps) {
         <Icon icon={icon} size={SizeEnum.large} />
         {/* </motion.div> */}
         <MyHP
-          name={`${MyPokemon[recoilGameState.name].name}: L${
-            MyPokemon[recoilGameState.name].level
+          name={`${recoilMyPokemonState[recoilGameState.name].name}: L${
+            recoilMyPokemonState[recoilGameState.name].level
           }`}
-          hp={(recoilGameState.myCurrentHP / recoilGameState.myFullHP) * 100}
-          currentHP={recoilGameState.myCurrentHP}
-          fullHP={recoilGameState.myFullHP}
+          hp={
+            (recoilMyPokemonState[recoilGameState.name].currentHP /
+              recoilMyPokemonState[recoilGameState.name].fullHP) *
+            100
+          }
+          currentHP={recoilMyPokemonState[recoilGameState.name].currentHP}
+          fullHP={recoilMyPokemonState[recoilGameState.name].fullHP}
         />
       </Style.Wrapper>
     );
