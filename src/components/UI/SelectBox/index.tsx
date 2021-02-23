@@ -20,6 +20,13 @@ function SelectBox() {
     });
   };
 
+  const pokemonClickHandler = () => {
+    setGameState({
+      ...recoilGameState,
+      isPokemonListOpen: true,
+    });
+  };
+
   return (
     <Style.Wrapper>
       <BorderBox height="100%" />
@@ -30,7 +37,7 @@ function SelectBox() {
             <Style.NavItem>
               <Link to="/list">글목록</Link>
             </Style.NavItem>
-            <Style.NavItem>포켓몬</Style.NavItem>
+            <Style.NavItem onClick={pokemonClickHandler}>포켓몬</Style.NavItem>
             <Style.NavItem>가방</Style.NavItem>
           </Style.Nav>
         </BorderBox>
