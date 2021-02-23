@@ -37,5 +37,7 @@ export const gameState = atom({
     mySkill: -1,
     /** 적 포켓몬 스킬 index */
     enemySkill: -1,
+    /** 포켓몬 리스트를 띄워야 되는지 확인 */
+    isPokemonListOpen: false,
   },
 });
