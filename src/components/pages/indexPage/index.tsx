@@ -14,8 +14,13 @@ import TextBox from '../../UI/TextBox';
 import BorderBox from '../../UI/BorderBox';
 import FightBox from '../../UI/FightBox';
 
+// Types
+import { IconNameType } from '../../types';
+
 function IndexPage() {
-  const { loading, gameStatus, isPokemonListOpen } = useRecoilValue(gameState);
+  const { loading, gameStatus, isPokemonListOpen, name } = useRecoilValue(
+    gameState
+  );
 
   if (isPokemonListOpen) {
     return <PokemonListModal />;
@@ -24,14 +29,8 @@ function IndexPage() {
   return (
     <Style.Wrapper>
       <Style.PokemonContainer>
-        <Pokemon name="리액트: L99" isMyPokemon={false} hp={100} icon="react" />
-        <Pokemon
-          name="리액트: L99"
-          isMyPokemon={true}
-          hp={100}
-          mp={20}
-          icon="react"
-        />
+        <Pokemon isMyPokemon={false} icon="react" />
+        <Pokemon isMyPokemon={true} icon={name as IconNameType} />
       </Style.PokemonContainer>
       {loading ? (
         <BorderBox height="35%" />
