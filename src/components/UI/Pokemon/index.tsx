@@ -32,17 +32,20 @@ function Pokemon({ isMyPokemon, icon }: PokemonProps) {
   const recoilMyPokemonState = useRecoilValue(myPokemonState);
 
   useEffect(() => {
-    setTimeout(() => {
-      setGameStatus({
-        ...recoilGameState,
-        loading: false,
-      });
-    }, 2000);
+    if (recoilGameState.loading) {
+      setTimeout(() => {
+        setGameStatus({
+          ...recoilGameState,
+          loading: false,
+        });
+      }, 2000);
+    }
   }, []);
 
   useEffect(() => {}, [recoilGameState.loading]);
 
   if (isMyPokemon) {
+    if (recoilGameState.gameStatus === 10) return <></>;
     if (recoilGameState.gameStatus < 3) {
       return (
         <Style.Wrapper isMyPokemon={isMyPokemon}>
