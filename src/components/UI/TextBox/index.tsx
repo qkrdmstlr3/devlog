@@ -47,6 +47,7 @@ function TextBox(): React.ReactElement {
         });
         return;
       }
+      case 10:
       case 2: {
         setGameState({
           ...recoilGameState,
