@@ -10,7 +10,6 @@
  * 8 : 적 포켓몬의 닳은 체력 [TextBox Component]
  * 9 : 적 포켓몬이 죽음
  * 10 : 내 포켓몬 교체 [TextBox Component]
- * 11 : 화면 교체 멘트
  */
 
 export const textData = {
@@ -31,6 +30,6 @@ export const textData = {
   },
   8: () => `상대 리액트(이)가 피해를 입었다!`,
   9: () => '상대 리액트는 쓰러졌다!',
-  10: () => '',
+  10: (_: string, __: string, name: string) => `가랏! ${name}!`,
   11: () => '목록으로 이동한다!',
 };
