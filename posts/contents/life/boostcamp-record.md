@@ -37,6 +37,8 @@ category: life
 
 부스트캠프에서 내가 가장 하고 싶었던 과정이었다. 네이버의 여러 부서에서 내준 기업프로젝트를 진행하는 것이었는데, 재밌어보이는 것들이 많아서 고민을 정말 많이 했다. 결국 네이버 지도팀에서 내준 프로젝트를 1지망으로 선택하였고 진행하게되었다! [STYLED-MAP-ADMIN-TOOL](https://github.com/boostcamp-2020/Project08-A-Styled-Map-Admin-Tool)은 사용자가 지도의 세부사항을 변경할 수 있고, url과 json형태로 저장할 수 있는 프로젝트이다. 자세한 것은 github를 참고하면 좋겠다. wiki에 매일매일의 기록과 규칙도 남겨두었다.
 
+![pass](https://raw.githubusercontent.com/qkrdmstlr3/devlog/main/posts/contents/life/images/styled-map-admin-tool.png)
+
 프로젝트를 하면서 배웠던 점이나 협업과정에 대해서는 넘어가도록 하고, 제일 신선했던 경험을 꼽자면 단연 네이버 지도팀의 피드백과 코드리뷰였다. 네이버 지도 총괄 팀장님과 개발자 두 분이 멘토로 참여를 하셨는데, 네이버 개발자 분들의 코드 리뷰도 감사했지만 특히 팀장님의 피드백이 정말 많이 도움이 되었다. 앞으로 개발을 해야할 방향과 내가 여태껏 가졌던 생각을 돌아보는데 많은 도움이 되었다.
 
 ## 부스트캠프를 끝내며
