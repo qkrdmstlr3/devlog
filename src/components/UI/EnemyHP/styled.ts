@@ -16,6 +16,11 @@ export const Name = styled.span`
   font-family: 'NeoDunggeunmo', sans-serif;
   font-weight: bold;
 
+  ${mq(SizeEnum.large)} {
+    width: 300px;
+    font-size: 2.5rem;
+  }
+
   ${mq(SizeEnum.small)} {
     width: 150px;
     font-size: 1.2rem;
@@ -29,6 +34,11 @@ export const HPWrapper = styled.div`
 
   background-color: black;
   border-bottom-left-radius: 30px;
+
+  ${mq(SizeEnum.large)} {
+    width: 400px;
+    height: 100px;
+  }
 
   ${mq(SizeEnum.small)} {
     height: 50px;
@@ -48,6 +58,11 @@ export const HPWrapperInner = styled.div`
   background-color: white;
   border-bottom-left-radius: 30px;
 
+  ${mq(SizeEnum.large)} {
+    height: 90px;
+    width: 370px;
+  }
+
   ${mq(SizeEnum.small)} {
     height: 45px;
     width: 160px;
@@ -64,6 +79,12 @@ export const HPBar = styled.div`
   right: 10px;
 
   background-color: black;
+
+  ${mq(SizeEnum.large)} {
+    width: 90%;
+    height: 40px;
+  }
+
   ${mq(SizeEnum.small)} {
     top: 5px;
     right: 5px;
@@ -81,6 +102,12 @@ export const HPText = styled.span`
   font-size: 40px;
   font-weight: bold;
   font-family: 'NeoDunggeunmo', sans-serif;
+
+  ${mq(SizeEnum.large)} {
+    margin-top: 3px;
+    font-size: 2.5rem;
+  }
+
   ${mq(SizeEnum.small)} {
     margin-top: 0;
     font-size: 1.4rem;
@@ -94,6 +121,13 @@ export const HPStick = styled.div`
   width: 400px;
   height: 35px;
   background-color: white;
+
+  ${mq(SizeEnum.large)} {
+    width: 250px;
+    height: 30px;
+    right: 20px;
+  }
+
   ${mq(SizeEnum.small)} {
     width: 100px;
     height: 14px;

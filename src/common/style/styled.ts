@@ -11,7 +11,7 @@ export interface EmotionStyleType {
 
 const breakpoint = {
   small: 420,
-  medium: 700,
+  medium: 800,
   large: 1024,
 };
 
