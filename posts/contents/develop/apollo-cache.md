@@ -1,16 +1,12 @@
 ---
-title: NextJS with Apollo
+title: NextJS & Apollo사용과 cache관리에 대하여
 date: '2021-02-20'
 category: develop
 ---
 
-이 글은 제가 올해 1월 devlog를 개발하며 겪은 문제에 관한 추측성 글입니다!😅
-
-현재는 gatsby를 사용해서 리팩토링을 한 상태임으로 코드는 [여기](https://github.com/qkrdmstlr3/devlog/tree/d1a1df6e2b74b30e2c837f254e1c946d14c62483)를 참고 부탁드립니다!
-
 ## 들어가며
 
-부스트캠프 동안 많은 팀들이 apollo와 graphql을 사용하는 것을 보았고, 나도 한번쯤은 사용해보면 좋겠다 싶어서 apollo를 도입했었다. 새로운 기술을 익히고 사용하는 것을 좋아하는 편인지라 nextJS도 같이 사용하게 되었다. 이 글은 nextJS와 apollo를 같이 쓰는 방법과 구현 중 생긴 의문점에 대해서 나름의 고민을 해본 결과를 기술한다.
+부스트캠프 동안 많은 팀들이 apollo와 graphql을 사용하는 것을 보았고, 나도 한번쯤은 사용해보면 좋겠다 싶어서 apollo를 사용해보았다. 새로운 기술을 익히고 사용하는 것을 좋아하는 편인지라 nextJS도 같이 사용하게 되었다. 이 글은 nextJS와 apollo를 같이 쓰는 방법과 구현 중 생긴 의문점에 대해서 나름의 고민을 해본 결과를 기술한다(추측성 결론이라서 정확하지 않을 수 있습니다😅).
 
 코드는 아래에 있는 nextJS공식 github [예제](https://github.com/vercel/next.js/blob/canary/examples/with-apollo/lib/apolloClient.js)를 참고해서 구현하였다.
 
@@ -20,9 +16,9 @@ category: develop
 
 apollo의 사용을 위해서 `@apollo/client`라는 라이브러리를 이용하였다.
 
-이것을 사용하면 서버에서 query를 통해 데이터를 가져올 수 있으며 가져온 정보는 캐시에 저장된다. 같은 요청을 보낼 경우 캐시에 있는 내용이라면 서버에 요청을 보내는 대신 캐시에서 데이터를 가져오게 된다. mutation이 실행될 때 cache를 업데이트 시킴으로서 최신상태를 유지하도록 도와주기도 한다.
+이것을 사용하면 서버에서 query를 통해 데이터를 가져올 수 있으며 가져온 정보는 캐시에 저장된다. 같은 요청을 보낼 경우 캐시에 있는 내용이라면 서버에 요청을 보내는 대신 캐시에서 데이터를 가져오게 된다. db에 추가하거나 수정하는 mutation이 실행될 때 cache를 업데이트 시킴으로서 최신상태를 유지하도록 도와주기도 한다.
 
-apollo를 사용하기 위해서는 먼저 apolloClient라는 객체를 만들어야 한다. 가장 상단의 주소에 apolloClient를 만드는 코드가 적혀있다.
+apollo를 사용하기 위해서는 먼저 apolloClient라는 객체를 만들어야 한다. [여기](https://github.com/qkrdmstlr3/devlog/blob/d1a1df6e2b74b30e2c837f254e1c946d14c62483/devlog-client/src/libs/apolloClient.ts)에 코드가 있다.
 
 apolloClient파일을 만든 후에는 최상단 파일인 \_app.tsx에서 apolloClient객체를 next js에 연결시켜주게 된다.
 
@@ -88,7 +84,7 @@ gql을 이용해서 query문을 작성하고 useQuery를 이용해서 서버에 
 
 ### 어떻게 할까??
 
-next js에서는 ssr을 위해서 getServerSideProps라는 함수를 지원한다.
+ssr을 위해서 next js에서는 getServerSideProps라는 함수를 지원한다.
 
 [공식문서](https://nextjs.org/docs/basic-features/data-fetching)
 
@@ -112,13 +108,13 @@ export const getServerSideProps = async (context) => {
 
 매 요청마다 서버에서 데이터를 가져오게 되고, 가져온 데이터를 props로 넘겨주게 됩니다. 그러면 component는 props를 받아서 사용가능해지는 것이다.
 
-getServerSideProps는 서버에서 실행되어집니다. 따라서 document등의 로직은 피하는 것이 좋다.
+getServerSideProps는 서버에서 실행되어진다. 따라서 document등의 로직은 피하는 것이 좋다.
 
 ### apollo를 이용해서 데이터 가져오기
 
-위에 처럼 useQuery를 이용해서 데이터를 가져오고 싶지만 그러기엔 문제가 있다.
+위에 처럼 getServerSideProps내부에서 useQuery를 사용해 데이터를 가져오고 싶지만 그러기엔 문제가 있다.
 
-react component밖에서 hook을 호출하게 되면 Invalid hook call에러가 발생하게 된다. 따라서 다음과 같은 방법으로 가져올 수 있게 된다.
+react component밖에서 hook을 호출하게 되면 Invalid hook call에러가 발생하게 된다. 대신 다음과 같은 방법으로 데이터를 가져올 수 있다.
 
 ```jsx
 import { initializeApollo } from '@~/apolloClient';
@@ -142,7 +138,7 @@ export const getServerSideProps = async (context) => {
 };
 ```
 
-아까전에 만들어둔 apolloClient.ts안에서 initilizeApollo()함수로 apolloClient객체를 가져온 뒤 거기서 query함수를 통해서 서버에서 데이터를 가져올 수 있게 되고, 위에서와 마찬가지고 props로 전달해주게 된다.
+아까전에 만들어둔 apolloClient.ts안에서 initilizeApollo()함수로 apolloClient객체를 가져온 뒤 거기서 query함수를 통해서 서버에서 데이터를 가져올 수 있게 되고, return된 값은 Component의 props로 전달된다.
 
 그런데 여기서 하나의 문제점이 발생했다.
 
@@ -158,7 +154,7 @@ list정보와 ManyPost라는 데이터를 apollo hooks를 이용해서 가져왔
 
 왜 이렇게 되는지는 잘 모르겠지만, 두 방식이 각각 다른 저장소(?)를 가지는 것으로 추측해보았다. 문제는 이렇게 되면 다른 곳에서 useQuery를 이용해서 서버에 post 데이터를 요청시, 이미 캐시한 적이 있음에도 불구하고 다시 한 번 요청을 보낼 수 밖에 없게 된다.
 
-아직 두 개의 저장소를 하나로 합쳐서 구현하는 방법은 찾아내지 못했지만 다음과 같은 방법을 이용하면 한쪽으로 합칠 수 있기는 하다.
+아직 두 개의 저장소를 하나로 합쳐서 구현하는 방법은 찾아내지 못했지만 아래와 같은 방법을 이용하면 한쪽으로 합치는 것이 가능하다.
 
 ### 해결 방법
 
@@ -200,7 +196,7 @@ pageProps에 전달한 client의 캐시정보를 담아둔다. 그렇게 한 후
 
 ![hook-cache-with-apolloclient](https://raw.githubusercontent.com/qkrdmstlr3/devlog/main/posts/contents/develop/images/hook-cache-with-apolloClient.png)
 
-OnePost가 캐시에 들어있는 것을 확인할 수 있게 된다. 물론 apolloClient쪽의 캐시 저장소는 그대로 유지되게 된다. apolloClient의 정보를 한 쪽으로 복사시켜서 보낼 수 있게 되는 것 같다. 그런데 어떻게 pageProps로 캐시정보를 넣는 것이 다른 저장소에 적용이될까를 한번 생각해 보았다.
+OnePost와 ManyPost가 같이 캐시에 들어있는 것을 확인할 수 있게 된다. 물론 apolloClient쪽의 캐시 저장소는 그대로 유지되게 된다. apolloClient의 정보를 한 쪽으로 복사시켜서 보낼 수 있게 되는 것 같다. 그런데 어떻게 pageProps로 캐시정보를 넣는 것이 다른 저장소에 적용이될까를 한번 추측해 보았다.
 
 ```jsx
 import { ApolloProvider } from '@apollo/client';
@@ -220,8 +216,10 @@ export default App;
 
 이 코드는 next js와 apollo를 연동하는 부분이다.
 
-내 생각에는 처음에 _app.tsx에서 useApollo로 apolloClient라는 객체를 만들 때 pageProps라는 것을 전달해주게 된다. 이것이 pageProps의 _**APOLLOSTATE**로 새로운 값이 들어오면 apollo hooks의 캐시저장소와 비교해서 추가하는 방식일 것이라고 추측해본다.
+처음에 _app.tsx에서 useApollo로 apolloClient라는 객체를 만들 때 pageProps라는 것을 전달해주게 된다. 이것이 pageProps의 _**APOLLO_STATE**\_로 새로운 값이 들어오면 apollo hooks의 캐시저장소와 비교해서 추가하는 방식일 것이라고 추측해본다.
 
 좀 더 자세한 사항하게 알기 위해서는 전달해주는 pageProps가 어떤 역할을 하는지에 대해서 알아보면 좋을 것 같다.
+
+현재는 gatsby를 사용해서 리팩토링을 한 상태임으로 저장소는 [여기](https://github.com/qkrdmstlr3/devlog/tree/d1a1df6e2b74b30e2c837f254e1c946d14c62483)를 참고 부탁드립니다!
 
 혹여 내가 잘못알고 있는 사실이 있으면 메일 주시면 감사합니다.
