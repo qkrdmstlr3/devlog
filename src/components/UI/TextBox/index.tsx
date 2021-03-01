@@ -25,11 +25,11 @@ function TextBox(): React.ReactElement {
   );
   const [text, isTypingEnd] = typingHook({
     content: textData[recoilGameState.gameStatus](
-      recoilMyPokemonState[recoilGameState.name].skill[recoilGameState.mySkill]
+      recoilMyPokemonState[recoilGameState.sort].skill[recoilGameState.mySkill]
         ?.name,
       EnemyPokemon.skill[recoilGameState.enemySkill]?.name,
-      recoilMyPokemonState[recoilGameState.name].name,
-      recoilMyPokemonState[recoilGameState.name].currentHP
+      recoilMyPokemonState[recoilGameState.sort].name,
+      recoilMyPokemonState[recoilGameState.sort].currentHP
     ),
   });
 
@@ -57,13 +57,13 @@ function TextBox(): React.ReactElement {
       }
       case 5: {
         const damagedHP =
-          recoilMyPokemonState[recoilGameState.name].currentHP -
+          recoilMyPokemonState[recoilGameState.sort].currentHP -
             EnemyPokemon.skill[recoilGameState.enemySkill].damage || 0;
 
         setMyPokemonState({
           ...recoilMyPokemonState,
-          [recoilGameState.name]: {
-            ...recoilMyPokemonState[recoilGameState.name],
+          [recoilGameState.sort]: {
+            ...recoilMyPokemonState[recoilGameState.sort],
             currentHP: damagedHP < 0 ? 0 : damagedHP,
           },
         });
@@ -83,7 +83,7 @@ function TextBox(): React.ReactElement {
       }
       case 7: {
         // 내 포켓몬이 쓰러졌을 경우
-        if (recoilMyPokemonState[recoilGameState.name].currentHP <= 0) {
+        if (recoilMyPokemonState[recoilGameState.sort].currentHP <= 0) {
           setGameState({
             ...recoilGameState,
             gameStatus: 3,
@@ -94,7 +94,7 @@ function TextBox(): React.ReactElement {
 
         const damagedHP =
           recoilGameState.enemyCurrentHP -
-            recoilMyPokemonState[recoilGameState.name].skill[
+            recoilMyPokemonState[recoilGameState.sort].skill[
               recoilGameState.mySkill
             ].damage || 0;
         setGameState({

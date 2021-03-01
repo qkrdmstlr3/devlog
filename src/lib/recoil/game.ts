@@ -23,7 +23,7 @@ export const gameState = atom({
     /** 게임 진행 상태 */
     gameStatus: 1,
     /** 현재 내 포켓몬 종류 */
-    name: 'react',
+    sort: 'react',
     /** 적 포켓몬 전체 체력 */
     enemyFullHP: EnemyPokemon.hp,
     /** 적 포켓몬 현재 체력 */

@@ -36,7 +36,7 @@ function PokemonListModal() {
   const changePokemonClickHandler = () => {
     const isSamePokemon =
       Object.values(recoilMyPokemon)[pokemonIndex].sort ===
-      recoilGameState.name;
+      recoilGameState.sort;
     if (isSamePokemon) {
       setRecoilGameState({
         ...recoilGameState,
@@ -48,7 +48,7 @@ function PokemonListModal() {
     setRecoilGameState({
       ...recoilGameState,
       gameStatus: 10,
-      name: Object.keys(recoilMyPokemon)[pokemonIndex],
+      sort: Object.keys(recoilMyPokemon)[pokemonIndex],
       isPokemonListOpen: false,
     });
   };

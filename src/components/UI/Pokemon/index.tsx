@@ -68,16 +68,16 @@ function Pokemon({ isMyPokemon, icon }: PokemonProps) {
         <Icon icon={icon} size={SizeEnum.large} />
         {/* </motion.div> */}
         <MyHP
-          name={`${recoilMyPokemonState[recoilGameState.name].name}: L${
-            recoilMyPokemonState[recoilGameState.name].level
+          name={`${recoilMyPokemonState[recoilGameState.sort].name}: L${
+            recoilMyPokemonState[recoilGameState.sort].level
           }`}
           hp={
-            (recoilMyPokemonState[recoilGameState.name].currentHP /
-              recoilMyPokemonState[recoilGameState.name].fullHP) *
+            (recoilMyPokemonState[recoilGameState.sort].currentHP /
+              recoilMyPokemonState[recoilGameState.sort].fullHP) *
             100
           }
-          currentHP={recoilMyPokemonState[recoilGameState.name].currentHP}
-          fullHP={recoilMyPokemonState[recoilGameState.name].fullHP}
+          currentHP={recoilMyPokemonState[recoilGameState.sort].currentHP}
+          fullHP={recoilMyPokemonState[recoilGameState.sort].fullHP}
         />
       </Style.Wrapper>
     );

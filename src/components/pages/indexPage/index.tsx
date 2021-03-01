@@ -18,7 +18,7 @@ import FightBox from '../../UI/FightBox';
 import { IconNameType } from '../../types';
 
 function IndexPage() {
-  const { loading, gameStatus, isPokemonListOpen, name } = useRecoilValue(
+  const { loading, gameStatus, isPokemonListOpen, sort } = useRecoilValue(
     gameState
   );
 
@@ -30,7 +30,7 @@ function IndexPage() {
     <Style.Wrapper>
       <Style.PokemonContainer>
         <Pokemon isMyPokemon={false} icon="react" />
-        <Pokemon isMyPokemon={true} icon={name as IconNameType} />
+        <Pokemon isMyPokemon={true} icon={sort as IconNameType} />
       </Style.PokemonContainer>
       {loading ? (
         <BorderBox height="35%" />

@@ -18,7 +18,7 @@ function FightBox() {
   const mouseEnterHandler = (index: number) => {
     const isNotSkill =
       index === currentSkill ||
-      recoilMyPokemonState[recoilGameState.name].skill[index].name === '-';
+      recoilMyPokemonState[recoilGameState.sort].skill[index].name === '-';
     if (isNotSkill) return;
 
     setCurrentSkill(index);
@@ -26,7 +26,7 @@ function FightBox() {
 
   const clickHandler = (index: number) => {
     const isNotSkill =
-      recoilMyPokemonState[recoilGameState.name].skill[index].name === '-';
+      recoilMyPokemonState[recoilGameState.sort].skill[index].name === '-';
     if (isNotSkill) return;
 
     const enemySkill = Math.floor(Math.random() * 4);
@@ -43,7 +43,7 @@ function FightBox() {
       <Style.LeftWrapper>
         <BorderBox>
           <Style.SkillBox>
-            {recoilMyPokemonState[recoilGameState.name].skill.map(
+            {recoilMyPokemonState[recoilGameState.sort].skill.map(
               (skill, index) => (
                 <Style.Skill
                   key={index}
@@ -63,7 +63,7 @@ function FightBox() {
           <Style.SkillTypeBox>
             기술 타입 /{' '}
             {
-              recoilMyPokemonState[recoilGameState.name].skill[currentSkill]
+              recoilMyPokemonState[recoilGameState.sort].skill[currentSkill]
                 .skillType
             }
           </Style.SkillTypeBox>
