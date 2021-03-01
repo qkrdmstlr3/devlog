@@ -1,5 +1,6 @@
 import { keyframes } from '@emotion/react';
-import styled from '../../../common/style/styled';
+import styled, { mq } from '../../../common/style/styled';
+import { SizeEnum } from '../../types';
 
 interface WrapperProps {
   isMyPokemon: boolean;
@@ -20,4 +21,8 @@ export const Person = styled.div`
   border-radius: 100px;
   background-color: black;
   margin-left: 120px;
+
+  ${mq(SizeEnum.large)} {
+    margin-left: 0px;
+  }
 `;
