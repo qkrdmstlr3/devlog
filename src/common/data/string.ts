@@ -18,7 +18,7 @@ export const textData = {
   3: () => '', // SelectBox Component
   4: () => '', // FightBox Component
   5: (mySkill: string, enemySkill: string): string => {
-    return `상대 리액트의 ${enemySkill ? enemySkill : mySkill}!`;
+    return `야생의 리액트의 ${enemySkill ? enemySkill : mySkill}!`;
   },
   6: (_: string, __: string, name: string): string =>
     `내 ${name}(이)가 피해를 입었다!`,
@@ -28,8 +28,8 @@ export const textData = {
     }
     return `내 ${name}의 ${enemySkill ? enemySkill : mySkill}!`;
   },
-  8: () => `상대 리액트(이)가 피해를 입었다!`,
-  9: () => '상대 리액트는 쓰러졌다!',
+  8: () => `야생의 리액트(이)가 피해를 입었다!`,
+  9: () => '야생의 리액트는 쓰러졌다!',
   10: (_: string, __: string, name: string) => `가랏! ${name}!`,
   11: () => '목록으로 이동한다!',
 };

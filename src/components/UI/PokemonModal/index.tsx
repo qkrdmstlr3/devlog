@@ -1,6 +1,7 @@
 // Dependencies
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as Style from './styled';
+import { navigate } from 'gatsby';
 
 // Recoil
 import { useRecoilValue, useRecoilState } from 'recoil';
@@ -59,6 +60,16 @@ function PokemonListModal() {
       isPokemonListOpen: false,
     });
   };
+
+  useEffect(() => {
+    // 내 포켓몬이 모두 죽었을 경우
+    const isMyPokemonAllDead = Object.values(recoilMyPokemon).every(
+      (pokemon) => pokemon.currentHP === 0
+    );
+    if (isMyPokemonAllDead) {
+      navigate('/list');
+    }
+  }, []);
 
   return (
     <Style.Wrapper>
