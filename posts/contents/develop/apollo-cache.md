@@ -6,9 +6,9 @@ category: develop
 
 ## 들어가며
 
-부스트캠프 동안 많은 팀들이 apollo와 graphql을 사용하는 것을 보았고, 나도 한번쯤은 사용해보면 좋겠다 싶어서 apollo를 사용해보았다. 새로운 기술을 익히고 사용하는 것을 좋아하는 편인지라 nextJS도 같이 사용하게 되었다. 이 글은 nextJS와 apollo를 같이 쓰는 방법과 구현 중 생긴 의문점에 대해서 나름의 고민을 해본 결과를 기술한다(추측성 결론이라서 정확하지 않을 수 있습니다😅).
+부스트캠프 동안 많은 팀들이 apollo와 graphql을 사용하는 것을 보았다. 한번쯤은 사용해보면 좋겠다 싶어 이번 기회에 도입해보기로 했다. 새로운 기술을 익히는 것을 좋아하는 편이라 nextJS도 같이 사용하게 되었다. 이 글은 nextJS와 apollo를 같이 쓰는 방법과 구현 중 생긴 의문점에 대해서 나름의 고민을 해본 결과를 기술한다(추측성 결론이라서 정확하지 않을 수 있습니다😅).
 
-코드는 아래에 있는 nextJS공식 github [예제](https://github.com/vercel/next.js/blob/canary/examples/with-apollo/lib/apolloClient.js)를 참고해서 구현하였다.
+코드는 nextJS공식 github [예제](https://github.com/vercel/next.js/blob/canary/examples/with-apollo/lib/apolloClient.js)를 참고해서 구현하였다.
 
 ## 1. next js에서 apollo 사용하기
 
@@ -220,6 +220,6 @@ export default App;
 
 좀 더 자세한 사항하게 알기 위해서는 전달해주는 pageProps가 어떤 역할을 하는지에 대해서 알아보면 좋을 것 같다.
 
-현재는 gatsby를 사용해서 리팩토링을 한 상태임으로 저장소는 [여기](https://github.com/qkrdmstlr3/devlog/tree/d1a1df6e2b74b30e2c837f254e1c946d14c62483)를 참고 부탁드립니다!
-
 혹여 내가 잘못알고 있는 사실이 있으면 메일 주시면 감사합니다.
+
+현재는 gatsby를 사용해서 리팩토링을 한 상태임으로 저장소는 [여기](https://github.com/qkrdmstlr3/devlog/tree/d1a1df6e2b74b30e2c837f254e1c946d14c62483)를 참고 부탁드립니다!
