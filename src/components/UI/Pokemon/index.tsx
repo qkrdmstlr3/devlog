@@ -97,6 +97,7 @@ function Pokemon({ isMyPokemon, icon }: PokemonProps) {
       <motion.div
         animate={{ x: recoilGameState.loading ? [-1200, 0] : 0 }}
         transition={{ duration: 2 }}
+        style={{ height: '100%' }}
       >
         <Icon icon={EnemyPokemon.sort} size={SizeEnum.large} />
       </motion.div>
