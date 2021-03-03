@@ -1,5 +1,5 @@
 // Dependencies
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import * as Style from './styled';
 
 // Recoil
@@ -18,29 +18,36 @@ import FightBox from '../../UI/FightBox';
 import { IconNameType } from '../../types';
 
 function IndexPage() {
+  const [Component, setComponent] = useState<React.ReactElement>(<></>);
   const { loading, gameStatus, isPokemonListOpen, sort } = useRecoilValue(
     gameState
   );
 
-  if (isPokemonListOpen) {
-    return <PokemonListModal />;
-  }
+  const controlRenderingComponent = () => {
+    if (loading) {
+      setComponent(<BorderBox height="35%" />);
+    } else if (gameStatus === 3) {
+      setComponent(<SelectBox />);
+    } else if (gameStatus === 4) {
+      setComponent(<FightBox />);
+    } else {
+      setComponent(<TextBox />);
+    }
+  };
 
-  return (
+  useEffect(() => {
+    controlRenderingComponent();
+  }, [loading, gameStatus]);
+
+  return isPokemonListOpen ? (
+    <PokemonListModal />
+  ) : (
     <Style.Wrapper>
       <Style.PokemonContainer>
         <Pokemon isMyPokemon={false} icon="react" />
         <Pokemon isMyPokemon={true} icon={sort as IconNameType} />
       </Style.PokemonContainer>
-      {loading ? (
-        <BorderBox height="35%" />
-      ) : gameStatus === 3 ? (
-        <SelectBox />
-      ) : gameStatus === 4 ? (
-        <FightBox />
-      ) : (
-        <TextBox />
-      )}
+      {Component}
     </Style.Wrapper>
   );
 }
