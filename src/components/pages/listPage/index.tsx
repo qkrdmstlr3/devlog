@@ -83,9 +83,10 @@ function ListPage({
                 <Link
                   to={`/${node.frontmatter.category}/${node.frontmatter.title}`}
                 >
-                  <Style.ItemTitle>
-                    [{node.frontmatter.category}] {node.frontmatter.title}
-                  </Style.ItemTitle>
+                  <Style.ItemCategory>
+                    [{node.frontmatter.category}]
+                  </Style.ItemCategory>
+                  <Style.ItemTitle>{node.frontmatter.title}</Style.ItemTitle>
                   <Style.ItemContent>{node.excerpt}</Style.ItemContent>
                 </Link>
               </Style.ItemContainer>
