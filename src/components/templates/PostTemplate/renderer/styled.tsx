@@ -1,3 +1,4 @@
+// Dependencies
 import React from 'react';
 import styled from '../../../../common/style/styled';
 
@@ -16,7 +17,7 @@ export const image = ({ alt, src, title }: ImageProps) => {
       title={title}
       style={{
         display: 'block',
-        maxWidth: 475,
+        maxWidth: '60%',
         margin: '0 auto',
       }}
     />
