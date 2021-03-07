@@ -13,7 +13,7 @@ export const Layout = styled.main`
 
   ${mq(SizeEnum.small)} {
     min-height: -webkit-fill-available;
-    padding: 10px;
+    padding: 3px 10px;
   }
 `;
 

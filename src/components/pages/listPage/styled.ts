@@ -8,6 +8,12 @@ export const Wrapper = styled.div`
   position: absolute;
   top: 30px;
   bottom: 50px;
+
+  ${mq(SizeEnum.small)} {
+    width: calc(100% - 20px);
+    top: 10px;
+    bottom: 0;
+  }
 `;
 
 export const ItemWrapper = styled.ul`
@@ -24,11 +30,19 @@ export const ItemContainer = styled.li`
   font-family: 'NeoDunggeunmo', sans-serif;
   cursor: pointer;
   border-top: 1px solid black;
+
+  ${mq(SizeEnum.small)} {
+    padding: 15px 0;
+  }
 `;
 
 export const ItemCategory = styled.div`
   text-align: center;
   font-size: 1.4rem;
+
+  ${mq(SizeEnum.small)} {
+    font-size: 0.8rem;
+  }
 `;
 
 export const ItemTitle = styled.h2`
@@ -37,7 +51,7 @@ export const ItemTitle = styled.h2`
   /* color: #2a52be; */
 
   ${mq(SizeEnum.small)} {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 `;
 
@@ -54,7 +68,7 @@ export const ItemContent = styled.p`
   opacity: 0.6;
 
   ${mq(SizeEnum.small)} {
-    font-size: 0.5rem;
+    font-size: 0.6rem;
     width: 100%;
   }
 `;
@@ -78,7 +92,7 @@ export const ListName = styled.li`
 
   ${mq(SizeEnum.small)} {
     font-size: 1.2rem;
-    padding-right: 10px;
+    padding-right: 25px;
   }
 `;
 
@@ -91,7 +105,8 @@ export const Select = styled.div`
 
   ${mq(SizeEnum.small)} {
     font-size: 1rem;
-    left: -20px;
+    transform: translateY(-60%);
+    left: -18px;
   }
 `;
 
