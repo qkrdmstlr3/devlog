@@ -6,7 +6,7 @@ category: develop
 
 ## 들어가며
 
-부스트캠프 동안 많은 팀들이 apollo와 graphql을 사용하는 것을 보았다. 한번쯤은 사용해보면 좋겠다 싶어 이번 기회에 도입해보기로 했다. 새로운 기술을 익히는 것을 좋아하는 편이라 nextJS도 같이 사용하게 되었다. 이 글은 nextJS와 apollo를 같이 쓰는 방법과 구현 중 생긴 의문점에 대해서 나름의 고민을 해본 결과를 기술한다(추측성 결론이라서 정확하지 않을 수 있습니다😅).
+부스트캠프 동안 많은 팀들이 apollo와 graphql을 사용하는 것을 보았다. 한번쯤은 사용해보면 좋겠다 싶어 이번 기회에 도입해보기로 했다. 새로운 기술을 익히는 것을 좋아하는 편이라 nextJS도 같이 사용하게 되었다. 이 글은 nextJS와 apollo를 같이 쓰는 방법과 구현 중 생긴 의문점에 대해서 나름의 고민을 해본 결과를 기술한다(추측성 결론이라서 정확하지 않을 수 있습니다😅. nextJS의 사용법에 대해서는 다루지 않습니다).
 
 코드는 nextJS공식 github [예제](https://github.com/vercel/next.js/blob/canary/examples/with-apollo/lib/apolloClient.js)를 참고해서 구현하였다.
 
@@ -76,7 +76,7 @@ function PostList() {
 export default PostList;
 ```
 
-gql을 이용해서 query문을 작성하고 useQuery를 이용해서 서버에 요청을 보내면 데이터를 가져올 수 있다.
+gql을 이용해서 query문을 작성하고 useQuery를 이용해서 서버에 요청을 보내면 데이터를 가져올 수 있다. useMutation을 사용하면 서버에 데이터를 변경하는 요청을 보내는 것도 가능하다.
 
 [공식문서](https://www.apollographql.com/docs/react/data/queries/)
 
@@ -150,11 +150,11 @@ export const getServerSideProps = async (context) => {
 
 첫 번째 이미지는 apolloClient의 query함수를 이용한 뒤 출력한 cache정보이다. 두 번째는 query실행 뒤 useMutation을 이용해서 출력해본 cache정보이다.
 
-list정보와 ManyPost라는 데이터를 apollo hooks를 이용해서 가져왔고, OnePost는 apolloClient 객체를 이용해서 가져왔다. 그리고 그 결과 서로 다른 캐시 저장소에 저장되는 것을 확인할 수 있었다.
+list정보와 ManyPost라는 데이터를 apollo hooks를 이용해서 가져왔고, OnePost는 apolloClient 객체를 이용해서 가져왔다. 그리고 출력결과 두 개가 따로 출력된 것을 확인할 수 있었다.
 
-왜 이렇게 되는지는 잘 모르겠지만, 두 방식이 각각 다른 저장소(?)를 가지는 것으로 추측해보았다. 문제는 이렇게 되면 다른 곳에서 useQuery를 이용해서 서버에 post 데이터를 요청시, 이미 캐시한 적이 있음에도 불구하고 다시 한 번 요청을 보낼 수 밖에 없게 된다.
+왜 이렇게 되는지는 잘 모르겠지만, 두 방식(apolloClient로 query를 호출하는 방식과 useMutation으로 query를 호출하는 방식)이 각각 다른 cache 저장소를 가지는 것으로 추측해보았다. 다시 말하면 apollo hook을 사용하는 방식과 apolloClient를 사용하는 방식이 따로 동작한다는 것이다. 이렇게 됬을 때 문제는 다른 곳에서 useQuery를 이용해서 서버에 post 데이터를 요청시, 이미 apolloClient의 query로 캐시한 적이 있음에도 불구하고 다시 한 번 요청을 보낼 수 밖에 없게 된다.
 
-아직 두 개의 저장소를 하나로 합쳐서 구현하는 방법은 찾아내지 못했지만 아래와 같은 방법을 이용하면 한쪽으로 합치는 것이 가능하다.
+아직 두 개의 cache를 하나로 합쳐서 구현하는 방법은 찾아내지 못했지만 아래와 같은 방법을 이용하면 한쪽으로 합치는 것이 가능하다.
 
 ### 해결 방법
 
@@ -199,6 +199,7 @@ pageProps에 전달한 client의 캐시정보를 담아둔다. 그렇게 한 후
 OnePost와 ManyPost가 같이 캐시에 들어있는 것을 확인할 수 있게 된다. 물론 apolloClient쪽의 캐시 저장소는 그대로 유지되게 된다. apolloClient의 정보를 한 쪽으로 복사시켜서 보낼 수 있게 되는 것 같다. 그런데 어떻게 pageProps로 캐시정보를 넣는 것이 다른 저장소에 적용이될까를 한번 추측해 보았다.
 
 ```jsx
+// _app.tsx
 import { ApolloProvider } from '@apollo/client';
 import { useApollo } from '@~/apolloClient';
 
@@ -220,6 +221,6 @@ export default App;
 
 좀 더 자세한 사항하게 알기 위해서는 전달해주는 pageProps가 어떤 역할을 하는지에 대해서 알아보면 좋을 것 같다.
 
-혹여 내가 잘못알고 있는 사실이 있으면 메일 주시면 감사합니다.
+혹여 제가 잘못알고 있는 사실이 있으면 메일 주시면 감사합니다.
 
 현재는 gatsby를 사용해서 리팩토링을 한 상태임으로 저장소는 [여기](https://github.com/qkrdmstlr3/devlog/tree/d1a1df6e2b74b30e2c837f254e1c946d14c62483)를 참고 부탁드립니다!
