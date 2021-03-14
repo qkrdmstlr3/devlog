@@ -14,7 +14,7 @@ function typingHook({ content }: TypingHookProps) {
 
   const typingText = async () => {
     for (let i = 0; i <= content.length; i += 1) {
-      await sleep(70);
+      await sleep(55);
       setText(content.slice(0, i));
     }
     setIsTypingEnd(true);
