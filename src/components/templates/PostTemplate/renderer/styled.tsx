@@ -38,6 +38,7 @@ export const inlineCode = ({ value }: InlineCodeProps) => {
         fontWeight: 'bold',
         padding: '0 5px',
         borderRadius: '5px',
+        fontSize: '15px',
       }}
     >
       {value}
@@ -57,7 +58,7 @@ export const paragraph = ({ children }: ChildrenProps) => {
     <p
       style={{
         lineHeight: '30px',
-        fontSize: '17px',
+        fontSize: '16px',
         margin: '10px 0',
       }}
     >
@@ -108,13 +109,26 @@ export const heading = ({ level, children }) => {
   switch (level) {
     case 1:
       return (
-        <h1 style={{ paddingTop: '15px', fontFamily: 'NeoDunggeunmo' }}>
+        <h1
+          style={{
+            paddingTop: '2rem',
+            margin: '0',
+            fontFamily: 'NeoDunggeunmo',
+          }}
+        >
           {children}
         </h1>
       );
     case 2:
       return (
-        <h2 style={{ paddingTop: '15px', fontFamily: 'NeoDunggeunmo' }}>
+        <h2
+          style={{
+            paddingTop: '2rem',
+            margin: '0',
+            fontSize: '1.7rem',
+            fontFamily: 'NeoDunggeunmo',
+          }}
+        >
           {children}
         </h2>
       );
@@ -122,9 +136,10 @@ export const heading = ({ level, children }) => {
       return (
         <h3
           style={{
-            paddingTop: '15px',
+            paddingTop: '2rem',
+            margin: '0',
             fontFamily: 'NeoDunggeunmo',
-            fontSize: '20px',
+            fontSize: '1.4rem',
           }}
         >
           {children}
@@ -132,25 +147,49 @@ export const heading = ({ level, children }) => {
       );
     case 4:
       return (
-        <h4 style={{ paddingTop: '15px', fontFamily: 'NeoDunggeunmo' }}>
+        <h4
+          style={{
+            paddingTop: '2rem',
+            margin: '0',
+            fontFamily: 'NeoDunggeunmo',
+          }}
+        >
           {children}
         </h4>
       );
     case 5:
       return (
-        <h5 style={{ paddingTop: '15px', fontFamily: 'NeoDunggeunmo' }}>
+        <h5
+          style={{
+            paddingTop: '2rem',
+            margin: '0',
+            fontFamily: 'NeoDunggeunmo',
+          }}
+        >
           {children}
         </h5>
       );
     case 6:
       return (
-        <h6 style={{ paddingTop: '15px', fontFamily: 'NeoDunggeunmo' }}>
+        <h6
+          style={{
+            paddingTop: '2rem',
+            margin: '0',
+            fontFamily: 'NeoDunggeunmo',
+          }}
+        >
           {children}
         </h6>
       );
     default:
       return (
-        <h1 style={{ paddingTop: '15px', fontFamily: 'NeoDunggeunmo' }}>
+        <h1
+          style={{
+            paddingTop: '2rem',
+            margin: '0',
+            fontFamily: 'NeoDunggeunmo',
+          }}
+        >
           {children}
         </h1>
       );

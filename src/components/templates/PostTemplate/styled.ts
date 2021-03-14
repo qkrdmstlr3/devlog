@@ -3,7 +3,7 @@ import { SizeEnum } from '../../types';
 
 export const Wrapper = styled.article`
   margin: 0 auto;
-  max-width: 850px;
+  max-width: 800px;
   height: 100%;
   padding-bottom: 70px;
 
