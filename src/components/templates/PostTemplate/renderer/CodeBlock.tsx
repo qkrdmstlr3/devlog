@@ -2,7 +2,7 @@ import React from 'react';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { tomorrowNightBlue } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
-function CodeBlock({ value }): React.ReactElement {
+function CodeBlock({ value, language }): React.ReactElement {
   const style = {
     fontSize: '1.2rem',
     lineHeight: '20px',
@@ -12,7 +12,7 @@ function CodeBlock({ value }): React.ReactElement {
 
   return (
     <SyntaxHighlighter
-      language="typescript"
+      language={language}
       style={tomorrowNightBlue}
       customStyle={style}
     >
