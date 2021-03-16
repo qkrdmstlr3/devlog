@@ -8,7 +8,7 @@ category: cs
 
 Application program과 hardware사이의 인터페이스
 
-![os-structure](https://raw.githubusercontent.com/qkrdmstlr3/devlog/main/posts/contents/develop/images/os-structure.png)
+![os-structure](https://raw.githubusercontent.com/qkrdmstlr3/devlog/main/posts/contents/cs/images/os-structure.png)
 
 - 자원 관리의 역할을 한다.
 - 응용프로그램의 소프트웨어의 실행을 제어한다.
@@ -28,7 +28,7 @@ Application program과 hardware사이의 인터페이스
 
 이후 메모리의 용량이 커지면서 많은 양의 프로그램들을 담아둘 수 있게 되었고, Multiprogramming이 등장하였다. `Multiprogramming`은 프로그램이 I/O작업을 하느라 CPU가 쉬게 되면 다른 프로그램을 돌릴 수 있다는 장점을 가지고 있었다.
 
-![time-sharing](https://raw.githubusercontent.com/qkrdmstlr3/devlog/main/posts/contents/develop/images/time-sharing.png)
+![time-sharing](https://raw.githubusercontent.com/qkrdmstlr3/devlog/main/posts/contents/cs/images/time-sharing.png)
 
 이후 `Time Sharing`이라는 방법도 도입되었다. Multiprogramming방식은 한 프로그램이 끝나거나 이벤트(I/O등)를 받아서 CPU가 쉬기 전에는 그 프로그램만을 동작해야 한다는 단점이 있었다. 이 방식은 기준이 되는 시간인 time slice를 정해놓고 프로그램을 돌리게 된다. 해당 프로그램이 time slice만큼의 시간을 사용하게 되면 무조건 다음 프로그램으로 넘어가는 방식이다. 이 방식은 Multiprogramming을 완전히 대체하는 것이 아니라 경우에 따라 두 개 중 선택해서 사용하였다.
 
@@ -71,7 +71,7 @@ Application program과 hardware사이의 인터페이스
 
 ## 커널의 종류
 
-![kernel-sort](https://raw.githubusercontent.com/qkrdmstlr3/devlog/main/posts/contents/develop/images/kernel-sort.png)
+![kernel-sort](https://raw.githubusercontent.com/qkrdmstlr3/devlog/main/posts/contents/cs/images/kernel-sort.png)
 
 ### Monolithic kernel
 
