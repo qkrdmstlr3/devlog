@@ -9,7 +9,7 @@ export const Layout = styled.main`
   margin: 0 auto;
   padding: 30px 25px 50px 25px;
   background-color: white;
-  overflow: hidden;
+  overflow: scroll;
 
   ${mq(SizeEnum.small)} {
     min-height: -webkit-fill-available;

@@ -2,12 +2,11 @@ import styled, { mq } from '../../../common/style/styled';
 import { SizeEnum } from '../../types';
 
 export const Wrapper = styled.div`
+  margin: 0 auto;
+  margin-bottom: 50px;
   width: calc(100% - 50px);
   display: flex;
   flex-direction: column;
-  position: absolute;
-  top: 30px;
-  bottom: 50px;
 
   ${mq(SizeEnum.small)} {
     width: calc(100% - 20px);
