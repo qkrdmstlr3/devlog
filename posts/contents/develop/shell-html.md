@@ -20,7 +20,7 @@ shell-html은 vanillaJS를 이용한 300여줄로 구현된 간단한 라이브�
 
 먼저 라이브러리의 근간이 되는 컴포넌트 생성에 대한 코드다.
 
-```js
+```javascript
 // firstComponent.js
 import { ShellHTML, createComponent } from 'shell-html';
 import styleSheet from './style.css';
@@ -58,7 +58,7 @@ shadowDOM의 사용으로 인해 컴포넌트는 렌더링 되었을 때 하나�
 
 컴포넌트를 사용하기 위해서는 필요로 하는 곳에서 component를 import하고, 메인이 되는 html파일 또는 다른 컴포넌트의 render의 return html값에 앞서 지정한 태그명을 사용하면 된다. 주의할 점은 컴포넌트 현재 컴포넌트 변경 시 하위 컴포넌트가 새로 만들어지는 것을 방지하기 위해 id값을 지정해주어야한다.
 
-```js
+```javascript
 // secondComponent.js
 render() {
   return {
@@ -81,7 +81,7 @@ render() {
 
 리액트처럼 js의 엔트리 파일에서 아래와 같이 컴포넌트를 렌더링 해줄 수도 있다.
 
-```js
+```javascript
 // index.js
 import { render } from 'shell-html';
 
@@ -92,7 +92,7 @@ render('first-compontnt', document.getElementById('first'));
 
 shell-html은 react의 state처럼 자체적으로 state를 제공한다.
 
-```js
+```javascript
 // thirdComponent.js
 import { ShellHTML, createComponent } from 'shell-html';
 import styleSheet from './style.css';
@@ -131,7 +131,7 @@ state를 사용하기 위해서는 contructor의 super로 state의 초깃값을 
 
 custom-element에서 제공하는 attributeCallback함수와 observedAttributes함수를 사용하면 리액트의 props처럼 컴포넌트끼리의 인자 전달이 가능하다. 하지만 사용해서 구현해보니 내가 생각한 라이프 사이클과는 흐름이 조금 다르게 구현되어야 했고, props명은 소문자로 되어야 한다거나 원시값만 전달할 수 있다는 한계가 있어 사용을 하지 않는 것으로 결론을 내렸다. 그 대신 자체적으로 전역 상태 관리 솔루션을 제공하기로 했다.
 
-```js
+```javascript
 // state.js
 import { state } from 'shell-html';
 
@@ -143,7 +143,7 @@ state({
 
 redux보다는 좀 더 간단하게 상태관리를 제공하고 싶었고, recoil의 atom을 만드는 것처럼 구현하면 접근성이 용이해질 것이라고 생각했다. key와 initial값을 가진 객체를 넘겨주기만 하면 쉽게 선언할 수 있다. 이 떄 key값은 서로 중복되면 안되며 이 파일을 js의 엔트리 파일에서 import해주어야 문제없이 사용할 수 있다.
 
-```js
+```javascript
 // FourthComponent.js
 import {
   ShellHTML,
