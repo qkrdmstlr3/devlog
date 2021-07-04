@@ -75,7 +75,6 @@ render() {
 <!--index.html-->
 <body>
   <div id="root"></div>
-  <first-component id="first"></first-component>
 </body>
 ```
 
@@ -85,7 +84,7 @@ render() {
 // index.js
 import { render } from 'shell-html';
 
-render('first-compontnt', document.getElementById('first'));
+render('first-compontnt', document.getElementById('root'));
 ```
 
 ### 컴포넌트 상태 관리
