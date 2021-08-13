@@ -23,7 +23,7 @@ shell-html은 vanillaJS를 이용한 300여줄로 구현된 간단한 라이브�
 ```javascript
 // firstComponent.js
 import { ShellHTML, createComponent } from 'shell-html';
-import styleSheet from './style.css';
+import styleSheet from './style.scss';
 
 class FirstComponent extends ShellHTML {
   clickHandler() {
@@ -94,7 +94,7 @@ shell-html은 react의 state처럼 자체적으로 state를 제공한다.
 ```javascript
 // thirdComponent.js
 import { ShellHTML, createComponent } from 'shell-html';
-import styleSheet from './style.css';
+import styleSheet from './style.scss';
 
 class ThirdComponent extends ShellHTML {
   constructor() {
@@ -150,7 +150,7 @@ import {
   useGlobalState,
   setGlobalState,
 } from 'shell-html';
-import styleSheet from './style.css';
+import styleSheet from './style.scss';
 
 class FourthComponent extends ShellHTML {
   connectedCallback() {
