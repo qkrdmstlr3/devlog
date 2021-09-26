@@ -1,0 +1,25 @@
+@import url("//cdn.jsdelivr.net/gh/Dalgona/neodgm-webfont@1.510/neodgm/style.css");
+
+html {
+  height: 100%;
+}
+body {
+  background-color: #ddd;
+  overflow-y: scroll;
+  height: 100%;
+}
+* {
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+button,
+button:active {
+  outline: none;
+  cursor: pointer;
+}
+input:focus {
+  outline: none;
+}
