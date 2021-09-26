@@ -4,9 +4,21 @@
   "description": "shellboy devlog",
   "version": "0.1.0",
   "author": "shellboy <qkrdmstlr3@naver.com>",
+  "scripts": {
+    "build": "npm run re:build && gatsby build",
+    "dev": "npm run re:build && gatsby develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "re:build": "bsb -make-world -clean-world",
+    "re:watch": "bsb -make-world -clean-world -w"
+  },
   "dependencies": {
+    "@emotion/css": "^11.1.3",
     "@emotion/react": "^11.1.4",
     "@emotion/styled": "^11.0.0",
+    "@reasonml-community/graphql-ppx": "^1.2.2",
+    "@rescript/react": "^0.10.3",
+    "bs-platform": "^9.0.2",
     "emotion-reset": "^3.0.0",
     "emotion-theming": "^11.0.0",
     "framer-motion": "^3.3.0",
@@ -46,24 +58,16 @@
     "@types/react-helmet": "^6.1.0",
     "babel-loader": "^8.2.2",
     "prettier": "2.2.1",
+    "rescript": "^9.1.4",
     "ts-node": "^9.1.1",
     "typescript": "^4.1.3"
   },
   "keywords": [
-    "gatsby"
+    "gatsby",
+    "shellboy",
+    "devlog"
   ],
-  "license": "0BSD",
-  "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "start": "npm run develop",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
-  },
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/qkrdmstlr3/devlog"

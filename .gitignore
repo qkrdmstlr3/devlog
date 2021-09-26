@@ -71,3 +71,4 @@ yarn-error.log
 test
 lib
 src/**/*.js
+.merlin
