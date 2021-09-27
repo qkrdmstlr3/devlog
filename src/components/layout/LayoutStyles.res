@@ -2,7 +2,7 @@ module Styles = {
   open Emotion
 
   let layout = css({
-    "position": "small",
+    "position": "relative",
     "maxWidth": "1250px",
     "minHeight": "100vh",
     "margin": "0 auto",
@@ -20,7 +20,7 @@ module Styles = {
     "left": "50%",
     "bottom": "20px",
     "transform": "translateX(-50%)",
-    "width": "1200px",
+    "width": "95%",
     "display": "flex",
     "justifyContent": "space-between",
     "opacity": "0.8",

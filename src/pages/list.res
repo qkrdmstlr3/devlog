@@ -17,11 +17,10 @@
 
 @react.component
 let make = () => {
-  let _: PostListQuery.Raw.t = PostListQuery.query->Gatsby.useStaticQuery
-  // let posts = data.allMarkdownRemark.edges
-  // Js.log(data)
+  let data: Query.PostListQuery.Raw.t = PostListQuery.query->Gatsby.useStaticQuery
+  let posts = data.allMarkdownRemark.edges
 
-  <Layout> {"post list"->React.string} </Layout>
+  <Layout> <ListPage posts /> </Layout>
 }
 
 let default = make
