@@ -47,21 +47,26 @@ let make = (~posts: array<Query.PostListQuery.Raw.t_allMarkdownRemark_edges>) =>
 
   let content = Js.Array.map((post: Query.PostListQuery.Raw.t_allMarkdownRemark_edges) => {
     let frontmatter = post.node.frontmatter->getExn
-    let isPageToShow = currentCategory === all || currentCategory === frontmatter.category->getExn
+    let category = frontmatter.category->getExn
+    let title = frontmatter.title->getExn
+    let summarizedContent = post.node.excerpt->getExn
+    let isPageToShow = currentCategory === all || currentCategory === category
 
     isPageToShow
-      ? <li key={frontmatter.title->getExn} className={Styles.postItem}>
-          <div className={Styles.postCategory}>
-            {("[" ++ frontmatter.category->getExn ++ "]")->React.string}
-          </div>
-          <h2 className={Styles.postTitle}> {frontmatter.title->getExn->React.string} </h2>
-          <p className={Styles.postContent}> {post.node.excerpt->getExn->React.string} </p>
+      ? <li key={title} className={Styles.postItem}>
+          <Gatsby.link _to={"/" ++ category ++ "/" ++ title}>
+            <div className={Styles.postCategory}> {("[" ++ category ++ "]")->React.string} </div>
+            <h2 className={Styles.postTitle}> {title->React.string} </h2>
+            <p className={Styles.postContent}> {summarizedContent->React.string} </p>
+          </Gatsby.link>
         </li>
       : <> </>
   }, posts)
 
   <div className={Styles.container}>
-    <span className={Styles.backButton}> {"home"->React.string} </span>
+    <span className={Styles.backButton}>
+      <Gatsby.link _to="/"> {"Home"->React.string} </Gatsby.link>
+    </span>
     <ul className={Styles.categoryList}> {React.array(categoryContent)} </ul>
     <ul className={Styles.postList}> {React.array(content)} </ul>
   </div>
