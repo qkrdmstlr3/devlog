@@ -2,7 +2,7 @@
 let make = (~title: string, ~description) => {
   <Helmet.reactHelmet title={title}>
     <meta name="description" content={description} />
-    <meta name="author" content="author"
+    <meta name="author" content="author" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:site_name" content="seob.dev" />

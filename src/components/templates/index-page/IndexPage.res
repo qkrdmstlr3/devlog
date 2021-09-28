@@ -1,6 +1,6 @@
 @react.component
 let make = () => {
-  <Layout> <IndexPage /> </Layout>
+  <div> {"index"->React.string} </div>
 }
 
 let default = make
