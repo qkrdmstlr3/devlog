@@ -13,6 +13,7 @@ let make = (~pageContext: pageContextType) => {
   let {category, date, title, html} = pageContext
 
   <Layout>
+    <Seo title={title} description="" />
     <article className={Styles.container}>
       <header className={Styles.header}>
         <button className={Styles.backButton}>
@@ -24,7 +25,7 @@ let make = (~pageContext: pageContextType) => {
         </span>
       </header>
       <h1 className={Styles.title}> {title->React.string} </h1>
-      <div dangerouslySetInnerHTML={"__html": html} />
+      <div className={Styles.postContent} dangerouslySetInnerHTML={"__html": html} />
     </article>
   </Layout>
 }
