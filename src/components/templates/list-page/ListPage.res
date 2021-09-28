@@ -39,7 +39,7 @@ let make = (~posts: array<Query.PostListQuery.Raw.t_allMarkdownRemark_edges>) =>
       className={Styles.categoryItem}
       onClick={_ => changeSelectedCategory(category)}>
       {currentCategory === category
-        ? <div className={Styles.select}> {"▶"->React.string} </div>
+        ? <div className={Styles.select}> {`▶`->React.string} </div>
         : ""->React.string}
       {category->React.string}
     </li>
@@ -65,7 +65,7 @@ let make = (~posts: array<Query.PostListQuery.Raw.t_allMarkdownRemark_edges>) =>
 
   <div className={Styles.container}>
     <span className={Styles.backButton}>
-      <Gatsby.link _to="/"> {"Home"->React.string} </Gatsby.link>
+      <Gatsby.link _to="/"> {`홈으로`->React.string} </Gatsby.link>
     </span>
     <ul className={Styles.categoryList}> {React.array(categoryContent)} </ul>
     <ul className={Styles.postList}> {React.array(content)} </ul>
