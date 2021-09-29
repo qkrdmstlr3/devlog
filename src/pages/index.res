@@ -1,6 +1,8 @@
 @react.component
 let make = () => {
-  <Layout> <IndexPage /> </Layout>
+  <GameContext.Provider>
+    <PokemonContext.Provider> <Layout> <IndexPage /> </Layout> </PokemonContext.Provider>
+  </GameContext.Provider>
 }
 
 let default = make
