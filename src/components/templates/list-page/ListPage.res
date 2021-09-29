@@ -31,7 +31,6 @@ let make = (~posts: array<Query.PostListQuery.Raw.t_allMarkdownRemark_edges>) =>
     None
   }, posts)
 
-  Js.log(categoryList)
   /* JSX */
   let categoryContent = Js.Array.map((category: string) => {
     <li
@@ -50,17 +49,19 @@ let make = (~posts: array<Query.PostListQuery.Raw.t_allMarkdownRemark_edges>) =>
     let category = frontmatter.category->getExn
     let title = frontmatter.title->getExn
     let summarizedContent = post.node.excerpt->getExn
-    let isPageToShow = currentCategory === all || currentCategory === category
 
-    isPageToShow
-      ? <li key={title} className={Styles.postItem}>
-          <Gatsby.link _to={"/" ++ category ++ "/" ++ title}>
-            <div className={Styles.postCategory}> {("[" ++ category ++ "]")->React.string} </div>
-            <h2 className={Styles.postTitle}> {title->React.string} </h2>
-            <p className={Styles.postContent}> {summarizedContent->React.string} </p>
-          </Gatsby.link>
-        </li>
-      : <> </>
+    let isPageToShow = currentCategory === all || currentCategory === category
+    switch isPageToShow {
+    | true =>
+      <li key={title} className={Styles.postItem}>
+        <Gatsby.link _to={"/" ++ category ++ "/" ++ title}>
+          <div className={Styles.postCategory}> {("[" ++ category ++ "]")->React.string} </div>
+          <h2 className={Styles.postTitle}> {title->React.string} </h2>
+          <p className={Styles.postContent}> {summarizedContent->React.string} </p>
+        </Gatsby.link>
+      </li>
+    | false => <> </>
+    }
   }, posts)
 
   <div className={Styles.container}>
