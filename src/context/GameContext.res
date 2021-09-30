@@ -37,6 +37,11 @@ type contextType = {
   enemySkillIndex: int,
   /* 내 포켓몬 리스트 목록 */
   isPokemonListOpen: bool,
+  /* reducer */
+}
+
+let reducer = (state: contextType, _: gameStatus) => {
+  state
 }
 
 let initialValue = {
@@ -47,13 +52,15 @@ let initialValue = {
   enemySkillIndex: -1,
   isPokemonListOpen: false,
 }
-let context = React.createContext(initialValue)
+let context = React.createContext((initialValue, ignore))
 
 module Provider = {
   let provider = React.Context.provider(context)
 
   @react.component
   let make = (~children) => {
-    React.createElement(provider, {"value": initialValue, "children": children})
+    let (state, dispatch) = React.useReducer(reducer, initialValue)
+
+    React.createElement(provider, {"value": (state, dispatch), "children": children})
   }
 }
