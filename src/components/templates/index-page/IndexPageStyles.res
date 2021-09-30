@@ -1,4 +1,4 @@
-module Style = {
+module Styles = {
   open Emotion
 
   let container = css({
