@@ -1,5 +1,6 @@
 open TextBoxStyles
 
+@react.component
 let make = () => {
   let clickBorderBox = (_: ReactEvent.Mouse.t) => {
     ()
