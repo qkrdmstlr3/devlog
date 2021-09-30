@@ -1,7 +1,9 @@
 type pokemonSort = React | Graphql
+type skillType = Normal
 type pokemonSkill = {
   name: string,
   damage: int,
+  skillType: option<skillType>,
 }
 type pokemonStatus = {
   sort: pokemonSort,
@@ -25,10 +27,10 @@ let initialValue = {
       fullHP: 20,
       currentHP: 20,
       skill: [
-        {name: `스킬1`, damage: 3},
-        {name: `스킬2`, damage: 5},
-        {name: `-`, damage: 0},
-        {name: `-`, damage: 0},
+        {name: `스킬1`, damage: 3, skillType: Some(Normal)},
+        {name: `스킬2`, damage: 5, skillType: Some(Normal)},
+        {name: `-`, damage: 0, skillType: None},
+        {name: `-`, damage: 0, skillType: None},
       ],
     },
     {
@@ -38,10 +40,10 @@ let initialValue = {
       fullHP: 20,
       currentHP: 20,
       skill: [
-        {name: `스킬1`, damage: 3},
-        {name: `스킬2`, damage: 5},
-        {name: `-`, damage: 0},
-        {name: `-`, damage: 0},
+        {name: `스킬1`, damage: 3, skillType: Some(Normal)},
+        {name: `스킬2`, damage: 5, skillType: Some(Normal)},
+        {name: `-`, damage: 0, skillType: None},
+        {name: `-`, damage: 0, skillType: None},
       ],
     },
   ],
@@ -52,10 +54,10 @@ let initialValue = {
     fullHP: 50,
     currentHP: 50,
     skill: [
-      {name: `스킬1`, damage: 3},
-      {name: `스킬2`, damage: 4},
-      {name: `스킬3`, damage: 5},
-      {name: `스킬4`, damage: 6},
+      {name: `스킬1`, damage: 3, skillType: Some(Normal)},
+      {name: `스킬2`, damage: 4, skillType: Some(Normal)},
+      {name: `스킬3`, damage: 5, skillType: Some(Normal)},
+      {name: `스킬4`, damage: 6, skillType: Some(Normal)},
     ],
   },
 }
