@@ -1,3 +1,5 @@
+open GameType
+
 type contextType = {
   /* 게임 로딩 중 */
   loading: bool,
@@ -14,13 +16,31 @@ type contextType = {
   /* reducer */
 }
 
-let reducer = (state: contextType, _: GameType.gameStatus) => {
-  state
+let reducer = (state: contextType, action: GameType.gameStatus) => {
+  switch action {
+  | LOADING => {...state, gameStatus: APPEAR_ENEMY, loading: false}
+  | APPEAR_ENEMY => {...state, gameStatus: SUMMON_MY}
+  | SUMMON_MY | CHANGE_POKEMON => {...state, gameStatus: SELECT_NAV}
+  | ENEMY_ATTACK => {...state, gameStatus: MY_DAMAGE(ALIVE)}
+  | MY_DAMAGE(deadOrAlive) =>
+    switch deadOrAlive {
+    | ALIVE => {...state, gameStatus: MY_ATTACK, enemySkillIndex: -1}
+    | DEAD => {...state, gameStatus: MY_DEAD, enemySkillIndex: -1}
+    }
+  | MY_ATTACK => {...state, gameStatus: EMENY_DAMAGE(ALIVE)}
+  | EMENY_DAMAGE(deadOrAlive) =>
+    switch deadOrAlive {
+    | ALIVE => {...state, gameStatus: SELECT_NAV}
+    | DEAD => {...state, gameStatus: ENEMY_DEAD}
+    }
+  | ENEMY_DEAD => {...state, gameStatus: FINISH_GAME}
+  | _ => state
+  }
 }
 
 let initialValue = {
   loading: true,
-  gameStatus: APPEAR_ENEMY,
+  gameStatus: LOADING,
   sort: PokemonContext.React,
   mySkillIndex: -1,
   enemySkillIndex: -1,

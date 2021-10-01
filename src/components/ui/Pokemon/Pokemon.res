@@ -16,7 +16,7 @@ let make = (
   | true =>
     switch gameStatus {
     | CHANGE_POKEMON => <> </>
-    | APPEAR_ENEMY | SUMMON_MY =>
+    | LOADING | APPEAR_ENEMY | SUMMON_MY =>
       <div className={Styles.wrapperFunc(~isMyPokemon)}>
         <div className={Styles.person} /> {loading ? <div /> : <div />}
       </div>
