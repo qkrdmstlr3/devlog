@@ -1,6 +1,6 @@
 type gameStatus =
   /* 초기 렌더링 (야생의 ~가 나타났다!) [TextBox Component] */
-  | APPEAR_ENEMY(string)
+  | APPEAR_ENEMY
   /* 포켓몬 소환 (가랏 ~~~!) [TextBox Component] */
   | SUMMON_MY
   /* 선택지 화면 (싸우기 가방 글목록) [SelectBox Component] */
@@ -46,7 +46,7 @@ let reducer = (state: contextType, _: gameStatus) => {
 
 let initialValue = {
   loading: true,
-  gameStatus: APPEAR_ENEMY(`앗! 야생의\n 리액트(이)가 나타났다!`),
+  gameStatus: APPEAR_ENEMY,
   sort: PokemonContext.React,
   mySkillIndex: -1,
   enemySkillIndex: -1,
