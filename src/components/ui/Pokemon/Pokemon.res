@@ -6,7 +6,7 @@ let make = (
   ~isMyPokemon: bool,
   ~icon: PokemonContext.pokemonSort,
   ~pokemon: PokemonContext.pokemonStatus,
-  ~gameStatus: GameContext.gameStatus,
+  ~gameStatus: GameType.gameStatus,
 ) => {
   let pokemonIcon = switch icon {
   | PokemonContext.React => Icon.ReactIcon
