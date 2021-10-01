@@ -1,130 +1,112 @@
 module Styles = {
   open Emotion
 
-  // span
   let name = css({
     "display": "inline-block",
-    "marginLeft": "160px",
+    "width": "450px",
+    "textAlign": "right",
     "fontSize": "50px",
     "fontFamily": "'NeoDunggeunmo', sans-serif",
     "fontWeight": "bold",
     "@media (max-width:1024px)": {
-      "marginLeft": "130px",
+      "width": "300px",
       "fontSize": "2.5rem",
     },
     "@media (max-width:420px)": {
-      "marginLeft": "50px",
+      "width": "150px",
       "fontSize": "1.2rem",
     },
   })
 
-  // div
   let hpWrapper = css({
     "position": "relative",
     "width": "600px",
-    "height": "160px",
+    "height": "120px",
     "backgroundColor": "black",
-    "borderBottomRightRadius": "30px",
-    "borderTopRightRadius": "30px",
+    "borderBottomLeftRadius": "30px",
     "@media (max-width:1024px)": {
       "width": "400px",
-      "height": "120px",
+      "height": "100px",
     },
     "@media (max-width:420px)": {
       "width": "180px",
-      "height": "60px",
-      "borderBottomRightRadius": "15px",
-      "borderTopRightRadius": "15px",
+      "height": "50px",
+      "borderBottomLeftRadius": "15px",
     },
   })
 
-  // div
-  let hpCenter = css({
+  let hpWrapperInner = css({
     "position": "absolute",
-    "top": "45px",
+    "top": "0",
+    "right": "0",
     "width": "570px",
-    "height": "105px",
-    "display": "flex",
-    "justifyContent": "flex-end",
-    "padding": "15px 30px 0 0",
+    "height": "110px",
     "backgroundColor": "white",
-    "borderBottomRightRadius": "30px",
-    "borderTopRightRadius": "30px",
-    "fontFamily": "'NeoDunggeunmo', sans-serif",
-    "fontSize": "50px",
-    "fontWeight": "bold",
-    "letterSpacing": "12px",
-    "wordSpacing": "20px",
+    "borderBottomLeftRadius": "30px",
     "@media (max-width:1024px)": {
-      "top": "40px",
       "width": "370px",
-      "height": "70px",
-      "fontSize": "2.5rem",
+      "height": "90px",
     },
     "@media (max-width:420px)": {
-      "top": "20px",
-      "height": "35px",
       "width": "160px",
-      "padding": "5px 10px 0 0",
-      "borderBottomRightRadius": "15px",
-      "borderTopRightRadius": "15px",
-      "fontSize": "1.2rem",
-      "letterSpacing": "5px",
-      "wordSpacing": "5px",
+      "height": "45px",
+      "borderBottomLeftRadius": "15px",
     },
   })
 
-  // span
+  let hpBar = css({
+    "position": "absolute",
+    "width": "93%",
+    "height": "45px",
+    "top": "10px",
+    "right": "10px",
+    "backgroundColor": "black",
+    "@media (max-width:1024px)": {
+      "width": "90%",
+      "height": "40px",
+    },
+    "@media (max-width:420px)": {
+      "top": "5px",
+      "right": "5px",
+      "height": "20px",
+      "width": "90%",
+    },
+  })
+
   let hpText = css({
-    "position": "relative",
     "display": "inline-block",
-    "padding": "4px 0 0 45px",
+    "marginTop": "4px",
+    "paddingLeft": "5px",
     "color": "#ecd482",
     "fontSize": "40px",
     "fontWeight": "bold",
     "fontFamily": "'NeoDunggeunmo', sans-serif",
     "@media (max-width:1024px)": {
+      "marginTop": "3px",
       "fontSize": "2.5rem",
-      "padding": "0 0 0 40px",
     },
     "@media (max-width:420px)": {
+      "marginTop": "0",
       "fontSize": "1.4rem",
-      "padding": "0 0 0 25px",
-    },
-    "::before": {
-      "content": "''",
-      "height": "45px",
-      "width": "40px",
-      "position": "absolute",
-      "left": "0px",
-      "top": "0px",
-      "backgroundColor": "white",
-      "@media (max-width:1024px)": {
-        "width": "32px",
-      },
-      "@media (max-width:420px)": {
-        "width": "20px",
-      },
     },
   })
 
-  // div
   let hpStick = css({
     "position": "absolute",
     "top": "0px",
-    "right": "50px",
+    "right": "25px",
     "width": "400px",
     "height": "35px",
     "backgroundColor": "white",
     "@media (max-width:1024px)": {
       "width": "250px",
       "height": "30px",
-      "right": "40px",
+      "right": "20px",
     },
     "@media (max-width:420px)": {
       "width": "100px",
       "height": "14px",
-      "right": "20px",
+      "right": "5px",
     },
   })
 
