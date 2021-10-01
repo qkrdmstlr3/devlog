@@ -4,11 +4,10 @@ open PokemonStyles
 let make = (
   ~loading: bool,
   ~isMyPokemon: bool,
-  ~icon: PokemonContext.pokemonSort,
   ~pokemon: PokemonContext.pokemonStatus,
   ~gameStatus: GameType.gameStatus,
 ) => {
-  let pokemonIcon = switch icon {
+  let pokemonIcon = switch pokemon.sort {
   | PokemonContext.React => Icon.ReactIcon
   | PokemonContext.Graphql => Icon.GraphqlIcon
   }
@@ -40,7 +39,7 @@ let make = (
             hp={pokemon.currentHP / pokemon.fullHP * 100}
             name={pokemon.name ++ `: L` ++ string_of_int(pokemon.level)}
           />}
-      <Icon icon={pokemonIcon} />
+      <div> <Icon icon={pokemonIcon} /> </div>
     </div>
   }
 }
