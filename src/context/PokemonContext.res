@@ -18,6 +18,10 @@ type contextType = {
   enemy: pokemonStatus,
 }
 
+let reducer = (state: contextType, _: GameType.gameStatus) => {
+  state
+}
+
 let initialValue = {
   my: [
     {
@@ -61,13 +65,15 @@ let initialValue = {
     ],
   },
 }
-let context = React.createContext(initialValue)
+let context = React.createContext((initialValue, ignore))
 
 module Provider = {
   let provider = React.Context.provider(context)
 
   @react.component
   let make = (~children) => {
-    React.createElement(provider, {"value": initialValue, "children": children})
+    let (state, dispatch) = React.useReducer(reducer, initialValue)
+
+    React.createElement(provider, {"value": (state, dispatch), "children": children})
   }
 }
