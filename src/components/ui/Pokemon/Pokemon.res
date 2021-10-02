@@ -18,7 +18,7 @@ let make = (
     | CHANGE_POKEMON => <> </>
     | LOADING | APPEAR_ENEMY | SUMMON_MY =>
       <div className={Styles.wrapperFunc(~isMyPokemon)}>
-        <div className={Styles.person} /> {loading ? <div /> : <div />}
+        <div className={Styles.person} /> {loading ? <div /> : <MonsterBall />}
       </div>
     | _ =>
       <div className={Styles.wrapperFunc(~isMyPokemon)}>
