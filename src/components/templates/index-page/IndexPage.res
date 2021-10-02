@@ -1,10 +1,6 @@
 open IndexPageStyles
 open GameContext
 
-type timerId
-@val external setTimeout: (unit => unit, int) => timerId = "setTimeout"
-@val external clearTimeout: timerId => unit = "clearTimeout"
-
 @react.component
 let make = () => {
   let loadingTime = 2000
@@ -17,10 +13,10 @@ let make = () => {
   }, [gameState.sort])
 
   React.useEffect0(() => {
-    let timeout = setTimeout(() => {
+    let timeout = Timeout.setTimeout(() => {
       gameDispatch(gameState.gameStatus)
     }, loadingTime)
-    let cleanup = () => {clearTimeout(timeout)}
+    let cleanup = () => {Timeout.clearTimeout(timeout)}
     Some(cleanup)
   })
 
