@@ -1,7 +1,7 @@
 module Styles = {
   open Emotion
 
-  let wrapperFunc = (~isMyPokemon: bool) => {
+  let wrapperFunc = (~isMyPokemon: bool, ~xPosition: int) => {
     css({
       "width": "90%",
       "height": "50%",
@@ -9,6 +9,8 @@ module Styles = {
       "justifyContent": "space-between",
       "alignItems": isMyPokemon ? "center" : "flex-start",
       "marginLeft": isMyPokemon ? "10%" : "0",
+      "transition": "all 2s",
+      "transform": "translateX(" ++ string_of_int(xPosition) ++ "px)",
     })
   }
 
