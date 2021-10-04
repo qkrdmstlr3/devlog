@@ -20,11 +20,21 @@ let make = () => {
     Some(cleanup)
   })
 
+  let textBoxClick = (_: ReactEvent.Mouse.t) => {
+    gameDispatch(gameState.gameStatus)
+  }
+
   let boxComponent = switch (gameState.gameStatus, gameState.loading) {
   | (_, true) => <BorderBox width="100%" height="35%" />
   | (SELECT_NAV, _) => <SelectBox />
   | (FIGHT_NAV, _) => <FightBox />
-  | _ => <TextBox />
+  | _ =>
+    let content = switch myPokemon {
+    | Some(myPokemon) =>
+      GameText.getGameStatusText(~gameState, ~myPokemon, ~enemyPokemon=pokemonState.enemy)
+    | None => ""
+    }
+    <TextBox content={content} clickBox={textBoxClick} />
   }
 
   switch myPokemon {
