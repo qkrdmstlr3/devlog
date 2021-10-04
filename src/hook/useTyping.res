@@ -4,7 +4,12 @@ let useTyping = (~content: string) => {
   let (isTypingEnd, setIsTypingEnd) = React.useState(_ => false)
 
   let rec typingText = (~index) => {
-    setText(txt => txt ++ Js.String2.get(content, index))
+    setText(txt =>
+      switch index {
+      | 0 => Js.String2.get(content, index)
+      | _ => txt ++ Js.String2.get(content, index)
+      }
+    )
 
     let _ = Timeout.setTimeout(() => {
       if index < Js.String2.length(content) - 1 {
