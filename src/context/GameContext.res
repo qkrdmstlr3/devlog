@@ -16,24 +16,34 @@ type contextType = {
   /* reducer */
 }
 
-let reducer = (state: contextType, action: GameType.gameStatus) => {
-  switch action {
-  | LOADING => {...state, gameStatus: APPEAR_ENEMY, loading: false}
-  | APPEAR_ENEMY => {...state, gameStatus: SUMMON_MY}
-  | SUMMON_MY | CHANGE_POKEMON => {...state, gameStatus: SELECT_NAV}
-  | ENEMY_ATTACK => {...state, gameStatus: MY_DAMAGE(ALIVE)}
-  | MY_DAMAGE(deadOrAlive) =>
-    switch deadOrAlive {
-    | ALIVE => {...state, gameStatus: MY_ATTACK, enemySkillIndex: -1}
-    | DEAD => {...state, gameStatus: MY_DEAD, enemySkillIndex: -1}
+type actionType = {
+  currentGameStatus: option<GameType.gameStatus>,
+  afterGameStatus: option<GameType.gameStatus>,
+}
+
+let reducer = (state: contextType, action: actionType) => {
+  switch (action.currentGameStatus, action.afterGameStatus) {
+  | (None, Some(afterGameStatus)) => {...state, gameStatus: afterGameStatus}
+  | (Some(currentGameStatus), None) =>
+    switch currentGameStatus {
+    | LOADING => {...state, gameStatus: APPEAR_ENEMY, loading: false}
+    | APPEAR_ENEMY => {...state, gameStatus: SUMMON_MY}
+    | SUMMON_MY | CHANGE_POKEMON => {...state, gameStatus: SELECT_NAV}
+    | ENEMY_ATTACK => {...state, gameStatus: MY_DAMAGE(ALIVE)}
+    | MY_DAMAGE(deadOrAlive) =>
+      switch deadOrAlive {
+      | ALIVE => {...state, gameStatus: MY_ATTACK, enemySkillIndex: -1}
+      | DEAD => {...state, gameStatus: MY_DEAD, enemySkillIndex: -1}
+      }
+    | MY_ATTACK => {...state, gameStatus: EMENY_DAMAGE(ALIVE)}
+    | EMENY_DAMAGE(deadOrAlive) =>
+      switch deadOrAlive {
+      | ALIVE => {...state, gameStatus: SELECT_NAV}
+      | DEAD => {...state, gameStatus: ENEMY_DEAD}
+      }
+    | ENEMY_DEAD => {...state, gameStatus: FINISH_GAME}
+    | _ => state
     }
-  | MY_ATTACK => {...state, gameStatus: EMENY_DAMAGE(ALIVE)}
-  | EMENY_DAMAGE(deadOrAlive) =>
-    switch deadOrAlive {
-    | ALIVE => {...state, gameStatus: SELECT_NAV}
-    | DEAD => {...state, gameStatus: ENEMY_DEAD}
-    }
-  | ENEMY_DEAD => {...state, gameStatus: FINISH_GAME}
   | _ => state
   }
 }
