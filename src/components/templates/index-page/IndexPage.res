@@ -37,7 +37,12 @@ let make = () => {
   let boxComponent = switch (gameState.gameStatus, gameState.loading) {
   | (_, true) => <BorderBox width="100%" height="35%" />
   | (SELECT_NAV, _) => <SelectBox clickFight={selectBoxFightClick} />
-  | (FIGHT_NAV, _) => <FightBox />
+  | (FIGHT_NAV, _) =>
+    let skills = switch myPokemon {
+    | Some(myPokemon) => myPokemon.skill
+    | None => []
+    }
+    <FightBox skills={skills} />
   | _ =>
     let content = switch myPokemon {
     | Some(myPokemon) =>
