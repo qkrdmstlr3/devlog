@@ -18,8 +18,37 @@ type contextType = {
   enemy: pokemonStatus,
 }
 
-let reducer = (state: contextType, _: GameType.gameStatus) => {
-  state
+type actionType = {
+  gameStatus: GameType.gameStatus,
+  currentMyPokemon: pokemonSort,
+  mySkillIndex: int,
+  enemySkillIndex: int,
+}
+
+let reducer = (state: contextType, action: actionType) => {
+  switch action.gameStatus {
+  | MY_DAMAGE(_) =>
+    let myPokemon = Js.Array.map((pokemon: pokemonStatus) => {
+      if pokemon.sort === action.currentMyPokemon {
+        let currentHP = pokemon.currentHP - state.enemy.skill[action.enemySkillIndex].damage
+        {...pokemon, currentHP: currentHP}
+      } else {
+        pokemon
+      }
+    }, state.my)
+    {...state, my: myPokemon}
+  | EMENY_DAMAGE(_) =>
+    let myPokemon = Js.Array.find((pokemon: pokemonStatus) => {
+      pokemon.sort === action.currentMyPokemon
+    }, state.my)
+    switch myPokemon {
+    | Some(myPokemon) =>
+      let currentHP = state.enemy.currentHP - myPokemon.skill[action.mySkillIndex].damage
+      {...state, enemy: {...state.enemy, currentHP: currentHP}}
+    | None => state
+    }
+  | _ => state
+  }
 }
 
 let initialValue = {

@@ -5,7 +5,7 @@ open GameContext
 let make = () => {
   let loadingTime = 2000
   let (gameState, gameDispatch) = React.useContext(GameContext.context)
-  let (pokemonState, _) = React.useContext(PokemonContext.context)
+  let (pokemonState, pokemonDispatch) = React.useContext(PokemonContext.context)
   let myPokemon = React.useMemo1(() => {
     Js.Array.find((pokemon: PokemonContext.pokemonStatus) => {
       gameState.sort === pokemon.sort
@@ -22,6 +22,12 @@ let make = () => {
 
   let textBoxClick = (_: ReactEvent.Mouse.t) => {
     gameDispatch(gameState.gameStatus)
+    pokemonDispatch({
+      gameStatus: gameState.gameStatus,
+      currentMyPokemon: gameState.sort,
+      mySkillIndex: gameState.enemySkillIndex,
+      enemySkillIndex: gameState.mySkillIndex,
+    })
   }
 
   let boxComponent = switch (gameState.gameStatus, gameState.loading) {
