@@ -14,14 +14,14 @@ let make = () => {
 
   React.useEffect0(() => {
     let timeout = Timeout.setTimeout(() => {
-      gameDispatch(gameState.gameStatus)
+      gameDispatch({currentGameStatus: Some(gameState.gameStatus), afterGameStatus: None})
     }, loadingTime)
     let cleanup = () => {Timeout.clearTimeout(timeout)}
     Some(cleanup)
   })
 
   let textBoxClick = (_: ReactEvent.Mouse.t) => {
-    gameDispatch(gameState.gameStatus)
+    gameDispatch({currentGameStatus: Some(gameState.gameStatus), afterGameStatus: None})
     pokemonDispatch({
       gameStatus: gameState.gameStatus,
       currentMyPokemon: gameState.sort,
