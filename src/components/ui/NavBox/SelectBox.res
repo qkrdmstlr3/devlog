@@ -1,10 +1,7 @@
 open SelectBoxStyles
 
 @react.component
-let make = () => {
-  let fightClickHandler = (_: ReactEvent.Mouse.t) => {
-    ()
-  }
+let make = (~clickFight: ReactEvent.Mouse.t => unit) => {
   let pokemonClickHandler = (_: ReactEvent.Mouse.t) => {
     ()
   }
@@ -14,9 +11,7 @@ let make = () => {
     <div className={Styles.navWrapper}>
       <BorderBox width="100%" height="100%">
         <nav className={Styles.nav}>
-          <h2 className={Styles.navItem} onClick={fightClickHandler}>
-            {`싸우기`->React.string}
-          </h2>
+          <h2 className={Styles.navItem} onClick={clickFight}> {`싸우기`->React.string} </h2>
           <h2 className={Styles.navItem}>
             <Gatsby.link _to="/list"> {`글목록`->React.string} </Gatsby.link>
           </h2>

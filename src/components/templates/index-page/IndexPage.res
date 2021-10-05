@@ -30,9 +30,13 @@ let make = () => {
     })
   }
 
+  let selectBoxFightClick = (_: ReactEvent.Mouse.t) => {
+    gameDispatch({currentGameStatus: None, afterGameStatus: Some(FIGHT_NAV)})
+  }
+
   let boxComponent = switch (gameState.gameStatus, gameState.loading) {
   | (_, true) => <BorderBox width="100%" height="35%" />
-  | (SELECT_NAV, _) => <SelectBox />
+  | (SELECT_NAV, _) => <SelectBox clickFight={selectBoxFightClick} />
   | (FIGHT_NAV, _) => <FightBox />
   | _ =>
     let content = switch myPokemon {
