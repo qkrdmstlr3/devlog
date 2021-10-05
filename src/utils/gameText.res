@@ -10,7 +10,7 @@ let getGameStatusText = (
   | APPEAR_ENEMY => `앗! 야생의\n ` ++ enemyPokemon.name ++ `(이)가 나타났다!`
   | SUMMON_MY | CHANGE_POKEMON => `가랏! ` ++ myPokemon.name ++ `!`
   | ENEMY_ATTACK =>
-    let skillName = enemyPokemon.skill[gameState.enemySkillIndex].name
+    let skillName = enemyPokemon.skill[enemyPokemon.skillIndex].name
     `야생의 ` ++ enemyPokemon.name ++ `의 ` ++ skillName ++ `!`
   | MY_DAMAGE(damageType) =>
     switch damageType {
@@ -18,7 +18,7 @@ let getGameStatusText = (
     | ALIVE => `내 ` ++ myPokemon.name ++ `(이)가 피해를 입었다!`
     }
   | MY_ATTACK =>
-    let skillName = myPokemon.skill[gameState.mySkillIndex].name
+    let skillName = myPokemon.skill[myPokemon.skillIndex].name
     `내 ` ++ myPokemon.name ++ `의 ` ++ skillName ++ `!`
   | EMENY_DAMAGE(damageType) =>
     switch damageType {

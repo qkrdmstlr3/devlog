@@ -11,6 +11,7 @@ type pokemonStatus = {
   level: int,
   fullHP: int,
   currentHP: int,
+  skillIndex: int,
   skill: array<pokemonSkill>,
 }
 type contextType = {
@@ -21,8 +22,6 @@ type contextType = {
 type actionType = {
   gameStatus: GameType.gameStatus,
   currentMyPokemon: pokemonSort,
-  mySkillIndex: int,
-  enemySkillIndex: int,
 }
 
 let reducer = (state: contextType, action: actionType) => {
@@ -30,7 +29,7 @@ let reducer = (state: contextType, action: actionType) => {
   | MY_DAMAGE(_) =>
     let myPokemon = Js.Array.map((pokemon: pokemonStatus) => {
       if pokemon.sort === action.currentMyPokemon {
-        let currentHP = pokemon.currentHP - state.enemy.skill[action.enemySkillIndex].damage
+        let currentHP = pokemon.currentHP - state.enemy.skill[state.enemy.skillIndex].damage
         {...pokemon, currentHP: currentHP}
       } else {
         pokemon
@@ -43,7 +42,7 @@ let reducer = (state: contextType, action: actionType) => {
     }, state.my)
     switch myPokemon {
     | Some(myPokemon) =>
-      let currentHP = state.enemy.currentHP - myPokemon.skill[action.mySkillIndex].damage
+      let currentHP = state.enemy.currentHP - myPokemon.skill[myPokemon.skillIndex].damage
       {...state, enemy: {...state.enemy, currentHP: currentHP}}
     | None => state
     }
@@ -59,6 +58,7 @@ let initialValue = {
       level: 50,
       fullHP: 20,
       currentHP: 20,
+      skillIndex: -1,
       skill: [
         {name: `스킬1`, damage: 3, skillType: Some(Normal)},
         {name: `스킬2`, damage: 5, skillType: Some(Normal)},
@@ -72,6 +72,7 @@ let initialValue = {
       level: 50,
       fullHP: 20,
       currentHP: 20,
+      skillIndex: -1,
       skill: [
         {name: `스킬1`, damage: 3, skillType: Some(Normal)},
         {name: `스킬2`, damage: 5, skillType: Some(Normal)},
@@ -86,6 +87,7 @@ let initialValue = {
     level: 99,
     fullHP: 50,
     currentHP: 50,
+    skillIndex: -1,
     skill: [
       {name: `스킬1`, damage: 3, skillType: Some(Normal)},
       {name: `스킬2`, damage: 4, skillType: Some(Normal)},

@@ -7,13 +7,8 @@ type contextType = {
   gameStatus: GameType.gameStatus,
   /* 현재 내 포켓몬 종류 */
   sort: PokemonContext.pokemonSort,
-  /* 내 포켓몬 스킬 index */
-  mySkillIndex: int,
-  /* 적 포켓몬 스킬 index */
-  enemySkillIndex: int,
   /* 내 포켓몬 리스트 목록 */
   isPokemonListOpen: bool,
-  /* reducer */
 }
 
 type actionType = {
@@ -32,8 +27,8 @@ let reducer = (state: contextType, action: actionType) => {
     | ENEMY_ATTACK => {...state, gameStatus: MY_DAMAGE(ALIVE)}
     | MY_DAMAGE(deadOrAlive) =>
       switch deadOrAlive {
-      | ALIVE => {...state, gameStatus: MY_ATTACK, enemySkillIndex: -1}
-      | DEAD => {...state, gameStatus: MY_DEAD, enemySkillIndex: -1}
+      | ALIVE => {...state, gameStatus: MY_ATTACK}
+      | DEAD => {...state, gameStatus: MY_DEAD}
       }
     | MY_ATTACK => {...state, gameStatus: EMENY_DAMAGE(ALIVE)}
     | EMENY_DAMAGE(deadOrAlive) =>
@@ -52,8 +47,6 @@ let initialValue = {
   loading: true,
   gameStatus: LOADING,
   sort: PokemonContext.React,
-  mySkillIndex: -1,
-  enemySkillIndex: -1,
   isPokemonListOpen: false,
 }
 let context = React.createContext((initialValue, ignore))

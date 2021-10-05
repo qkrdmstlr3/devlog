@@ -25,8 +25,6 @@ let make = () => {
     pokemonDispatch({
       gameStatus: gameState.gameStatus,
       currentMyPokemon: gameState.sort,
-      mySkillIndex: gameState.enemySkillIndex,
-      enemySkillIndex: gameState.mySkillIndex,
     })
   }
 
