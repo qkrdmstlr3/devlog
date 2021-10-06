@@ -12,12 +12,15 @@ let useTyping = (~content: string) => {
     )
 
     let _ = Timeout.setTimeout(() => {
+      if index === 0 {
+        setIsTypingEnd(_ => false)
+      }
       if index < Js.String2.length(content) - 1 {
         typingText(~index=index + 1)
+      } else if index == Js.String2.length(content) - 1 {
+        setIsTypingEnd(_ => true)
       }
     }, typingMilliseconds)
-
-    setIsTypingEnd(_ => true)
   }
 
   React.useEffect1(() => {
