@@ -34,7 +34,7 @@ let make = (
       <div className={Styles.wrapperFunc(~isMyPokemon, ~xPosition=0)}>
         <Icon icon={pokemonIcon} />
         <MyHP
-          hp={pokemon.currentHP / pokemon.fullHP * 100}
+          hp={float_of_int(pokemon.currentHP) /. float_of_int(pokemon.fullHP) *. 100.0}
           name={pokemon.name ++ `: L` ++ string_of_int(pokemon.level)}
           currentHP={pokemon.currentHP}
           fullHP={pokemon.fullHP}
@@ -47,7 +47,7 @@ let make = (
       {loading
         ? <div />
         : <EnemyHP
-            hp={pokemon.currentHP / pokemon.fullHP * 100}
+            hp={float_of_int(pokemon.currentHP) /. float_of_int(pokemon.fullHP) *. 100.0}
             name={pokemon.name ++ `: L` ++ string_of_int(pokemon.level)}
           />}
       <div> <Icon icon={pokemonIcon} /> </div>

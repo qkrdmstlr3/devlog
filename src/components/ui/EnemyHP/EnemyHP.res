@@ -1,7 +1,7 @@
 open EnemyHPStyles
 
 @react.component
-let make = (~hp: int, ~name: string) => {
+let make = (~hp: float, ~name: string) => {
   <div>
     <span className={Styles.name}> {name->React.string} </span>
     <div className={Styles.hpWrapper}>
