@@ -128,10 +128,11 @@ module Styles = {
     },
   })
 
-  let hpStickBarFunc = (~hp: int) => {
+  let hpStickBarFunc = (~hp: float) => {
     css({
       "marginTop": "10px",
-      "width": string_of_int(hp) ++ "%",
+      "width": Js.Float.toString(hp) ++ "%",
+      "transition": "width 1.5s",
       "height": "15px",
       "backgroundColor": BarColor.getBarColor(~percentage=hp),
       "@media (max-width:420px)": {

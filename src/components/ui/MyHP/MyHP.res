@@ -1,7 +1,7 @@
 open MyHPStyles
 
 @react.component
-let make = (~hp: int, ~name: string, ~currentHP: int, ~fullHP: int) => {
+let make = (~hp: float, ~name: string, ~currentHP: int, ~fullHP: int) => {
   <div>
     <span className={Styles.name}> {name->React.string} </span>
     <div className={Styles.hpWrapper}>
