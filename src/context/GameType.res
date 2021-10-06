@@ -1,4 +1,4 @@
-type damageType = DEAD | ALIVE
+type isAlive = DEAD | ALIVE | BLANK
 type gameStatus =
   /* 로딩 중 */
   | LOADING
@@ -13,11 +13,11 @@ type gameStatus =
   /* 상대 포켓몬 공격 [TextBox Component] */
   | ENEMY_ATTACK
   /* 내 포켓몬의 닳은 체력 [TextBox Component] */
-  | MY_DAMAGE(damageType)
+  | MY_DAMAGE(isAlive)
   /* 내 포켓몬 공격 [TextBox Component] */
   | MY_ATTACK
   /* 적 포켓몬의 닳은 체력 [TextBox Component] */
-  | EMENY_DAMAGE(damageType)
+  | ENEMY_DAMAGE(isAlive)
   /* 적 포켓몬 죽음 [TextBox Component] */
   | ENEMY_DEAD
   /* 내 포켓몬 죽음 [TextBox Component] */

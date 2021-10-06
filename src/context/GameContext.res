@@ -24,18 +24,21 @@ let reducer = (state: contextType, action: actionType) => {
     | LOADING => {...state, gameStatus: APPEAR_ENEMY, loading: false}
     | APPEAR_ENEMY => {...state, gameStatus: SUMMON_MY}
     | SUMMON_MY | CHANGE_POKEMON => {...state, gameStatus: SELECT_NAV}
-    | ENEMY_ATTACK => {...state, gameStatus: MY_DAMAGE(ALIVE)}
+    | ENEMY_ATTACK => {...state, gameStatus: MY_DAMAGE(BLANK)}
     | MY_DAMAGE(deadOrAlive) =>
       switch deadOrAlive {
       | ALIVE => {...state, gameStatus: MY_ATTACK}
       | DEAD => {...state, gameStatus: MY_DEAD}
+      | BLANK => state
       }
-    | MY_ATTACK => {...state, gameStatus: EMENY_DAMAGE(ALIVE)}
-    | EMENY_DAMAGE(deadOrAlive) =>
+    | MY_ATTACK => {...state, gameStatus: ENEMY_DAMAGE(BLANK)}
+    | ENEMY_DAMAGE(deadOrAlive) =>
       switch deadOrAlive {
       | ALIVE => {...state, gameStatus: SELECT_NAV}
       | DEAD => {...state, gameStatus: ENEMY_DEAD}
+      | BLANK => state
       }
+    // | MY_DEAD => {...state, isPokemonListOpen: true}
     | ENEMY_DEAD => {...state, gameStatus: FINISH_GAME}
     | _ => state
     }
