@@ -6,11 +6,9 @@ let make = () => {
   let loadingTime = 2000
   let (gameState, gameDispatch) = React.useContext(GameContext.context)
   let (pokemonState, pokemonDispatch) = React.useContext(PokemonContext.context)
-  let myPokemon = React.useMemo1(() => {
-    Js.Array.find((pokemon: PokemonContext.pokemonStatus) => {
-      gameState.sort === pokemon.sort
-    }, pokemonState.my)
-  }, [gameState.sort])
+  let myPokemon = Js.Array.find((pokemon: PokemonContext.pokemonStatus) => {
+    gameState.sort === pokemon.sort
+  }, pokemonState.my)
 
   React.useEffect0(() => {
     let timeout = Timeout.setTimeout(() => {
@@ -20,16 +18,42 @@ let make = () => {
     Some(cleanup)
   })
 
-  let textBoxClick = (_: ReactEvent.Mouse.t) => {
-    gameDispatch({currentGameStatus: Some(gameState.gameStatus), afterGameStatus: None})
+  let textBoxClick = () => {
+    let _ = switch gameState.gameStatus {
+    | MY_DAMAGE(_) =>
+      switch myPokemon {
+      | Some(myPokemon) =>
+        gameDispatch({currentGameStatus: Some(MY_DAMAGE(myPokemon.alive)), afterGameStatus: None})
+      | None => ()
+      }
+    | ENEMY_DAMAGE(_) =>
+      gameDispatch({
+        currentGameStatus: Some(ENEMY_DAMAGE(pokemonState.enemy.alive)),
+        afterGameStatus: None,
+      })
+    | _ => gameDispatch({currentGameStatus: Some(gameState.gameStatus), afterGameStatus: None})
+    }
     pokemonDispatch({
       gameStatus: gameState.gameStatus,
       currentMyPokemon: gameState.sort,
+      mySkillIndex: None,
+      enemySkillIndex: None,
     })
   }
 
   let selectBoxFightClick = (_: ReactEvent.Mouse.t) => {
     gameDispatch({currentGameStatus: None, afterGameStatus: Some(FIGHT_NAV)})
+  }
+
+  let fightBoxSkillClick = (skillIndex: int) => {
+    let randomEnemySkillIndex = Js.Math.floor(Js.Math.random() *. 4.0)
+    pokemonDispatch({
+      gameStatus: gameState.gameStatus,
+      currentMyPokemon: gameState.sort,
+      mySkillIndex: Some(skillIndex),
+      enemySkillIndex: Some(randomEnemySkillIndex),
+    })
+    gameDispatch({currentGameStatus: None, afterGameStatus: Some(ENEMY_ATTACK)})
   }
 
   let boxComponent = switch (gameState.gameStatus, gameState.loading) {
@@ -40,7 +64,7 @@ let make = () => {
     | Some(myPokemon) => myPokemon.skill
     | None => []
     }
-    <FightBox skills={skills} />
+    <FightBox skills={skills} clickSkill={fightBoxSkillClick} />
   | _ =>
     let content = switch myPokemon {
     | Some(myPokemon) =>
