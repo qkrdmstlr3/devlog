@@ -1,3 +1,4 @@
+@module("gatsby") external navigate: string => 'a = "navigate"
 @module("gatsby") external useStaticQuery: string => 'a = "useStaticQuery"
 @module("gatsby") @react.component
 external link: (
