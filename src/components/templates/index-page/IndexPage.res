@@ -56,9 +56,21 @@ let make = () => {
     gameDispatch({currentGameStatus: None, afterGameStatus: Some(ENEMY_ATTACK)})
   }
 
+  let togglePokemonListModal = () => {
+    gameDispatch({currentGameStatus: Some(gameState.gameStatus), afterGameStatus: None})
+  }
+
+  let handleChangePokemon = (sort: GameType.pokemonSort) => {
+    let _ = switch sort === gameState.sort {
+    | true => togglePokemonListModal()
+    | false => gameDispatch({currentGameStatus: Some(POKEMON_LIST(sort)), afterGameStatus: None})
+    }
+  }
+
   let boxComponent = switch (gameState.gameStatus, gameState.loading) {
   | (_, true) => <BorderBox width="100%" height="35%" />
-  | (SELECT_NAV, _) => <SelectBox clickFight={selectBoxFightClick} />
+  | (SELECT_NAV, _) =>
+    <SelectBox clickFight={selectBoxFightClick} openPokemonListModal={togglePokemonListModal} />
   | (FIGHT_NAV, _) =>
     let skills = switch myPokemon {
     | Some(myPokemon) => myPokemon.skill
@@ -74,8 +86,8 @@ let make = () => {
     <TextBox content={content} clickBox={textBoxClick} />
   }
 
-  switch myPokemon {
-  | Some(myPokemon) =>
+  switch (myPokemon, gameState.isPokemonListOpen) {
+  | (Some(myPokemon), false) =>
     <div className={Styles.container}>
       <div className={Styles.pokemonWrapper}>
         <Pokemon
@@ -93,7 +105,13 @@ let make = () => {
       </div>
       boxComponent
     </div>
-  | None => <> {`error`->React.string} </>
+  | (Some(_), true) =>
+    <PokemonListModal
+      pokemons={pokemonState.my}
+      handleChangePokemon={handleChangePokemon}
+      handleClickBackButton={togglePokemonListModal}
+    />
+  | _ => <> {`error`->React.string} </>
   }
 }
 
