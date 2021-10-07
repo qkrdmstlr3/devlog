@@ -1,4 +1,3 @@
-type pokemonSort = React | Graphql
 type skillType = Normal
 type pokemonSkill = {
   name: string,
@@ -6,7 +5,7 @@ type pokemonSkill = {
   skillType: option<skillType>,
 }
 type pokemonStatus = {
-  sort: pokemonSort,
+  sort: GameType.pokemonSort,
   name: string,
   level: int,
   fullHP: int,
@@ -22,7 +21,7 @@ type contextType = {
 
 type actionType = {
   gameStatus: GameType.gameStatus,
-  currentMyPokemon: pokemonSort,
+  currentMyPokemon: GameType.pokemonSort,
   mySkillIndex: option<int>,
   enemySkillIndex: option<int>,
 }
