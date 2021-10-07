@@ -6,7 +6,7 @@ type contextType = {
   /* 게임 진행 상태 */
   gameStatus: GameType.gameStatus,
   /* 현재 내 포켓몬 종류 */
-  sort: PokemonContext.pokemonSort,
+  sort: GameType.pokemonSort,
   /* 내 포켓몬 리스트 목록 */
   isPokemonListOpen: bool,
 }
@@ -23,7 +23,14 @@ let reducer = (state: contextType, action: actionType) => {
     switch currentGameStatus {
     | LOADING => {...state, gameStatus: APPEAR_ENEMY, loading: false}
     | APPEAR_ENEMY => {...state, gameStatus: SUMMON_MY}
+    | SELECT_NAV => {...state, isPokemonListOpen: !state.isPokemonListOpen}
     | SUMMON_MY | CHANGE_POKEMON => {...state, gameStatus: SELECT_NAV}
+    | POKEMON_LIST(sort) => {
+        ...state,
+        gameStatus: CHANGE_POKEMON,
+        sort: sort,
+        isPokemonListOpen: false,
+      }
     | ENEMY_ATTACK => {...state, gameStatus: MY_DAMAGE(BLANK)}
     | MY_DAMAGE(deadOrAlive) =>
       switch deadOrAlive {
@@ -38,7 +45,7 @@ let reducer = (state: contextType, action: actionType) => {
       | DEAD => {...state, gameStatus: ENEMY_DEAD}
       | BLANK => state
       }
-    // | MY_DEAD => {...state, isPokemonListOpen: true}
+    | MY_DEAD => {...state, isPokemonListOpen: true}
     | ENEMY_DEAD => {...state, gameStatus: FINISH_GAME}
     | _ => state
     }
@@ -49,7 +56,7 @@ let reducer = (state: contextType, action: actionType) => {
 let initialValue = {
   loading: true,
   gameStatus: LOADING,
-  sort: PokemonContext.React,
+  sort: GameType.React,
   isPokemonListOpen: false,
 }
 let context = React.createContext((initialValue, ignore))
