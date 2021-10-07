@@ -1,3 +1,4 @@
+type pokemonSort = React | Graphql
 type isAlive = DEAD | ALIVE | BLANK
 type gameStatus =
   /* 로딩 중 */
@@ -22,6 +23,8 @@ type gameStatus =
   | ENEMY_DEAD
   /* 내 포켓몬 죽음 [TextBox Component] */
   | MY_DEAD
+  /* 포켓몬 리스트 모달 */
+  | POKEMON_LIST(pokemonSort)
   /* 포켓몬 교체 [TextBox Component] */
   | CHANGE_POKEMON
   /* 게임 종료 */

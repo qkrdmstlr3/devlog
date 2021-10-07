@@ -9,8 +9,8 @@ let make = (
 ) => {
   let (didMount, setDidMount) = React.useState(_ => false)
   let pokemonIcon = switch pokemon.sort {
-  | PokemonContext.React => Icon.ReactIcon
-  | PokemonContext.Graphql => Icon.GraphqlIcon
+  | GameType.React => Icon.ReactIcon
+  | GameType.Graphql => Icon.GraphqlIcon
   }
 
   React.useEffect0(() => {
