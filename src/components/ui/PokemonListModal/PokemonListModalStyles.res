@@ -63,7 +63,7 @@ module Styles = {
 
   let selectWrapper = css({
     "position": "absolute",
-    "width": "50%",
+    "width": "52%",
     "height": "35%",
     "right": "0",
     "bottom": "0",
