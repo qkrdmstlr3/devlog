@@ -1,11 +1,7 @@
 open SelectBoxStyles
 
 @react.component
-let make = (~clickFight: ReactEvent.Mouse.t => unit) => {
-  let pokemonClickHandler = (_: ReactEvent.Mouse.t) => {
-    ()
-  }
-
+let make = (~clickFight: ReactEvent.Mouse.t => unit, ~openPokemonListModal: unit => unit) => {
   <div className={Styles.container}>
     <BorderBox width="100%" height="100%" />
     <div className={Styles.navWrapper}>
@@ -15,7 +11,7 @@ let make = (~clickFight: ReactEvent.Mouse.t => unit) => {
           <h2 className={Styles.navItem}>
             <Gatsby.link _to="/list"> {`글목록`->React.string} </Gatsby.link>
           </h2>
-          <h2 className={Styles.navItem} onClick={pokemonClickHandler}>
+          <h2 className={Styles.navItem} onClick={_ => openPokemonListModal()}>
             {`포켓몬`->React.string}
           </h2>
           <h2 className={Styles.navItem}> {`가방`->React.string} </h2>
