@@ -12,7 +12,7 @@ let make = () => {
 
   React.useEffect0(() => {
     let timeout = Timeout.setTimeout(() => {
-      gameDispatch({currentGameStatus: Some(gameState.gameStatus), afterGameStatus: None})
+      gameDispatch({customGameStatus: None})
     }, loadingTime)
     let cleanup = () => {Timeout.clearTimeout(timeout)}
     Some(cleanup)
@@ -22,16 +22,12 @@ let make = () => {
     let _ = switch gameState.gameStatus {
     | MY_DAMAGE(_) =>
       switch myPokemon {
-      | Some(myPokemon) =>
-        gameDispatch({currentGameStatus: Some(MY_DAMAGE(myPokemon.alive)), afterGameStatus: None})
+      | Some(myPokemon) => gameDispatch({customGameStatus: Some(MY_DAMAGE(myPokemon.alive))})
       | None => ()
       }
     | ENEMY_DAMAGE(_) =>
-      gameDispatch({
-        currentGameStatus: Some(ENEMY_DAMAGE(pokemonState.enemy.alive)),
-        afterGameStatus: None,
-      })
-    | _ => gameDispatch({currentGameStatus: Some(gameState.gameStatus), afterGameStatus: None})
+      gameDispatch({customGameStatus: Some(ENEMY_DAMAGE(pokemonState.enemy.alive))})
+    | _ => gameDispatch({customGameStatus: None})
     }
     pokemonDispatch({
       gameStatus: gameState.gameStatus,
@@ -42,7 +38,7 @@ let make = () => {
   }
 
   let selectBoxFightClick = (_: ReactEvent.Mouse.t) => {
-    gameDispatch({currentGameStatus: None, afterGameStatus: Some(FIGHT_NAV)})
+    gameDispatch({customGameStatus: Some(FIGHT_NAV)})
   }
 
   let fightBoxSkillClick = (skillIndex: int) => {
@@ -53,24 +49,28 @@ let make = () => {
       mySkillIndex: Some(skillIndex),
       enemySkillIndex: Some(randomEnemySkillIndex),
     })
-    gameDispatch({currentGameStatus: None, afterGameStatus: Some(ENEMY_ATTACK)})
+    gameDispatch({customGameStatus: None})
   }
 
-  let togglePokemonListModal = () => {
-    gameDispatch({currentGameStatus: Some(gameState.gameStatus), afterGameStatus: None})
+  let openPokemonListModal = () => {
+    gameDispatch({customGameStatus: Some(POKEMON_LIST)})
+  }
+
+  let handleReturnSelectNav = () => {
+    gameDispatch({customGameStatus: Some(SELECT_NAV)})
   }
 
   let handleChangePokemon = (sort: GameType.pokemonSort) => {
     let _ = switch sort === gameState.sort {
-    | true => togglePokemonListModal()
-    | false => gameDispatch({currentGameStatus: Some(POKEMON_LIST(sort)), afterGameStatus: None})
+    | true => handleReturnSelectNav()
+    | false => gameDispatch({customGameStatus: Some(CHANGE_POKEMON(sort))})
     }
   }
 
   let boxComponent = switch (gameState.gameStatus, gameState.loading) {
   | (_, true) => <BorderBox width="100%" height="35%" />
   | (SELECT_NAV, _) =>
-    <SelectBox clickFight={selectBoxFightClick} openPokemonListModal={togglePokemonListModal} />
+    <SelectBox clickFight={selectBoxFightClick} openPokemonListModal={openPokemonListModal} />
   | (FIGHT_NAV, _) =>
     let skills = switch myPokemon {
     | Some(myPokemon) => myPokemon.skill
@@ -109,7 +109,7 @@ let make = () => {
     <PokemonListModal
       pokemons={pokemonState.my}
       handleChangePokemon={handleChangePokemon}
-      handleClickBackButton={togglePokemonListModal}
+      handleClickBackButton={handleReturnSelectNav}
     />
   | _ => <> {`error`->React.string} </>
   }

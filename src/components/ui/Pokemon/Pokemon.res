@@ -24,7 +24,7 @@ let make = (
   switch isMyPokemon {
   | true =>
     switch gameStatus {
-    | CHANGE_POKEMON => <> </>
+    | CHANGE_POKEMON(_) => <> </>
     | LOADING | APPEAR_ENEMY | SUMMON_MY =>
       <div
         className={Styles.wrapperFunc(~isMyPokemon, ~xPosition={loading && !didMount ? 1200 : 0})}>

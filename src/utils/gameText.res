@@ -8,7 +8,7 @@ let getGameStatusText = (
   switch gameState.gameStatus {
   | LOADING => ""
   | APPEAR_ENEMY => `앗! 야생의\n ` ++ enemyPokemon.name ++ `(이)가 나타났다!`
-  | SUMMON_MY | CHANGE_POKEMON => `가랏! ` ++ myPokemon.name ++ `!`
+  | SUMMON_MY | CHANGE_POKEMON(_) => `가랏! ` ++ myPokemon.name ++ `!`
   | ENEMY_ATTACK =>
     let skillName = enemyPokemon.skill[enemyPokemon.skillIndex].name
     `야생의 ` ++ enemyPokemon.name ++ `의 ` ++ skillName ++ `!`

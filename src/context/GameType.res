@@ -24,8 +24,8 @@ type gameStatus =
   /* 내 포켓몬 죽음 [TextBox Component] */
   | MY_DEAD
   /* 포켓몬 리스트 모달 */
-  | POKEMON_LIST(pokemonSort)
+  | POKEMON_LIST
   /* 포켓몬 교체 [TextBox Component] */
-  | CHANGE_POKEMON
+  | CHANGE_POKEMON(pokemonSort)
   /* 게임 종료 */
   | FINISH_GAME
