@@ -1,6 +1,6 @@
 ---
 title: Tail-recursion과 Performance(feat. OCaml)
-date: '2021-04-03'
+date: "2021-04-03"
 category: develop
 ---
 
@@ -16,11 +16,7 @@ OS시간에 배운 것을 조금 써먹어보자면, 프로그램을 실행할 �
 
 대략적인 흐름을 이해했으니 간단한 재귀를 한 번 보자.
 
-```ml
-let rec factorial num =
-  if num <= 1 then 1
-  else num * factorial (num-1)
-```
+![tail-recursive-2](https://raw.githubusercontent.com/qkrdmstlr3/devlog/main/posts/contents/develop/code/tail-recursive-2.png)
 
 위 함수는 OCaml로 구현한 팩토리얼함수이다. 이 함수의 매개변수로 숫자를 넣어주면 자신을 반복해서 도는 방식으로 팩토리얼 값을 계산해서 반환한다. 그렇지만 백만과 같은 아주 큰 숫자를 넣게되면 `stack overflow`에러가 발생하게 된다.
 
@@ -40,14 +36,7 @@ Tail-recursion(꼬리재귀)는 stack overflow에러를 피해갈 수 있는 방
 
 Tail-recursive방식을 사용하기 위해서는 필요한 조건이 있다. 그것은 함수에서 가장 마지막에 재귀가 호출되어야 하며, 재귀호출 후에 수행할 연산이 남아있으면 안된다는 것이다. 이전 팩토리얼 함수에서 처럼 factorial호출 후 num을 곱하는 방식은 tail-recursive하게 동작하지 않는다.
 
-```ml
-let factorial num =
-  let rec factorial_rec num acc =
-    if num <= 1 then acc
-    else factorial_rec (num-1) (acc * num)
-  in
-  factorial_rec num 1
-```
+![tail-recursive-1](https://raw.githubusercontent.com/qkrdmstlr3/devlog/main/posts/contents/develop/code/tail-recursive-1.png)
 
 위의 함수를 보면 factorial_rec를 호출한 다음에 처리해야할 연산이 없다. 대신 acc라는 누산기를 사용해서 결과를 저장해나가는 방식을 보여주고 있다.
 
@@ -63,17 +52,7 @@ OCaml의 [List API](https://caml.inria.fr/pub/docs/manual-ocaml/libref/List.html
 
 왜 그렇게 구현되어있을까? 구현 난이도가 높은 것일까?
 
-```ml
-(* 'a list -> 'b list -> ('a * 'b) list *)
-let combine list1 list2 =
-  let rec combine_tail list1 list2 acc =
-    match list1, list2 with
-    | [], [] -> acc
-    | arg1 :: l1, arg2 :: l2 -> combine_tail l1 l2 ((arg1, arg2) :: acc)
-    | _ -> failwith "error"
-  in
-  List.rev (combine_tail list1 list2 [])
-```
+![tail-recursive-3](https://raw.githubusercontent.com/qkrdmstlr3/devlog/main/posts/contents/develop/code/tail-recursive-3.png)
 
 이 코드는 combine함수를 나름의 Tail-recursive로 구현해본 코드이다. 물론 예외처리도 되어있지 않고 딱 정해진 역할만을 수행하는 단순한 코드이지만 얼핏 봐도 복잡해보이지는 않는다. 시간복잡도도 O(n)을 가지고 있으니 비효율적이지도 않다.
 
