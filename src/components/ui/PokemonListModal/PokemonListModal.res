@@ -16,7 +16,7 @@ let make = (
     }, pokemons)
 
     if isMyPokemonAllDead {
-      Gatsby.navigate("/list")
+      Gatsby.navigate("/")
     }
     None
   }, [pokemons])

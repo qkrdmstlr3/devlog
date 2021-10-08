@@ -9,7 +9,7 @@ let make = (~clickFight: ReactEvent.Mouse.t => unit, ~openPokemonListModal: unit
         <nav className={Styles.nav}>
           <h2 className={Styles.navItem} onClick={clickFight}> {`싸우기`->React.string} </h2>
           <h2 className={Styles.navItem}>
-            <Gatsby.link _to="/list"> {`글목록`->React.string} </Gatsby.link>
+            <Gatsby.link _to="/"> {`글목록`->React.string} </Gatsby.link>
           </h2>
           <h2 className={Styles.navItem} onClick={_ => openPokemonListModal()}>
             {`포켓몬`->React.string}

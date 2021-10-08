@@ -1,118 +1,76 @@
 open IndexPageStyles
-open GameContext
+open Nullable
+
+module StringCmp = Belt.Id.MakeComparable({
+  type t = string
+  let cmp = Pervasives.compare
+})
 
 @react.component
-let make = () => {
-  let loadingTime = 2000
-  let (gameState, gameDispatch) = React.useContext(GameContext.context)
-  let (pokemonState, pokemonDispatch) = React.useContext(PokemonContext.context)
-  let myPokemon = Js.Array.find((pokemon: PokemonContext.pokemonStatus) => {
-    gameState.sort === pokemon.sort
-  }, pokemonState.my)
+let make = (~posts: array<Query.PostListQuery.Raw.t_allMarkdownRemark_edges>) => {
+  let all = "all"
+  let (currentCategory, setCurrentCategory) = React.useState(_ => all)
+  let (categoryList, setCategoryList) = React.useState(_ => [])
 
-  React.useEffect0(() => {
-    let timeout = Timeout.setTimeout(() => {
-      gameDispatch({currentGameStatus: Some(gameState.gameStatus), afterGameStatus: None})
-    }, loadingTime)
-    let cleanup = () => {Timeout.clearTimeout(timeout)}
-    Some(cleanup)
-  })
+  let changeSelectedCategory = (category: string) => {
+    setCurrentCategory(_prev => category)
+  }
 
-  let textBoxClick = () => {
-    let _ = switch gameState.gameStatus {
-    | MY_DAMAGE(_) =>
-      switch myPokemon {
-      | Some(myPokemon) =>
-        gameDispatch({currentGameStatus: Some(MY_DAMAGE(myPokemon.alive)), afterGameStatus: None})
-      | None => ()
-      }
-    | ENEMY_DAMAGE(_) =>
-      gameDispatch({
-        currentGameStatus: Some(ENEMY_DAMAGE(pokemonState.enemy.alive)),
-        afterGameStatus: None,
-      })
-    | _ => gameDispatch({currentGameStatus: Some(gameState.gameStatus), afterGameStatus: None})
+  React.useEffect1(() => {
+    let categoryList = Js.Array.map(
+      (post: Query.PostListQuery.Raw.t_allMarkdownRemark_edges) =>
+        (post.node.frontmatter->getExn).category->getExn,
+      posts,
+    )
+    let categorySet = Belt.Set.fromArray(
+      Js.Array.concat([all], categoryList),
+      ~id=module(StringCmp),
+    )
+
+    setCategoryList(_ => categorySet->Belt.Set.toArray)
+    None
+  }, posts)
+
+  /* JSX */
+  let categoryContent = Js.Array.map((category: string) => {
+    <li
+      key={category}
+      className={Styles.categoryItem}
+      onClick={_ => changeSelectedCategory(category)}>
+      {currentCategory === category
+        ? <div className={Styles.select}> {`▶`->React.string} </div>
+        : ""->React.string}
+      {category->React.string}
+    </li>
+  }, categoryList)
+
+  let content = Js.Array.map((post: Query.PostListQuery.Raw.t_allMarkdownRemark_edges) => {
+    let frontmatter = post.node.frontmatter->getExn
+    let category = frontmatter.category->getExn
+    let title = frontmatter.title->getExn
+    let summarizedContent = post.node.excerpt->getExn
+
+    let isPageToShow = currentCategory === all || currentCategory === category
+    switch isPageToShow {
+    | true =>
+      <li key={title} className={Styles.postItem}>
+        <Gatsby.link _to={"/" ++ category ++ "/" ++ title}>
+          <div className={Styles.postCategory}> {("[" ++ category ++ "]")->React.string} </div>
+          <h2 className={Styles.postTitle}> {title->React.string} </h2>
+          <p className={Styles.postContent}> {summarizedContent->React.string} </p>
+        </Gatsby.link>
+      </li>
+    | false => <> </>
     }
-    pokemonDispatch({
-      gameStatus: gameState.gameStatus,
-      currentMyPokemon: gameState.sort,
-      mySkillIndex: None,
-      enemySkillIndex: None,
-    })
-  }
+  }, posts)
 
-  let selectBoxFightClick = (_: ReactEvent.Mouse.t) => {
-    gameDispatch({currentGameStatus: None, afterGameStatus: Some(FIGHT_NAV)})
-  }
-
-  let fightBoxSkillClick = (skillIndex: int) => {
-    let randomEnemySkillIndex = Js.Math.floor(Js.Math.random() *. 4.0)
-    pokemonDispatch({
-      gameStatus: gameState.gameStatus,
-      currentMyPokemon: gameState.sort,
-      mySkillIndex: Some(skillIndex),
-      enemySkillIndex: Some(randomEnemySkillIndex),
-    })
-    gameDispatch({currentGameStatus: None, afterGameStatus: Some(ENEMY_ATTACK)})
-  }
-
-  let togglePokemonListModal = () => {
-    gameDispatch({currentGameStatus: Some(gameState.gameStatus), afterGameStatus: None})
-  }
-
-  let handleChangePokemon = (sort: GameType.pokemonSort) => {
-    let _ = switch sort === gameState.sort {
-    | true => togglePokemonListModal()
-    | false => gameDispatch({currentGameStatus: Some(POKEMON_LIST(sort)), afterGameStatus: None})
-    }
-  }
-
-  let boxComponent = switch (gameState.gameStatus, gameState.loading) {
-  | (_, true) => <BorderBox width="100%" height="35%" />
-  | (SELECT_NAV, _) =>
-    <SelectBox clickFight={selectBoxFightClick} openPokemonListModal={togglePokemonListModal} />
-  | (FIGHT_NAV, _) =>
-    let skills = switch myPokemon {
-    | Some(myPokemon) => myPokemon.skill
-    | None => []
-    }
-    <FightBox skills={skills} clickSkill={fightBoxSkillClick} />
-  | _ =>
-    let content = switch myPokemon {
-    | Some(myPokemon) =>
-      GameText.getGameStatusText(~gameState, ~myPokemon, ~enemyPokemon=pokemonState.enemy)
-    | None => ""
-    }
-    <TextBox content={content} clickBox={textBoxClick} />
-  }
-
-  switch (myPokemon, gameState.isPokemonListOpen) {
-  | (Some(myPokemon), false) =>
-    <div className={Styles.container}>
-      <div className={Styles.pokemonWrapper}>
-        <Pokemon
-          isMyPokemon={false}
-          loading={gameState.loading}
-          pokemon={pokemonState.enemy}
-          gameStatus={gameState.gameStatus}
-        />
-        <Pokemon
-          loading={gameState.loading}
-          isMyPokemon={true}
-          pokemon={myPokemon}
-          gameStatus={gameState.gameStatus}
-        />
-      </div>
-      boxComponent
-    </div>
-  | (Some(_), true) =>
-    <PokemonListModal
-      pokemons={pokemonState.my}
-      handleChangePokemon={handleChangePokemon}
-      handleClickBackButton={togglePokemonListModal}
-    />
-  | _ => <> {`error`->React.string} </>
-  }
+  <div className={Styles.container}>
+    <span className={Styles.backButton}>
+      <Gatsby.link _to="/game"> {`게임으로`->React.string} </Gatsby.link>
+    </span>
+    <ul className={Styles.categoryList}> {React.array(categoryContent)} </ul>
+    <ul className={Styles.postList}> {React.array(content)} </ul>
+  </div>
 }
 
 let default = make

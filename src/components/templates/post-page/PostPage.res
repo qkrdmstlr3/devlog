@@ -17,7 +17,7 @@ let make = (~pageContext: pageContextType) => {
     <article className={Styles.container}>
       <header className={Styles.header}>
         <button className={Styles.backButton}>
-          <Gatsby.link _to="/list"> {`◀뒤로가기`->React.string} </Gatsby.link>
+          <Gatsby.link _to="/"> {`◀뒤로가기`->React.string} </Gatsby.link>
         </button>
         <span className={Styles.category}>
           {category->React.string}
