@@ -82,8 +82,8 @@ let initialValue = {
       alive: ALIVE,
       skillIndex: -1,
       skill: [
-        {name: `스킬1`, damage: 3, skillType: Some(Normal)},
-        {name: `스킬2`, damage: 5, skillType: Some(Normal)},
+        {name: `JSX`, damage: 3, skillType: Some(Normal)},
+        {name: `useState`, damage: 5, skillType: Some(Normal)},
         {name: `-`, damage: 0, skillType: None},
         {name: `-`, damage: 0, skillType: None},
       ],
@@ -97,8 +97,8 @@ let initialValue = {
       alive: ALIVE,
       skillIndex: -1,
       skill: [
-        {name: `스킬1`, damage: 3, skillType: Some(Normal)},
-        {name: `스킬2`, damage: 5, skillType: Some(Normal)},
+        {name: `query`, damage: 3, skillType: Some(Normal)},
+        {name: `schema`, damage: 5, skillType: Some(Normal)},
         {name: `-`, damage: 0, skillType: None},
         {name: `-`, damage: 0, skillType: None},
       ],
@@ -113,10 +113,10 @@ let initialValue = {
     alive: ALIVE,
     skillIndex: -1,
     skill: [
-      {name: `스킬1`, damage: 3, skillType: Some(Normal)},
-      {name: `스킬2`, damage: 4, skillType: Some(Normal)},
-      {name: `스킬3`, damage: 5, skillType: Some(Normal)},
-      {name: `스킬4`, damage: 6, skillType: Some(Normal)},
+      {name: `JSX`, damage: 3, skillType: Some(Normal)},
+      {name: `useState`, damage: 4, skillType: Some(Normal)},
+      {name: `props`, damage: 5, skillType: Some(Normal)},
+      {name: `HOC`, damage: 6, skillType: Some(Normal)},
     ],
   },
 }

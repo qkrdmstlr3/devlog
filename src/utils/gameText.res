@@ -16,7 +16,7 @@ let getGameStatusText = (
   | MY_ATTACK =>
     let skillName = myPokemon.skill[myPokemon.skillIndex].name
     `내 ` ++ myPokemon.name ++ `의 ` ++ skillName ++ `!`
-  | ENEMY_DAMAGE(_) => `야생의 ` ++ myPokemon.name ++ `(이)가 피해를 입었다!`
+  | ENEMY_DAMAGE(_) => `야생의 ` ++ enemyPokemon.name ++ `(이)가 피해를 입었다!`
   | FINISH_GAME => `목록으로 이동한다!!`
   | MY_DEAD => `내 ` ++ myPokemon.name ++ `(이)가 쓰러졌다!`
   | SELECT_NAV | FIGHT_NAV | _ => ""
