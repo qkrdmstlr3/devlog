@@ -16,11 +16,11 @@ OS시간에 배운 것을 조금 써먹어보자면, 프로그램을 실행할 �
 
 대략적인 흐름을 이해했으니 간단한 재귀를 한 번 보자.
 
-![tail-recursive-2](https://raw.githubusercontent.com/qkrdmstlr3/devlog/main/posts/contents/develop/code/tail-recursive-2.png)
+![tail-recursive-2](/develop/code/tail-recursive-2.png)
 
 위 함수는 OCaml로 구현한 팩토리얼함수이다. 이 함수의 매개변수로 숫자를 넣어주면 자신을 반복해서 도는 방식으로 팩토리얼 값을 계산해서 반환한다. 그렇지만 백만과 같은 아주 큰 숫자를 넣게되면 `stack overflow`에러가 발생하게 된다.
 
-![call-stack](https://raw.githubusercontent.com/qkrdmstlr3/devlog/main/posts/contents/develop/images/call-stack.png)
+![call-stack](/develop/images/call-stack.png)
 
 아시다시피 재귀는 자기 자신을 반복해서 호출하는 함수이다. 위의 설명과 더불어 그림에서도 보이듯이 호출할 때 마다 User stack에 한 단계씩 쌓이게 되고 이것은 모두 메모리 사용으로 이어진다. 즉 호출이 반복될수록 User stack이 커지게 되고 그로인해 메모리 낭비가 점점 심해지는 것이다. stack이 너무 많이 쌓이게 되면 에러를 발생시킴으로써 메모리의 과도한 사용을 방지한다.
 
@@ -30,13 +30,13 @@ OS시간에 배운 것을 조금 써먹어보자면, 프로그램을 실행할 �
 
 Tail-recursion(꼬리재귀)는 stack overflow에러를 피해갈 수 있는 방법으로서 아주 효율적으로 메모리를 사용하게 된다.
 
-![tail-call-stack](https://raw.githubusercontent.com/qkrdmstlr3/devlog/main/posts/contents/develop/images/tail-call-stack.png)
+![tail-call-stack](/develop/images/tail-call-stack.png)
 
 위의 사진은 Tail-recursion을 사용했을 때의 스택 변화이다. 호출한 모든 함수를 쌓으면서 진행하지 않는다. 뒤에 호출된 함수(B)는 먼저 호출된 함수(A)의 값을 받고 그 함수(A)에 대한 내용은 스택에서 지워버리는 방식으로 동작한다. 결론적으로 하나의 함수에 대한 정보만 스택에 남아있기 때문에 메모리 사용 측면에 있어서 아주 효율적이다.
 
 Tail-recursive방식을 사용하기 위해서는 필요한 조건이 있다. 그것은 함수에서 가장 마지막에 재귀가 호출되어야 하며, 재귀호출 후에 수행할 연산이 남아있으면 안된다는 것이다. 이전 팩토리얼 함수에서 처럼 factorial호출 후 num을 곱하는 방식은 tail-recursive하게 동작하지 않는다.
 
-![tail-recursive-1](https://raw.githubusercontent.com/qkrdmstlr3/devlog/main/posts/contents/develop/code/tail-recursive-1.png)
+![tail-recursive-1](/develop/code/tail-recursive-1.png)
 
 위의 함수를 보면 factorial_rec를 호출한 다음에 처리해야할 연산이 없다. 대신 acc라는 누산기를 사용해서 결과를 저장해나가는 방식을 보여주고 있다.
 
@@ -46,17 +46,17 @@ Tail-recursive기능은 컴파일러에서 지원을 하고 있어야 하며, �
 
 그렇다면 모든 재귀를 Tail-recursion으로 구현하는 것이 항상 효율적일까? 우선 다음 사진을 한번 보자.
 
-![ocaml-list](https://raw.githubusercontent.com/qkrdmstlr3/devlog/main/posts/contents/develop/images/ocaml-list.png)
+![ocaml-list](/develop/images/ocaml-list.png)
 
 OCaml의 [List API](https://caml.inria.fr/pub/docs/manual-ocaml/libref/List.html)에서 캡처해온 사진이다. 빨간 네모상자를 보면 Tail-recursive으로 표시된 것도 있고 Not-tail-recursive로 표시된 것도 있다. 지금까지 설명한 것으로만 보면 Tail-recursion이 Not-tail-recursive보다 효율적인데, List의 내장함수들 중에는 Not-tail-recursive로 구현된 코드가 십여개 정도 보인다.
 
 왜 그렇게 구현되어있을까? 구현 난이도가 높은 것일까?
 
-![tail-recursive-3](https://raw.githubusercontent.com/qkrdmstlr3/devlog/main/posts/contents/develop/code/tail-recursive-3.png)
+![tail-recursive-3](/develop/code/tail-recursive-3.png)
 
 이 코드는 combine함수를 나름의 Tail-recursive로 구현해본 코드이다. 물론 예외처리도 되어있지 않고 딱 정해진 역할만을 수행하는 단순한 코드이지만 얼핏 봐도 복잡해보이지는 않는다. 시간복잡도도 O(n)을 가지고 있으니 비효율적이지도 않다.
 
-![ocaml-combine-result](https://raw.githubusercontent.com/qkrdmstlr3/devlog/main/posts/contents/develop/images/ocaml-combine-result.png)
+![ocaml-combine-result](/develop/images/ocaml-combine-result.png)
 
 백만개의 길이를 가지는 두 개의 리스트를 내가 만든 combine함수와 List.combine함수에 인자로 주어 돌려본 결과이다. Tail-recursive로 구현한 내 함수는 에러 없이 잘 돌아가는 반면 Not-tail-recursive로 구현된 List함수는 에러를 내뱉는다.
 

@@ -22,7 +22,7 @@ apollo를 사용하기 위해서는 먼저 apolloClient라는 객체를 만들�
 
 apolloClient파일을 만든 후에는 최상단 파일인 \_app.tsx에서 apolloClient객체를 next js에 연결시켜주게 된다.
 
-![apollo-cache-1](https://raw.githubusercontent.com/qkrdmstlr3/devlog/main/posts/contents/develop/code/apollo-cache-1.png)
+![apollo-cache-1](/develop/code/apollo-cache-1.png)
 
 이렇게 함으로써 모든 컴포넌트에서의 Graphql API사용이 가능해진다.
 
@@ -32,7 +32,7 @@ apolloClient파일을 만든 후에는 최상단 파일인 \_app.tsx에서 apoll
 
 데이터 조회에 사용되는 `useQuery` 와 데이터 생성, 변경에 사용되는 `useMutation` 등이 있고, 사용법은 다음과 같다.
 
-![apollo-cache-2](https://raw.githubusercontent.com/qkrdmstlr3/devlog/main/posts/contents/develop/code/apollo-cache-2.png)
+![apollo-cache-2](/develop/code/apollo-cache-2.png)
 
 gql을 이용해서 query문을 작성하고 useQuery를 이용해서 서버에 요청을 보내면 데이터를 가져올 수 있다. useMutation을 사용하면 서버에 데이터를 변경하는 요청을 보내는 것도 가능하다.
 
@@ -48,7 +48,7 @@ ssr을 위해서 next js에서는 getServerSideProps라는 함수를 지원한�
 
 이 함수는 다음과 같이 사용가능하다.
 
-![apollo-cache-3](https://raw.githubusercontent.com/qkrdmstlr3/devlog/main/posts/contents/develop/code/apollo-cache-3.png)
+![apollo-cache-3](/develop/code/apollo-cache-3.png)
 
 매 요청마다 서버에서 데이터를 가져오게 되고, 가져온 데이터를 props로 넘겨주게 됩니다. 그러면 component는 props를 받아서 사용가능해지는 것이다.
 
@@ -60,7 +60,7 @@ getServerSideProps는 서버에서 실행되어진다. 따라서 document등의 
 
 react component밖에서 hook을 호출하게 되면 Invalid hook call에러가 발생하게 된다. 대신 다음과 같은 방법으로 데이터를 가져올 수 있다.
 
-![apollo-cache-4](https://raw.githubusercontent.com/qkrdmstlr3/devlog/main/posts/contents/develop/code/apollo-cache-4.png)
+![apollo-cache-4](/develop/code/apollo-cache-4.png)
 
 아까전에 만들어둔 apolloClient.ts안에서 initilizeApollo()함수로 apolloClient객체를 가져온 뒤 거기서 query함수를 통해서 서버에서 데이터를 가져올 수 있게 되고, return된 값은 Component의 props로 전달된다.
 
@@ -68,9 +68,9 @@ react component밖에서 hook을 호출하게 되면 Invalid hook call에러가 
 
 ## 문제 발생
 
-![apolloclient-cache](https://raw.githubusercontent.com/qkrdmstlr3/devlog/main/posts/contents/develop/images/apolloclient-cache.png)
+![apolloclient-cache](/develop/images/apolloclient-cache.png)
 
-![hook-cache](https://raw.githubusercontent.com/qkrdmstlr3/devlog/main/posts/contents/develop/images/hook-cache.png)
+![hook-cache](/develop/images/hook-cache.png)
 
 첫 번째 이미지는 apolloClient의 query함수를 이용한 뒤 출력한 cache정보이다. 두 번째는 query실행 뒤 useMutation을 이용해서 출력해본 cache정보이다.
 
@@ -82,19 +82,19 @@ list정보와 ManyPost라는 데이터를 apollo hooks를 이용해서 가져왔
 
 ### 해결 방법
 
-![apollo-cache-5](https://raw.githubusercontent.com/qkrdmstlr3/devlog/main/posts/contents/develop/code/apollo-cache-5.png)
+![apollo-cache-5](/develop/code/apollo-cache-5.png)
 
 return할 때 apolloClient.ts파일에서 구현한 addApolloState함수를 가져와서 사용하였다. 이 함수의 내부는 다음과 같다.
 
-![apollo-cache-6](https://raw.githubusercontent.com/qkrdmstlr3/devlog/main/posts/contents/develop/code/apollo-cache-6.png)
+![apollo-cache-6](/develop/code/apollo-cache-6.png)
 
 pageProps에 전달한 client의 캐시정보를 담아둔다. 그렇게 한 후, 위와 동일한 과정을 실행시켜보면
 
-![hook-cache-with-apolloclient](https://raw.githubusercontent.com/qkrdmstlr3/devlog/main/posts/contents/develop/images/hook-cache-with-apolloClient.png)
+![hook-cache-with-apolloclient](/develop/images/hook-cache-with-apolloClient.png)
 
 OnePost와 ManyPost가 같이 캐시에 들어있는 것을 확인할 수 있게 된다. 물론 apolloClient쪽의 캐시 저장소는 그대로 유지되게 된다. apolloClient의 정보를 한 쪽으로 복사시켜서 보낼 수 있게 되는 것 같다. 그런데 어떻게 pageProps로 캐시정보를 넣는 것이 다른 저장소에 적용이될까를 한번 추측해 보았다.
 
-![apollo-cache-7](https://raw.githubusercontent.com/qkrdmstlr3/devlog/main/posts/contents/develop/code/apollo-cache-7.png)
+![apollo-cache-7](/develop/code/apollo-cache-7.png)
 
 이 코드는 next js와 apollo를 연동하는 부분이다.
 

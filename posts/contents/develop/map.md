@@ -20,7 +20,7 @@ category: develop
 
 ## 지도는 어렵다. 왜?
 
-![snoopy-spade](https://raw.githubusercontent.com/qkrdmstlr3/devlog/main/posts/contents/develop/images/snoopy-spade.jpeg)
+![snoopy-spade](/develop/images/snoopy-spade.jpeg)
 
 지도에 대해서 아무것도 모른채 지도를 다루는 것은 매우 어려웠다. 많은 시행착오를 거쳤고, 문서를 여러번 보았고 삽질의 연속이었다. 보통 지도는 canvas에 담겨서 우리에게 보여지게 된다. 구체적인 조작은 지도 라이브러리에 대해서 담당하고 있기 때문에 테스트나 최적화를 하기도 매우 어려웠고 예상과 다르게 동작하는 경우도 많았다.
 
@@ -30,19 +30,19 @@ category: develop
 
 프로젝트 `styled-map-admin-tool`의 모습
 
-![styled-map-admin-tool](https://raw.githubusercontent.com/qkrdmstlr3/devlog/main/posts/contents/develop/images/styled-map-admin-tool.png)
+![styled-map-admin-tool](/develop/images/styled-map-admin-tool.png)
 
 지도 내부를 다루기 위해서는 기본적으로 `지도 데이터`에 대한 이해가 필요했다. 위에서 말했듯이 벡터 기반의 지도에서 데이터는 point, line, polygon으로 나뉠 수 있다. point는 지명이나 상호명, line은 도로, polygon은 건물 등으로 예를 들 수 있곘다. 데이터는 모여서 층([layer](https://docs.mapbox.com/help/glossary/layer/))가 된다. 이 layer들이 쌓여서 지도를 보여주게된다. layer의 순서는 매우 중요한데, 만약 땅layer가 건물layer보다 위에 있다면 건물들은 땅에 가려져서 보이지 않게 될 것이다. 그래서 보통 면적이 보다 넓은 것들이 아래에 오게되고 point들은 가장 최상위에 놓이게된다.
 
 mapbox의 기본(무료) 지도는 100여개의 layer를 기본적으로 제공해준다. 지도에 대한 지식이 전혀없는 우리가 가장 먼저 한 일은 이것들을 분류하는 것이었다. 40여개의 카테고리에 100여개의 layer들을 필요한 부분만 골라서 분류하였다(카테고리는 위의 그림에서 좌측의 tab을 참고). 가장 먼저 발생한 문제는 분류를 하는 과정에서 한 layer가 두 카테고리의 내용을 모두 포함하는 경우였다(point데이터들이 담긴 layer로 기억한다). 문제를 해결하지 못한 상태에서 네이버측 데이터를 추가적으로 제공받게 되었다.
 
-![mapbox-layer](https://raw.githubusercontent.com/qkrdmstlr3/devlog/main/posts/contents/develop/images/mapbox-layer.png)
+![mapbox-layer](/develop/images/mapbox-layer.png)
 
 네이버에서 제공해주신 데이터들은 세 개의 source-layer에 200여개의 데이터가 나뉘어서 담겨있었다. 짐작하셨겠지만 세 개의 source는 point, line, polygon이다. 마찬가지로 데이터들을 분류하는 과정에서 우리는 이 데이터들을 묶어서 우리가 원하는 새로운 layer를 만들어야한다는 것을 알게되었다. mapbox layer에 담긴 데이터들를 우리가 분리해서 한 layer를 여러개의 layer로 만들 수 있다는 것도 이때쯤 깨달았던 것으로 기억한다.
 
 모든 데이터의 분류가 끝났고 카테고리에는 알맞은 데이터로 구성된 layer들이 들어가게 되었다. 두 번째 문제가 발생하였다.
 
-![map-road-problem](https://raw.githubusercontent.com/qkrdmstlr3/devlog/main/posts/contents/develop/images/map-road-problem.png)
+![map-road-problem](/develop/images/map-road-problem.png)
 
 위 그림과 같이 style이 다른 두 layer가 한 카테고리에 같이 묶여있을 경우 UX적으로 문제가 발생할 수 있다. 하나의 길은 5의 굵기를 가지고 다른 길은 3의 굵기를 가진다고 가정해보자. 두 길은 다른 layer에 속해있지만 특성이 비슷해서 같은 카테고리에 묶이게 되었다. 만약 해당 카테고리의 굵기를 4로 변경시킨다면 하나의 길은 굵어질 것이고 다른 하나는 얇아질 것이다. 이것은 UX적으로 매우 심각한 문제라고 생각하였다. 이것을 해결하기 위해서 동일한 카테고리에 들어있는 layer는 동일한 스타일을 적용해주어야만 했다(이 과정에서 지도를 좀 더 자연스럽게 보이게하기 위해서 세부적으로 나누는 방법도 고려하였지만, 프로젝트가 상업적 목적보다는 학습적인 성격을 띄고있어 더욱더 세부적으로 나누는 것이 실력향상에 도움이되지 않는다는 멘토님의 조언을 받았다).
 
@@ -54,7 +54,7 @@ mapbox의 기본(무료) 지도는 100여개의 layer를 기본적으로 제공�
 
 앞서 레이어들을 설명한 경험처럼 구현한 기능들과 동작방법을 설명할 수 있으면 좋겠지만 보안상 머리속에만 남겨두고 어떤 일을 하였으며, 어떤 좌표 기능들을 제공하는지에 대해서만 간단히 언급하고자 한다.(그래서 분량이 적다...). 프로젝트 `라벨어스`의 모습
 
-![labelearth](https://raw.githubusercontent.com/qkrdmstlr3/devlog/main/posts/contents/develop/images/labelearth.png)
+![labelearth](/develop/images/labelearth.png)
 
 3학년 1학기를 다닌 후에 진행한 프로젝트이다. 사진에 보이는 것처럼 라벨링을 함으로서 인공지능이 학습하기 위한 데이터를 만들어주는 도구이다. 앞선 레이어들을 다루는 것과는 달리 지도의 좌표를 계산함으로서 생성/이동/복사 등의 기능을 제공한다.
 

@@ -1,6 +1,6 @@
 ---
-title: '첫 인턴'
-date: '2021-08-20'
+title: "첫 인턴"
+date: "2021-08-20"
 category: life
 ---
 
@@ -43,7 +43,7 @@ category: life
 
 사실상 내가 가장 기대한 부분이고 나의 본래 목적이다. 현업에서의 협업. 확실히 부스트캠프에서 프론트 5명끼리하는 협업과는 달랐다. 주간 스프린트는 보다 체계적으로 진행되었고, 데일리미팅은 딴데로 이야기가 새는 것 없이 간결했다. PM, 프론트엔드, 백엔드, 테스트엔지니어, 디자이너로 구성된 팀에서 일하는 경험은 색달랐고, 재밌었다.
 
-![pass](https://raw.githubusercontent.com/qkrdmstlr3/devlog/main/posts/contents/life/images/sia-git.png)
+![pass](/life/images/sia-git.png)
 
 초반 나의 git브랜치 모습이다. 혼자 개발할 때와 달리 여러개의 feature를 나누어서 작업해야했다. 작업하다 백엔드분께 요청사항이 생기면 pending한 후 다른 일을 해야했고, 그것이 완료되면 리뷰될 때까지 또 다른일을 해야했다. 초반에는 비교적 쉬운 난이도의 일들이 많아 이렇게까지 많이 브랜치가 나누어졌다.
 
@@ -55,7 +55,7 @@ category: life
 
 인공지능은 정확하고 많은 양의 데이터를 필요로 하고 회사는 위성영상을 분석하기 때문에 위성 영상을 효율적으로 라벨링(데이터에 이름을 붙여주는 것) 할 수 있는 도구가 필요했다. 그것이 바로 [라벨어스](https://recruit.si-analytics.ai/fa510954-29e3-420e-89c5-bfab2a936fae)이다.
 
-![labelearth](https://raw.githubusercontent.com/qkrdmstlr3/devlog/main/posts/contents/life/images/labelearth.png)
+![labelearth](/life/images/labelearth.png)
 
 정책적으로 많이 바뀌는 때에 들어와서 많은 것을 구현해야했다. 유저가 가질 수 있는 권한이 재정의되었고, sceneTile(영상 이미지)도 새롭게 가져와야했다. 여기저기 계층적으로 데이터를 보여주어야했고, 가장 핵심적인 기능인 라벨링 페이지의 기능들도 변경된 디자인에 따라서 다시 구현해야했다.
 
