@@ -13,7 +13,7 @@ let make = (~pageContext: pageContextType) => {
   let {category, date, title, html} = pageContext
 
   <Layout>
-    <Seo title={title} description="" />
+    <Seo title={title} description={html} />
     <article className={Styles.container}>
       <header className={Styles.header}>
         <button className={Styles.backButton}>

@@ -9,6 +9,8 @@ module StringCmp = Belt.Id.MakeComparable({
 @react.component
 let make = (~posts: array<Query.PostListQuery.Raw.t_allMarkdownRemark_edges>) => {
   let all = "all"
+  let title = `조개소년 개발블로그`
+  let description = `조개소년의 이런저런 개발 경험을 기록하는 블로그입니다`
   let (currentCategory, setCurrentCategory) = React.useState(_ => all)
   let (categoryList, setCategoryList) = React.useState(_ => [])
 
@@ -65,6 +67,7 @@ let make = (~posts: array<Query.PostListQuery.Raw.t_allMarkdownRemark_edges>) =>
   }, posts)
 
   <div className={Styles.container}>
+    <Seo title={title} description={description} />
     <span className={Styles.backButton}>
       <Gatsby.link _to="/game"> {`게임으로`->React.string} </Gatsby.link>
     </span>
