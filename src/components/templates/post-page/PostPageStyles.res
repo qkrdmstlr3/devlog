@@ -66,6 +66,10 @@ module Styles = {
       "maxWidth": "60%",
       "margin": "0 auto",
     },
+    "a": {
+      "color": "#EB5E5E",
+      "borderBottom": "1px solid #EB5E5E",
+    },
     "code": {
       "background": "#EDEDEB",
       "color": "#EB5E5E",
