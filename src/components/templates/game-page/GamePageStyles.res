@@ -2,6 +2,7 @@ module Styles = {
   open Emotion
 
   let container = css({
+    "userSelect": "none",
     "display": "flex",
     "flexDirection": "column",
     "position": "absolute",

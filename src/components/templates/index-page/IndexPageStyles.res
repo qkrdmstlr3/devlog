@@ -3,6 +3,7 @@ module Styles = {
 
   // wrapper - div
   let container = css({
+    "userSelect": "none",
     "margin": "0 auto",
     "marginBottom": "50px",
     "width": "calc(100% - 50px)",

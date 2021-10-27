@@ -3,6 +3,7 @@ module Styles = {
 
   // wrapper - article
   let container = css({
+    "userSelect": "none",
     "margin": "0 auto",
     "maxWidth": "800px",
     "height": "100%",
