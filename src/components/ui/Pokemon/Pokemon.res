@@ -32,7 +32,7 @@ let make = (
       </div>
     | _ =>
       <div className={Styles.wrapperFunc(~isMyPokemon, ~xPosition=0)}>
-        <Icon icon={pokemonIcon} />
+        <div className={Styles.icon}> <Icon icon={pokemonIcon} /> </div>
         <MyHP
           hp={float_of_int(pokemon.currentHP) /. float_of_int(pokemon.fullHP) *. 100.0}
           name={pokemon.name ++ `: L` ++ string_of_int(pokemon.level)}
@@ -50,7 +50,7 @@ let make = (
             hp={float_of_int(pokemon.currentHP) /. float_of_int(pokemon.fullHP) *. 100.0}
             name={pokemon.name ++ `: L` ++ string_of_int(pokemon.level)}
           />}
-      <div> <Icon icon={pokemonIcon} /> </div>
+      <div className={Styles.icon}> <Icon icon={pokemonIcon} /> </div>
     </div>
   }
 }

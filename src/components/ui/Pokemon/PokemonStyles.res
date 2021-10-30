@@ -4,7 +4,7 @@ module Styles = {
   let wrapperFunc = (~isMyPokemon: bool, ~xPosition: int) => {
     css({
       "width": "90%",
-      "height": "50%",
+      "height": "48%",
       "display": "flex",
       "justifyContent": "space-between",
       "alignItems": isMyPokemon ? "center" : "flex-start",
@@ -23,5 +23,9 @@ module Styles = {
     "@media (max-width:1024px)": {
       "marginLeft": "0px",
     },
+  })
+
+  let icon = css({
+    "height": "100%",
   })
 }

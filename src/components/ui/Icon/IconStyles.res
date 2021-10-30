@@ -2,7 +2,8 @@ module Styles = {
   open Emotion
 
   let iconImage = css({
-    "width": "300px",
-    "height": "300px",
+    "position": "relative",
+    "width": "100%",
+    "height": "100%",
   })
 }
