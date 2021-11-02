@@ -41,6 +41,7 @@ let make = (
     let pokemonIcon = switch pokemon.sort {
     | GameType.React => Icon.ReactIcon
     | GameType.Graphql => Icon.GraphqlIcon
+    | GameType.TypeScript => Icon.TypeScriptIcon
     }
 
     <div key={pokemon.name}>

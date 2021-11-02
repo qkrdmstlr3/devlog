@@ -1,12 +1,13 @@
 open IconStyles
 
-type iconType = ReactIcon | GraphqlIcon | LeftChevronIcon
+type iconType = ReactIcon | GraphqlIcon | TypeScriptIcon | LeftChevronIcon
 
 @react.component
 let make = (~icon: iconType) => {
   let src = switch icon {
   | ReactIcon => "https://techstack-generator.vercel.app/react-icon.svg"
   | GraphqlIcon => "https://techstack-generator.vercel.app/graphql-icon.svg"
+  | TypeScriptIcon => "https://techstack-generator.vercel.app/ts-icon.svg"
   | _ => ""
   }
 

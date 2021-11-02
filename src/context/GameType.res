@@ -1,4 +1,4 @@
-type pokemonSort = React | Graphql
+type pokemonSort = React | Graphql | TypeScript
 type isAlive = DEAD | ALIVE | BLANK
 type gameStatus =
   /* 로딩 중 */
