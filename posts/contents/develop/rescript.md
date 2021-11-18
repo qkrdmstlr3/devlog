@@ -1,5 +1,5 @@
 ---
-title: ReScript로 블로그 재구현하기(작성중)
+title: ReScript로 블로그 재구현하기
 date: "2021-11-18"
 category: develop
 ---
