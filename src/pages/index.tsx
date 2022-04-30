@@ -15,6 +15,7 @@ interface MainProps {
         node: {
           excerpt: string;
           frontmatter: {
+            id: string;
             category: string;
             date: string;
             title: string;
@@ -43,6 +44,7 @@ export const query = graphql`
         node {
           excerpt(truncate: true, pruneLength: 200)
           frontmatter {
+            id
             title
             date(formatString: "YYYY-MM-DD")
             category

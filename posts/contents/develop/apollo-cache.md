@@ -1,4 +1,5 @@
 ---
+id: 3
 title: NextJS & Apollo사용과 cache관리에 대하여
 date: '2021-02-20'
 category: develop

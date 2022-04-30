@@ -1,4 +1,5 @@
 ---
+id: 6
 title: '첫 인턴'
 date: '2021-08-20'
 category: life

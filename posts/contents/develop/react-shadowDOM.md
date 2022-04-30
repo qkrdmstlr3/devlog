@@ -1,4 +1,5 @@
 ---
+id: 1
 title: React에서 shadowDOM사용하기
 date: '2021-02-10'
 category: develop
