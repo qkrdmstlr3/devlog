@@ -3,7 +3,7 @@ module.exports = {
     title: `조개소년 개발블로그`,
     description: `개발자 조개소년의 개발블로그`,
     author: `shellboy`,
-    siteUrl: "https://shellboylog.com",
+    siteUrl: 'https://shellboylog.com',
   },
   plugins: [
     `gatsby-plugin-emotion`,
@@ -14,23 +14,23 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: "shellboy devlog",
-        short_name: "shellboy devlog",
-        start_url: "/",
-        icon: "posts/icon/favicon.png",
+        name: 'shellboy devlog',
+        short_name: 'shellboy devlog',
+        start_url: '/',
+        icon: 'posts/icon/favicon.png',
       },
     },
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: "contents",
+        name: 'contents',
         path: `${__dirname}/posts/contents`,
       },
     },
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: "fonts",
+        name: 'fonts',
         path: `${__dirname}/posts/fonts`,
       },
     },
@@ -54,23 +54,26 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-plugin-robots-txt",
+      resolve: 'gatsby-plugin-robots-txt',
       options: {
-        host: "https://shellboylog.com",
-        sitemap: "https://shellboylog.com/sitemap.xml",
-        policy: [{ userAgent: "*", allow: "/" }],
+        host: 'https://shellboylog.com',
+        sitemap: 'https://shellboylog.com/sitemap.xml',
+        policy: [{ userAgent: '*', allow: '/' }],
       },
     },
     {
-      resolve: "gatsby-plugin-nprogress",
+      resolve: 'gatsby-plugin-nprogress',
       options: {
-        color: "tomato",
+        color: 'tomato',
         showSpinner: false,
         minimum: 0.5,
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: require.resolve('./src/components/layout/Layout/index.tsx'),
+      },
+    },
   ],
 };
