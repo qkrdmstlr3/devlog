@@ -18,6 +18,7 @@ interface MainProps {
             category: string;
             date: string;
             title: string;
+            summary: string;
           };
         };
       }[];
@@ -45,6 +46,7 @@ export const query = graphql`
             title
             date(formatString: "YYYY-MM-DD")
             category
+            summary
           }
         }
       }
