@@ -1,4 +1,5 @@
 ---
+id: 8
 title: 아토믹 디자인과 테스팅
 date: '2021-10-20'
 category: develop

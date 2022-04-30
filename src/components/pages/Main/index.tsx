@@ -8,6 +8,7 @@ export interface PostMetaDataType {
   excerpt: string;
   category: string;
   summary: string;
+  id: string;
 }
 
 interface MainProps {
@@ -47,7 +48,7 @@ function Main({ postMetaData }: MainProps) {
         {postMetaData.map((data) =>
           selectedCategory === ALL_POSTS || selectedCategory === data.category ? (
             <Style.ItemContainer key={data.title}>
-              <Link to={`/${data.category}/${data.title}`}>
+              <Link to={`/${data.category}/${data.id}`}>
                 <Style.ItemCategory>[{data.category}]</Style.ItemCategory>
                 <Style.ItemTitle>{data.title}</Style.ItemTitle>
                 <Style.ItemContent>{data.summary}</Style.ItemContent>

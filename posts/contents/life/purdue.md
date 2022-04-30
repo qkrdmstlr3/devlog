@@ -1,4 +1,5 @@
 ---
+id: 11
 title: 퍼듀대학교 - 생활
 date: '2022-02-26'
 category: life
