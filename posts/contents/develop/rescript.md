@@ -1,7 +1,8 @@
 ---
 title: ReScript로 블로그 재구현하기
-date: "2021-11-18"
+date: '2021-11-18'
 category: develop
+summary: 블로그를 신생언어인 ReScript로 마이그레이션한 결과에 대해서 소개하는 글
 ---
 
 ## 계기

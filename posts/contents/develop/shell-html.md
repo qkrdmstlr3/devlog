@@ -1,7 +1,8 @@
 ---
 title: shell-html DOCS
-date: "2021-06-22"
+date: '2021-06-22'
 category: develop
+summary: React대신 custom-element와 shadowDOM으로 간단한 라이브러리 구현, 배포한 경험에 대한 글
 ---
 
 ## shell-html?

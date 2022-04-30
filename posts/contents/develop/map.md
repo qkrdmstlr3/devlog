@@ -1,7 +1,8 @@
 ---
 title: 지도 개발기
-date: "2021-08-21"
+date: '2021-08-21'
 category: develop
+summary: 두 번의 지도 프로젝트를 하면서 지도 개발에 대한 경험들을 소개한 글(feat. MapboxJS & OpenLayers)
 ---
 
 ## 들어가며

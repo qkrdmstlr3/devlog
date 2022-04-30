@@ -1,7 +1,8 @@
 ---
 title: React에서 shadowDOM사용하기
-date: "2021-02-10"
+date: '2021-02-10'
 category: develop
+summary: shadowDOM을 이용해서 독립적인 환경을 만들어 문제를 해결한 경험에 대해서 기술한 글
 ---
 
 ## 들어가며 & 문제발생
