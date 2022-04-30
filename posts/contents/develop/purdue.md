@@ -1,7 +1,8 @@
 ---
 title: 퍼듀대학교 - 캡스톤 프로젝트
-date: "2022-03-11"
+date: '2022-03-11'
 category: develop
+summary: 3학년 겨울방학 퍼듀대학교에서 수행한 프로젝트에 대해 기술한 글
 ---
 
 3학년 겨울방학 두 달간 미국의 퍼듀대학교에서 수행한 프로젝트에 대해서 기술한다. 우리의 프로젝트를 간단히 요약하자면 `YOLOX모델을 통한 쓰러진 나무 탐지 및 시각화`이다. 이 글은 프로젝트 기간동안 작성한 IEEE양식에 맞춰 작성된 논문에 기반한 중간/최종발표를 기반으로 쓰여졌으며 내가 경험했던 부분들에 대한 설명들을 덧붙였다. 따라서 프로젝트의 Introduction, Methodology, Implementation, Conclusion순으로 설명하며 Methodology내용 중 일부분은 Implementation에 통합하여 설명한다.

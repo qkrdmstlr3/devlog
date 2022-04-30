@@ -1,7 +1,8 @@
 ---
 title: NextJS & Apollo사용과 cache관리에 대하여
-date: "2021-02-20"
+date: '2021-02-20'
 category: develop
+summary: 블로그v1 구현시 사용한 NextJS & Apollo에서 발생한 문제를 해결한 경험에 대한 글
 ---
 
 ## 들어가며

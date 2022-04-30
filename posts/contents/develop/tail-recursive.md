@@ -1,7 +1,8 @@
 ---
 title: Tail-recursion과 Performance(feat. OCaml)
-date: "2021-04-03"
+date: '2021-04-03'
 category: develop
+summary: 3.1학기 프로그래밍언어개론 수업을 들으며 생긴 Tail-recursion에 대한 궁금증과 그 답변에 대한 글
 ---
 
 ## 들어가며
