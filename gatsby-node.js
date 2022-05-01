@@ -9,6 +9,14 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
             test: /@toast-ui\/react-editor/,
             use: loaders.null(),
           },
+          {
+            test: /@toast-ui\/editor-plugin-code-syntax-highlight/,
+            use: loaders.null(),
+          },
+          {
+            test: /prismjs/,
+            use: loaders.null(),
+          },
         ],
       },
     });
