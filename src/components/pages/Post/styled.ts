@@ -66,6 +66,10 @@ export const WysiwygStyle = styled.div`
 
   img {
     display: block;
-    margin: 0 auto;
+    margin: 0 auto !important;
+  }
+
+  pre {
+    font-size: 15px;
   }
 `;

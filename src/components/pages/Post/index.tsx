@@ -8,6 +8,10 @@ import { ITemplateProps } from '../../../interface';
 import * as Style from './styled';
 
 // Language Style
+import 'prismjs/components/prism-jsx.js';
+import 'prismjs/components/prism-tsx.js';
+import 'prismjs/components/prism-ocaml.js';
+import 'prismjs/components/prism-rescript.js';
 import 'prismjs/components/prism-typescript.js';
 
 type IPostTemplateProps = ITemplateProps<{
