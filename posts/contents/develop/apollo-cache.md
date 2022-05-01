@@ -24,7 +24,19 @@ apollo를 사용하기 위해서는 먼저 apolloClient라는 객체를 만들�
 
 apolloClient파일을 만든 후에는 최상단 파일인 \_app.tsx에서 apolloClient객체를 next js에 연결시켜주게 된다.
 
-![apollo-cache-1](/develop/code/apollo-cache-1.png)
+```jsx
+import { ApolloProvider } from '@apollo/client';
+import { useApollo } from '@~/apolloClient';
+
+function App() {
+  const apolloClient = useApollo(pageProps);
+  return (
+    <ApolloProvider client={apolloClient}>
+      <Component {...pageProps} />
+    </ApolloProvider>
+  );
+}
+```
 
 이렇게 함으로써 모든 컴포넌트에서의 Graphql API사용이 가능해진다.
 
@@ -34,7 +46,34 @@ apolloClient파일을 만든 후에는 최상단 파일인 \_app.tsx에서 apoll
 
 데이터 조회에 사용되는 `useQuery` 와 데이터 생성, 변경에 사용되는 `useMutation` 등이 있고, 사용법은 다음과 같다.
 
-![apollo-cache-2](/develop/code/apollo-cache-2.png)
+```jsx
+import React from 'react';
+import { gql, useQuery } from '@apollo/client';
+
+const GET_POSTS_QUERY = gql`
+  query {
+    posts {
+      id
+      content
+    }
+  }
+`;
+
+function PostList() {
+  const { loading, error, data } = useQuery(GET_POSTS_QUERY);
+
+  if (loading) return <span>Loading...</span>;
+  return (
+    <ul>
+      {data.posts.map(({ id, content }) => (
+        <li key={id}>{content}</li>
+      ))}
+    </ul>
+  );
+}
+
+export default PostList;
+```
 
 gql을 이용해서 query문을 작성하고 useQuery를 이용해서 서버에 요청을 보내면 데이터를 가져올 수 있다. useMutation을 사용하면 서버에 데이터를 변경하는 요청을 보내는 것도 가능하다.
 
@@ -50,7 +89,21 @@ ssr을 위해서 next js에서는 getServerSideProps라는 함수를 지원한�
 
 이 함수는 다음과 같이 사용가능하다.
 
-![apollo-cache-3](/develop/code/apollo-cache-3.png)
+```jsx
+function components({ data }) {
+  return <div>{data}</div>
+}
+
+export const getServerSideProps = async (context) => {
+  const data = await fetch(...);
+
+  return {
+    props: {
+      data
+    },
+  }
+}
+```
 
 매 요청마다 서버에서 데이터를 가져오게 되고, 가져온 데이터를 props로 넘겨주게 됩니다. 그러면 component는 props를 받아서 사용가능해지는 것이다.
 
@@ -62,7 +115,27 @@ getServerSideProps는 서버에서 실행되어진다. 따라서 document등의 
 
 react component밖에서 hook을 호출하게 되면 Invalid hook call에러가 발생하게 된다. 대신 다음과 같은 방법으로 데이터를 가져올 수 있다.
 
-![apollo-cache-4](/develop/code/apollo-cache-4.png)
+```jsx
+import { initializeApollo } from '@~/apolloClient';
+import GET_POST_QUERY from '@~/getPost.query';
+
+export const getServerSideProps = async (context) => {
+  const apolloClient = initializeApollo();
+
+  const { data } = await apolloClient.query({
+    query: GET_POST_QUERY,
+    variables: {
+      postId: Number(post),
+    },
+  });
+
+  return {
+    props: {
+      data,
+    },
+  };
+};
+```
 
 아까전에 만들어둔 apolloClient.ts안에서 initilizeApollo()함수로 apolloClient객체를 가져온 뒤 거기서 query함수를 통해서 서버에서 데이터를 가져올 수 있게 되고, return된 값은 Component의 props로 전달된다.
 
@@ -84,11 +157,39 @@ list정보와 ManyPost라는 데이터를 apollo hooks를 이용해서 가져왔
 
 ### 해결 방법
 
-![apollo-cache-5](/develop/code/apollo-cache-5.png)
+```jsx
+import { initializeApollo, addApolloState } from '@~/apolloClient';
+import GET_POST_QUERY from '@~/getPost.query';
+
+export const getServerSideProps = async (context) => {
+  const apolloClient = initializeApollo();
+
+  const { data } = await apolloClient.query({
+    query: GET_POST_QUERY,
+    variables: {
+      postId: Number(post),
+    },
+  });
+
+  return addApolloState(apolloClient, {
+    props: { data },
+  });
+};
+```
 
 return할 때 apolloClient.ts파일에서 구현한 addApolloState함수를 가져와서 사용하였다. 이 함수의 내부는 다음과 같다.
 
-![apollo-cache-6](/develop/code/apollo-cache-6.png)
+```jsx
+export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__';
+
+export function addApolloState(clientm pageProps) {
+  if (pageProps?.props) {
+    pageProps.props[APOLLO_STATE_PROP_NAME] = client.cache.extract()
+  }
+
+  return pageProps
+}
+```
 
 pageProps에 전달한 client의 캐시정보를 담아둔다. 그렇게 한 후, 위와 동일한 과정을 실행시켜보면
 
@@ -96,7 +197,21 @@ pageProps에 전달한 client의 캐시정보를 담아둔다. 그렇게 한 후
 
 OnePost와 ManyPost가 같이 캐시에 들어있는 것을 확인할 수 있게 된다. 물론 apolloClient쪽의 캐시 저장소는 그대로 유지되게 된다. apolloClient의 정보를 한 쪽으로 복사시켜서 보낼 수 있게 되는 것 같다. 그런데 어떻게 pageProps로 캐시정보를 넣는 것이 다른 저장소에 적용이될까를 한번 추측해 보았다.
 
-![apollo-cache-7](/develop/code/apollo-cache-7.png)
+```jsx
+import { ApolloProvider } from '@apollo/client';
+import { useApollo } from '@~/apolloClient';
+
+function App({ Component, pageProps }) {
+  const apolloClient = useApollo(pageProps);
+  return (
+    <ApolloProvider client={apolloClient}>
+      <Component {...pageProps} />
+    </ApolloProvider>
+  );
+}
+
+export default App;
+```
 
 이 코드는 next js와 apollo를 연동하는 부분이다.
 

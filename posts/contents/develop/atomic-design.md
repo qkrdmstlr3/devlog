@@ -60,7 +60,28 @@ summary: 아토믹 디자인 패턴을 사용하며 느낀 생각들과 테스�
 
 맨날 말로만 들어오던 테스트코드를 이번 기회에 제대로 사용해보고자하는 것이 나름대로의 목표였다. atomic으로 나뉘어진 덕분에 테스트의 단위가 명확하게 나누어진다고 느꼈고 덕분에 테스트의 범위를 나누기에 수월한 느낌이 있었다. 컴포넌트 이외에도 사용되는 util파일들에 대한 테스트코드도 작성하였다.
 
-![test-tsx](/develop/code/atomic-render.png)
+```tsx
+import React, { FC, ReactElement } from 'react';
+import { render, RenderOptions } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './redux/store';
+
+const AllTheProviders: FC = ({ children }) => {
+  return (
+    <Provider store={store}>
+      <div id="modal" />
+      <BrowserRouter>{children}</BrowserRouter>
+    </Provider>
+  );
+};
+
+const customRender = (ui: ReactElement, options?: Omit<RenderOptions, 'wrapper'>) =>
+  render(ui, { wrapper: AllTheProviders, ...options });
+
+export * from '@testing-library/react';
+export { customRenderer as render };
+```
 
 redux, routing, api통신등 의존성 있는 부분이 많아 환경설정에 조금 시간이 걸렸다. 우선 jest에서 렌더링을 위해 redux와 routing이 설정된 `test-utils`라는 render모듈을 만들어 사용을 하였고, RTL(React-testing-library)를 사용해서 컴포넌트 렌더링 테스트를 진행하였다. api는 단위테스트에서는 jest에서 지원하는 `mockup api`를 사용하였고, storybook에서는 `axios-mock-adapter`라는 라이브러리를 사용하여 목업요청을 만들어주었다.
 

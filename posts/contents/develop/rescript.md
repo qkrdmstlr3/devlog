@@ -30,7 +30,30 @@ ReScript에 대한 설명보다는 ReScript를 사용이유와 사용하며 겪�
 
 좌측 사진은 이전의 TS코드이고 우측은 ReScript코드이다. 정말 부끄러운 코드이지만 TS로 구현할 당시에는 enum등을 사용하지 않고 아무생각없이 숫자로 구별하였었는데, ReScript에서는 강력한 타입을 지원하기 때문에 기존에 숫자로 표현하던 상태값을 각각의 타입으로 구현할 수 있게되었다.
 
-![rescript-compare](/develop/code/rescript-pattern-matching.png)
+```rescript
+let getGameStatusText = (
+  ~gameState: GameContext.contextType,
+  ~myPokemon: PokemonContext.pokemonStatus,
+  ~enemyPokemon: PokemonContext.pokemonStatus,
+) => {
+  switch gameState.gameStatus {
+    |LOADING => ""
+    |APPEAR_ENEMY => `앗! 야생의\n `++enemyPokemon.name++`(이)가 나타났다!`
+    |SUMMON_MY | CHANGE_POKEMON(_) => `가랏! `++myPokemon.name++`!`
+    |ENEMY_ATTACK =>
+      let skillName = enemyPokemon.skill[enemyPokemon.skillIndex].name
+      `야생의 `++enemyPokemon.name++`의 `++skillName++`!`
+    |MY_DAMAGE(_) => `내 `++myPokemon.name++`(이)가 피해를 입었다!`
+    |MY_ATTACK =>
+      let skillName = myPokemon.skill[myPokemon.skillIndex].name
+      `내 `++myPokemon.name++`의 `++skillName++`!`
+    |ENEMY_DAMAGE(_) => `야생의 `++enemyPokemon.name++`(이)가 피해를 입었다!`
+    |FINISH_GAME => `목록으로 이동한다!!`
+    |MY_DEAD => `내 `++myPokemon.name++`(이)가 쓰러졌다!`
+    |SELECT_NAV | FIGHT_NAV | _ => ""
+  }
+}
+```
 
 타입과 함께 패턴매칭을 함께 사용함으로써 사이드이펙트가 거의 일어나지 않는 구현할 수 있는 시너지를 보인다. 조금이라도 타입이 맞지 않는다면 컴파일에러가 발생하게된다. TS를 사용하면서 좀 더 조건이 강화되었으면 좋겠다는 생각을 했었는데, 이것들을 사용하면서 게임자체의 상태관리를 기존 코드보다 좀 더 직관적으로 작성할 수 있는 것이 정말 좋았다. 물론 직관적으로 변하기는 했지만 여러가지 조건들에 따라서 상황들이 바뀌다보니 헷갈리는 부분이 많다. 이러한 문제는 xstate라는 라이브러리를 도입해서 상태관리를 하는 것도 계획중이다.
 
