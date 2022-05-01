@@ -12,6 +12,7 @@
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
+    "@toast-ui/editor-plugin-code-syntax-highlight": "^3.0.0",
     "@toast-ui/react-editor": "^3.1.5",
     "gatsby": "^4.13.1",
     "gatsby-plugin-emotion": "^7.13.0",
@@ -27,6 +28,7 @@
     "gatsby-source-filesystem": "^4.13.0",
     "gatsby-transformer-remark": "^5.13.0",
     "gatsby-transformer-sharp": "^4.13.0",
+    "prismjs": "^1.28.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-helmet": "^6.1.0"
@@ -46,6 +48,7 @@
   },
   "devDependencies": {
     "@types/node": "^17.0.30",
+    "@types/prismjs": "^1.26.0",
     "@types/react": "^18.0.8",
     "@types/react-dom": "^18.0.3",
     "@types/react-helmet": "^6.1.5",

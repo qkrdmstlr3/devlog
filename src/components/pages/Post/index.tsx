@@ -1,6 +1,14 @@
+// Dependencies
 import React from 'react';
+import { Link } from 'gatsby';
+import Prism from 'prismjs';
 import { Viewer } from '@toast-ui/react-editor';
+import codeSyntaxHighlight from '@toast-ui/editor-plugin-code-syntax-highlight';
 import { ITemplateProps } from '../../../interface';
+import * as Style from './styled';
+
+// Language Style
+import 'prismjs/components/prism-typescript.js';
 
 type IPostTemplateProps = ITemplateProps<{
   html: string;
@@ -10,9 +18,30 @@ type IPostTemplateProps = ITemplateProps<{
   markdown: string;
 }>;
 
-function Post({ pageResources }: IPostTemplateProps) {
-  if (typeof window !== `undefined`) return <Viewer initialValue={pageResources.json.pageContext.markdown} />;
-  return <></>;
+function Post({
+  pageResources: {
+    json: { pageContext },
+  },
+}: IPostTemplateProps) {
+  return (
+    <Style.Wrapper>
+      <Style.Header>
+        <Style.Back>
+          <Link to="/">◀뒤로가기</Link>
+        </Style.Back>
+        <Style.Category>
+          {pageContext.category}
+          <Style.Date>/ {pageContext.date}</Style.Date>
+        </Style.Category>
+      </Style.Header>
+      <Style.Title>{pageContext.title}</Style.Title>
+      <Style.WysiwygStyle>
+        {typeof window !== `undefined` && (
+          <Viewer plugins={[[codeSyntaxHighlight, { highlighter: Prism }]]} initialValue={pageContext.markdown} />
+        )}
+      </Style.WysiwygStyle>
+    </Style.Wrapper>
+  );
 }
 
 export default Post;
