@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export type PokemonSort = 'react' | 'graphql' | 'docker';
 
@@ -86,9 +86,11 @@ export const myPokemonInitial: MyPokemonList = {
   },
 };
 
+const deepCopy = <T>(obj: T): T => JSON.parse(JSON.stringify(obj));
+
 const usePokemon = ({ currentMyPokemon }: UsePokemonParameter) => {
-  const [myPokemon, setMyPokemon] = useState<MyPokemonList>(myPokemonInitial);
-  const [enemyPokemon, setEnemyPokemon] = useState<PokemonType>(enemyPokemonInitial);
+  const [myPokemon, setMyPokemon] = useState<MyPokemonList>(deepCopy(myPokemonInitial));
+  const [enemyPokemon, setEnemyPokemon] = useState<PokemonType>(deepCopy(enemyPokemonInitial));
   const isAllDead = Object.values(myPokemon).every((pokemon) => pokemon.currentHP === 0);
 
   const damageMy = (pokemon: PokemonSort, newHP: number) => {
