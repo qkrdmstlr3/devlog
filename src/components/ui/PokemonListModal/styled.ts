@@ -74,7 +74,9 @@ export const SelectWrapper = styled.div`
   background-color: white;
 `;
 
-export const SelectList = styled.ul``;
+export const SelectList = styled.ul`
+  list-style: none;
+`;
 
 export const SelectMenu = styled.li`
   margin-bottom: 20px;

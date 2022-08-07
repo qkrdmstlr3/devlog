@@ -8,23 +8,33 @@ import * as Style from './styled';
 import useGame, { GameAction, GameState, SELECT_OPTION_TYPE } from '../../../hooks/useGame';
 import usePokemon, { PokemonSort, PokemonType } from '../../../hooks/usePokemon';
 import Pokemon from '../../ui/Pokemon';
+import { navigate } from 'gatsby';
 
 interface TextComponentProps {
   gameState: GameState;
   myPokemon: PokemonType;
   enemyPokemon: PokemonType;
   dispatch: React.Dispatch<GameAction>;
+  isAllDead: boolean;
   damageEnemy: (hp: number) => void;
   damageMy: (sort: PokemonSort, hp: number) => void;
 }
 
-function TextComponent({ gameState, enemyPokemon, myPokemon, dispatch, damageEnemy, damageMy }: TextComponentProps) {
+function TextComponent({
+  isAllDead,
+  gameState,
+  enemyPokemon,
+  myPokemon,
+  dispatch,
+  damageEnemy,
+  damageMy,
+}: TextComponentProps) {
   return match(gameState._t)
     .with('enemySummonState', () => (
       <TextBox content={`앗 야생의 ${enemyPokemon.name}(이)가 나타났다!`} onClick={() => dispatch({ _t: 'FIGHT' })} />
     ))
     .with('mySummonState', () => (
-      <TextBox content={`가랏 ${myPokemon.name}!!`} onClick={() => dispatch({ _t: 'OPEN_OPTION' })} />
+      <TextBox content={`가랏 ${myPokemon.name}!`} onClick={() => dispatch({ _t: 'OPEN_OPTION' })} />
     ))
     .with('myOptionState', () => (
       <SelectBox onClickOption={(option: SELECT_OPTION_TYPE) => dispatch({ _t: 'SELECT_OPTION', option })} />
@@ -43,22 +53,25 @@ function TextComponent({ gameState, enemyPokemon, myPokemon, dispatch, damageEne
     ))
     .with('enemyAttackState', () => (
       <TextBox
-        content={`야생 ${enemyPokemon.name}의 ${gameState.game.enemySkill}`}
+        content={`야생 ${enemyPokemon.name}의 ${gameState.game.enemySkill}!`}
         onClick={() => {
-          const newHP = myPokemon.currentHP - enemyPokemon.skill[gameState.game.enemySkill].damage;
+          const newHP = Math.max(myPokemon.currentHP - enemyPokemon.skill[gameState.game.enemySkill].damage, 0);
           damageMy(gameState.game.myPokemon, newHP);
-          dispatch({ _t: 'MY_DAMAGE', isMyDead: !newHP });
+          dispatch({ _t: 'MY_DAMAGE' });
         }}
       />
     ))
     .with('myDamageState', () => (
-      <TextBox content={`내 ${myPokemon.name}이(가) 피해를 입었다!`} onClick={() => dispatch({ _t: 'MY_ATTACK' })} />
+      <TextBox
+        content={`내 ${myPokemon.name}이(가) 피해를 입었다!`}
+        onClick={() => dispatch({ _t: 'CHECK_MY_DEAD', isMyDead: !myPokemon.currentHP })}
+      />
     ))
     .with('myAttackState', () => (
       <TextBox
-        content={`내 ${myPokemon.name}의 ${gameState.game.mySkill}!!`}
+        content={`내 ${myPokemon.name}의 ${gameState.game.mySkill}!`}
         onClick={() => {
-          const newHP = enemyPokemon.currentHP - myPokemon.skill[gameState.game.mySkill].damage;
+          const newHP = Math.max(enemyPokemon.currentHP - myPokemon.skill[gameState.game.mySkill].damage, 0);
           damageEnemy(newHP);
           dispatch({ _t: 'ENEMY_DAMAGE', isEnemyDead: !newHP });
         }}
@@ -70,12 +83,22 @@ function TextComponent({ gameState, enemyPokemon, myPokemon, dispatch, damageEne
         onClick={() => dispatch({ _t: 'OPEN_OPTION' })}
       />
     ))
+    .with('myPokemonDeadState', () => (
+      <TextBox
+        content={`내 ${myPokemon.name}이(가) 쓰러졌다!`}
+        onClick={() => dispatch({ _t: 'MY_DEAD', isAliveOther: !isAllDead })}
+      />
+    ))
+    .with('retireMyState', () => <TextBox content="돌아와!" onClick={() => dispatch({ _t: 'RESUMMON' })} />)
+    .with('myLoseState', () => (
+      <TextBox content={`야생의 ${enemyPokemon.name}에게 패배했다!`} onClick={() => navigate('/')} />
+    ))
     .otherwise(() => <TextBox content="" onClick={() => {}} isLoading />);
 }
 
 function Game() {
   const { gameState, dispatch } = useGame();
-  const { currentMyPokemon, enemyPokemon, damageEnemy, damageMy } = usePokemon({
+  const { isAllDead, myPokemonList, currentMyPokemon, enemyPokemon, damageEnemy, damageMy } = usePokemon({
     currentMyPokemon: gameState.game.myPokemon,
   });
 
@@ -87,8 +110,18 @@ function Game() {
     () => clearTimeout(timeout);
   }, []);
 
+  const backToGame = () => {
+    dispatch({ _t: 'OPEN_OPTION' });
+  };
+  const changePokemon = (sort: PokemonSort) => dispatch({ _t: 'SELECT_MY_POKEMON', sort });
+
   return gameState.game.isPokemonList ? (
-    <PokemonListModal />
+    <PokemonListModal
+      myPokemons={myPokemonList}
+      currentMyPokemonSort={currentMyPokemon.sort}
+      backToGame={backToGame}
+      changePokemon={changePokemon}
+    />
   ) : (
     <Style.Wrapper>
       <Style.PokemonContainer>
@@ -102,10 +135,18 @@ function Game() {
           isMyPokemon
           pokemon={currentMyPokemon}
           isGameLoading={gameState.game.loading}
-          isBattleStartted={!(gameState._t === 'initialState' || gameState._t === 'enemySummonState')}
+          isOpenMe={gameState._t !== 'retireMyState'}
+          isBattleStartted={
+            !(
+              gameState._t === 'initialState' ||
+              gameState._t === 'enemySummonState' ||
+              gameState._t === 'retireMyState'
+            )
+          }
         />
       </Style.PokemonContainer>
       <TextComponent
+        isAllDead={isAllDead}
         gameState={gameState}
         myPokemon={currentMyPokemon}
         enemyPokemon={enemyPokemon}

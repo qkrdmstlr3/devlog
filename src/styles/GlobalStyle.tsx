@@ -30,6 +30,11 @@ function GlobalStyle(): React.ReactElement {
         input:focus {
           outline: none;
         }
+
+        ul {
+          padding: 0;
+          margin: 0;
+        }
       `}
     />
   );

@@ -1,10 +1,11 @@
 import { useReducer } from 'react';
 import { match } from 'ts-pattern';
+import { PokemonSort } from './usePokemon';
 
 type GameContext = {
   isGameOver: boolean;
   loading: boolean;
-  myPokemon: 'react' | 'graphql';
+  myPokemon: PokemonSort;
   mySkill: string;
   enemySkill: string;
   isPokemonList: boolean;
@@ -37,8 +38,10 @@ export type GameState =
   | { _t: 'myPokemonDeadState'; game: GameContext }
   // 적 포켓몬이 쓰러진 상태
   | { _t: 'enemyPokemonDeadState'; game: GameContext }
-  // 게임 종료
-  | { _t: 'gameOverState'; game: GameContext };
+  // 이겼다
+  | { _t: 'myWinState'; game: GameContext }
+  // 졌다
+  | { _t: 'myLoseState'; game: GameContext };
 
 export type SELECT_OPTION_TYPE = 'fight' | 'pokemon';
 export type GameAction =
@@ -46,22 +49,26 @@ export type GameAction =
   | { _t: 'FIGHT' }
   | { _t: 'OPEN_OPTION' }
   | { _t: 'SELECT_OPTION'; option: SELECT_OPTION_TYPE }
-  | { _t: 'SELECT_MY_POKEMON'; name: string }
+  | { _t: 'SELECT_MY_POKEMON'; sort: PokemonSort }
   | { _t: 'RESUMMON' }
   | { _t: 'SKILL_SELECT__ENEMY_ATTACK'; mySkill: string; enemySkill: string }
-  | { _t: 'MY_DAMAGE'; isMyDead: boolean }
+  | { _t: 'MY_DAMAGE' }
+  | { _t: 'CHECK_MY_DEAD'; isMyDead: boolean }
   | { _t: 'MY_DEAD'; isAliveOther: boolean }
-  | { _t: 'MY_ATTACK' }
   | { _t: 'ENEMY_DAMAGE'; isEnemyDead: boolean };
 
 const reducer: React.Reducer<GameState, GameAction> = (state, action): GameState =>
   match<GameAction['_t'], GameState>(action._t)
     .with('START', () => ({ ...state, game: { ...state.game, loading: false }, _t: 'enemySummonState' }))
     .with('FIGHT', () => ({ ...state, _t: 'mySummonState' }))
-    .with('OPEN_OPTION', () => ({ ...state, _t: 'myOptionState' }))
+    .with('OPEN_OPTION', () => ({ ...state, game: { ...state.game, isPokemonList: false }, _t: 'myOptionState' }))
     .with('SELECT_OPTION', () =>
       action._t === 'SELECT_OPTION'
-        ? { ...state, _t: action.option === 'fight' ? 'skillOption' : 'pokemonOptionState' }
+        ? {
+            ...state,
+            game: { ...state.game, isPokemonList: action.option === 'pokemon' },
+            _t: action.option === 'pokemon' ? 'pokemonOptionState' : 'skillOption',
+          }
         : state
     )
     .with('SKILL_SELECT__ENEMY_ATTACK', () =>
@@ -73,21 +80,28 @@ const reducer: React.Reducer<GameState, GameAction> = (state, action): GameState
           }
         : state
     )
-    .with('MY_DAMAGE', () =>
-      action._t === 'MY_DAMAGE' ? { ...state, _t: action.isMyDead ? 'myPokemonDeadState' : 'myDamageState' } : state
+    .with('MY_DAMAGE', () => ({ ...state, _t: 'myDamageState' }))
+    .with('CHECK_MY_DEAD', () =>
+      action._t === 'CHECK_MY_DEAD' ? { ...state, _t: action.isMyDead ? 'myPokemonDeadState' : 'myAttackState' } : state
     )
-    .with('MY_ATTACK', () => ({ ...state, _t: 'myAttackState' }))
     .with('ENEMY_DAMAGE', () =>
-      action._t === 'ENEMY_DAMAGE' ? { ...state, _t: action.isEnemyDead ? 'gameOverState' : 'enemyDamageState' } : state
+      action._t === 'ENEMY_DAMAGE' ? { ...state, _t: action.isEnemyDead ? 'myWinState' : 'enemyDamageState' } : state
     )
     .with('MY_DEAD', () =>
-      action._t === 'MY_DEAD' ? { ...state, _t: action.isAliveOther ? 'pokemonOptionState' : 'gameOverState' } : state
+      action._t === 'MY_DEAD'
+        ? {
+            ...state,
+            game: { ...state.game, isPokemonList: action.isAliveOther },
+            _t: action.isAliveOther ? 'pokemonOptionState' : 'myLoseState',
+          }
+        : state
     )
     .with('SELECT_MY_POKEMON', () =>
       action._t === 'SELECT_MY_POKEMON'
         ? {
             ...state,
-            _t: action.name === state.game.myPokemon ? 'myOptionState' : 'retireMyState',
+            game: { ...state.game, isPokemonList: false, myPokemon: action.sort },
+            _t: action.sort === state.game.myPokemon ? 'myOptionState' : 'retireMyState',
           }
         : state
     )

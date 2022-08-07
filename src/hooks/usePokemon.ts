@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export type PokemonSort = 'react' | 'graphql';
+export type PokemonSort = 'react' | 'graphql' | 'docker';
 
 type SkillType = {
   /** 입힐 수 있는 데미지 평균 */
@@ -35,14 +35,16 @@ export const enemyPokemonInitial: PokemonType = {
   fullHP: 100,
   currentHP: 100,
   skill: {
-    skill1: { damage: 3, type: '노멀' },
-    skill2: { damage: 4, type: '노멀' },
-    skill3: { damage: 5, type: '노멀' },
-    skill4: { damage: 6, type: '노멀' },
+    skill1: { damage: 13, type: '노멀' },
+    skill2: { damage: 14, type: '노멀' },
+    skill3: { damage: 15, type: '노멀' },
+    skill4: { damage: 16, type: '노멀' },
   },
 };
 
-export const myPokemonInitial: { [name in PokemonSort]: PokemonType } = {
+export type MyPokemonList = { [name in PokemonSort]: PokemonType };
+
+export const myPokemonInitial: MyPokemonList = {
   react: {
     sort: 'react',
     name: '리액트',
@@ -50,10 +52,10 @@ export const myPokemonInitial: { [name in PokemonSort]: PokemonType } = {
     fullHP: 20,
     currentHP: 20,
     skill: {
-      skill1: { damage: 3, type: '노멀' },
-      skill2: { damage: 4, type: '격투' },
-      skill3: { damage: 4, type: '물' },
-      skill4: { damage: 4, type: '노멀' },
+      skill1: { damage: 13, type: '노멀' },
+      skill2: { damage: 14, type: '격투' },
+      skill3: { damage: 14, type: '물' },
+      skill4: { damage: 14, type: '노멀' },
     },
   },
   graphql: {
@@ -63,17 +65,31 @@ export const myPokemonInitial: { [name in PokemonSort]: PokemonType } = {
     fullHP: 20,
     currentHP: 20,
     skill: {
-      skill1: { damage: 3, type: '노멀' },
-      skill2: { damage: 4, type: '격투' },
-      skill3: { damage: 4, type: '드래곤' },
-      skill4: { damage: 4, type: '드래곤' },
+      skill1: { damage: 13, type: '노멀' },
+      skill2: { damage: 14, type: '격투' },
+      skill3: { damage: 14, type: '드래곤' },
+      skill4: { damage: 14, type: '드래곤' },
+    },
+  },
+  docker: {
+    sort: 'docker',
+    name: '도커',
+    level: 50,
+    fullHP: 20,
+    currentHP: 20,
+    skill: {
+      skill1: { damage: 13, type: '노멀' },
+      skill2: { damage: 14, type: '격투' },
+      skill3: { damage: 14, type: '물' },
+      skill4: { damage: 14, type: '노멀' },
     },
   },
 };
 
 const usePokemon = ({ currentMyPokemon }: UsePokemonParameter) => {
-  const [myPokemon, setMyPokemon] = useState<{ [name in PokemonSort]: PokemonType }>(myPokemonInitial);
+  const [myPokemon, setMyPokemon] = useState<MyPokemonList>(myPokemonInitial);
   const [enemyPokemon, setEnemyPokemon] = useState<PokemonType>(enemyPokemonInitial);
+  const isAllDead = Object.values(myPokemon).every((pokemon) => pokemon.currentHP === 0);
 
   const damageMy = (pokemon: PokemonSort, newHP: number) => {
     myPokemon[pokemon].currentHP = newHP;
@@ -85,8 +101,10 @@ const usePokemon = ({ currentMyPokemon }: UsePokemonParameter) => {
   };
 
   return {
+    myPokemonList: myPokemon,
     currentMyPokemon: myPokemon[currentMyPokemon],
     enemyPokemon: enemyPokemon,
+    isAllDead,
     damageMy,
     damageEnemy,
   };

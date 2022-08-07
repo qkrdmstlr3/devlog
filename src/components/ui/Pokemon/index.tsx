@@ -18,10 +18,11 @@ interface PokemonProps {
   isMyPokemon: boolean;
   isGameLoading: boolean;
   isBattleStartted: boolean;
+  isOpenMe?: boolean;
   pokemon: PokemonType;
 }
 
-function Pokemon({ isMyPokemon, pokemon, isGameLoading, isBattleStartted }: PokemonProps) {
+function Pokemon({ isMyPokemon, isOpenMe, pokemon, isGameLoading, isBattleStartted }: PokemonProps) {
   return isMyPokemon ? (
     isBattleStartted ? (
       <Style.Wrapper isMyPokemon={isMyPokemon}>
@@ -38,7 +39,7 @@ function Pokemon({ isMyPokemon, pokemon, isGameLoading, isBattleStartted }: Poke
     ) : (
       <Style.Wrapper isMyPokemon={isMyPokemon}>
         <motion.div animate={{ x: isGameLoading ? [1200, 0] : 0 }} transition={{ duration: 2 }}>
-          <Style.Person />
+          {isOpenMe && <Style.Person />}
         </motion.div>
         {isGameLoading ? <div /> : <MonsterBall />}
       </Style.Wrapper>
