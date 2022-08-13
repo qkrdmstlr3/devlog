@@ -7,7 +7,7 @@ import TextBox from '../../ui/TextBox';
 import * as Style from './styled';
 import useGame, { GameAction, GameState, SELECT_OPTION_TYPE } from '../../../hooks/useGame';
 import usePokemon, { PokemonSort, PokemonType } from '../../../hooks/usePokemon';
-import Pokemon from '../../ui/Pokemon';
+import Pokemon, { AnimSort } from '../../ui/Pokemon';
 import { navigate } from 'gatsby';
 
 interface TextComponentProps {
@@ -115,6 +115,20 @@ function Game() {
   };
   const changePokemon = (sort: PokemonSort) => dispatch({ _t: 'SELECT_MY_POKEMON', sort });
 
+  const enemyAnimSort = match<GameState['_t'], AnimSort>(gameState._t)
+    .with('initialState', () => 'Summon')
+    .with('enemyDamageState', () => 'Damaged')
+    .with('enemyAttackState', () => 'Attack')
+    .with('enemyPokemonDeadState', () => 'Die')
+    .otherwise(() => 'None');
+
+  const myAnimSort = match<GameState['_t'], AnimSort>(gameState._t)
+    .with('mySummonState', () => 'Summon')
+    .with('myDamageState', () => 'Damaged')
+    .with('myAttackState', () => 'Attack')
+    .with('myPokemonDeadState', () => 'Die')
+    .otherwise(() => 'None');
+
   return gameState.game.isPokemonList ? (
     <PokemonListModal
       myPokemons={myPokemonList}
@@ -128,12 +142,14 @@ function Game() {
         <Pokemon
           isMyPokemon={false}
           pokemon={enemyPokemon}
+          animSort={enemyAnimSort}
           isGameLoading={gameState.game.loading}
           isBattleStartted={!(gameState._t === 'initialState' || gameState._t === 'enemySummonState')}
         />
         <Pokemon
           isMyPokemon
           pokemon={currentMyPokemon}
+          animSort={myAnimSort}
           isGameLoading={gameState.game.loading}
           isOpenMe={gameState._t !== 'retireMyState'}
           isBattleStartted={
