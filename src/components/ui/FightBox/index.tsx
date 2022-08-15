@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { PokemonType } from '../../../hooks/usePokemon';
+import useKeyboard from '../../../utils/useKeyboard';
+
 import BorderBox from '../BorderBox';
 import * as Style from './styled';
 
@@ -9,27 +11,33 @@ interface FightBoxProps {
 }
 
 function FightBox({ myPokemon, onClickSkill }: FightBoxProps) {
-  const [currentSkill, setCurrentSkill] = useState('');
+  const mySkills = myPokemon.skill;
+  const mySkillNames = Object.keys(mySkills);
+  const mySkillsLength = mySkillNames.length;
 
-  const mouseEnterHandler = (skill: string) => {
-    const isNotSkill = skill === currentSkill;
-    if (isNotSkill) return;
+  const [currentSkillIndex, setCurrentSkillIndex] = useState(0);
+  useKeyboard({
+    keyEvents: [
+      { key: 'ArrowDown', keyEvent: () => setCurrentSkillIndex(Math.min(mySkillsLength - 1, currentSkillIndex + 1)) },
+      { key: 'ArrowUp', keyEvent: () => setCurrentSkillIndex(Math.max(0, currentSkillIndex - 1)) },
+      { key: 'Space', keyEvent: () => onClickSkill(mySkillNames[currentSkillIndex]) },
+    ],
+  });
 
-    setCurrentSkill(skill);
-  };
+  const mouseEnterHandler = (index: number) => setCurrentSkillIndex(index);
 
   return (
     <Style.Wrapper>
       <Style.LeftWrapper>
         <BorderBox>
           <Style.SkillBox>
-            {Object.keys(myPokemon.skill).map((skill) => (
+            {mySkillNames.map((skill, index) => (
               <Style.Skill
                 key={skill}
-                onMouseEnter={() => mouseEnterHandler(skill)}
+                onMouseEnter={() => mouseEnterHandler(index)}
                 onClick={() => onClickSkill(skill)}
               >
-                {skill === currentSkill && <Style.Select>▶</Style.Select>}
+                {index === currentSkillIndex && <Style.Select>▶</Style.Select>}
                 {skill}
               </Style.Skill>
             ))}
@@ -38,7 +46,7 @@ function FightBox({ myPokemon, onClickSkill }: FightBoxProps) {
       </Style.LeftWrapper>
       <Style.RightWrapper>
         <BorderBox>
-          {currentSkill && <Style.SkillTypeBox>기술 타입 / {myPokemon.skill[currentSkill].type}</Style.SkillTypeBox>}
+          <Style.SkillTypeBox>기술 타입 / {Object.values(mySkills)[currentSkillIndex].type}</Style.SkillTypeBox>
         </BorderBox>
       </Style.RightWrapper>
     </Style.Wrapper>
