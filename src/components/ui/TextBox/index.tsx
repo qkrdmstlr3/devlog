@@ -1,13 +1,13 @@
 // Dependencies
-import React, { useEffect } from 'react';
+import React from 'react';
 import * as Style from './styled';
-import { navigate } from 'gatsby';
 
 // Components
 import BorderBox from '../BorderBox';
 
 // Hooks
 import typingHook from '../../../hooks/useTyping';
+import useKeyboard from '../../../utils/useKeyboard';
 
 interface TextBoxProps {
   content: string;
@@ -17,10 +17,11 @@ interface TextBoxProps {
 
 function TextBox({ content, onClick, isLoading = false }: TextBoxProps): React.ReactElement {
   const [text, isTypingEnd] = typingHook({ content });
-
   const clickHandler = () => {
     if (isTypingEnd) onClick();
   };
+
+  useKeyboard({ keyEvents: [{ key: 'Space', keyEvent: clickHandler }] });
 
   return (
     <Style.Wrapper onClick={clickHandler}>
