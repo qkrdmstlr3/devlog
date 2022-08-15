@@ -10,6 +10,7 @@ import BorderBox from '../BorderBox';
 //Type
 import { SizeEnum } from '../types';
 import { MyPokemonList, PokemonSort } from '../../../hooks/usePokemon';
+import useKeyboard from '../../../utils/useKeyboard';
 
 interface PokemonListModalProps {
   currentMyPokemonSort: PokemonSort;
@@ -19,28 +20,60 @@ interface PokemonListModalProps {
 }
 
 function PokemonListModal({ myPokemons, currentMyPokemonSort, changePokemon, backToGame }: PokemonListModalProps) {
-  const [pokemonSelectedSort, setPokemonSelectedSort] = useState<PokemonSort>();
-
-  const pokemonClickHandler = (sort: PokemonSort) => {
-    if (!myPokemons[sort].currentHP) return;
-    const samePokemon = sort === pokemonSelectedSort;
-    setPokemonSelectedSort(samePokemon ? undefined : sort);
-  };
+  const isMyPokemonLive = !!myPokemons[currentMyPokemonSort].currentHP;
+  const myPokemonSorts = Object.keys(myPokemons) as PokemonSort[];
+  const [selectedPokemonIndex, setSelectedPokemonIndex] = useState(0);
+  const [selectorIndex, setSelectorIndex] = useState<number>();
 
   const changePokemonClickHandler = () => {
-    const isSamePokemon = currentMyPokemonSort === pokemonSelectedSort;
-    if (!pokemonSelectedSort || isSamePokemon) return backToGame();
-    return changePokemon(pokemonSelectedSort);
+    const isSamePokemon = currentMyPokemonSort === myPokemonSorts[selectedPokemonIndex];
+    if (isSamePokemon) return backToGame();
+    return changePokemon(myPokemonSorts[selectedPokemonIndex]);
+  };
+  const selector = [{ text: '교체하기', onClick: changePokemonClickHandler }];
+  if (isMyPokemonLive) selector.push({ text: '전투로 돌아가기', onClick: backToGame });
+
+  useKeyboard({
+    keyEvents: [
+      {
+        key: 'ArrowDown',
+        keyEvent: () =>
+          selectorIndex === undefined
+            ? setSelectedPokemonIndex(Math.min(myPokemonSorts.length - 1, selectedPokemonIndex + 1))
+            : setSelectorIndex(Math.min(selector.length - 1, selectorIndex + 1)),
+      },
+      {
+        key: 'ArrowUp',
+        keyEvent: () =>
+          selectorIndex === undefined
+            ? setSelectedPokemonIndex(Math.max(0, selectedPokemonIndex - 1))
+            : setSelectorIndex(Math.max(0, selectorIndex - 1)),
+      },
+      {
+        key: 'Space',
+        keyEvent: () =>
+          myPokemons[myPokemonSorts[selectedPokemonIndex]].currentHP
+            ? selectorIndex === undefined
+              ? setSelectorIndex(0)
+              : selector[selectorIndex].onClick()
+            : {},
+      },
+      { key: 'Escape', keyEvent: () => setSelectorIndex(undefined) },
+    ],
+  });
+
+  const pokemonClickHandler = (index: number) => {
+    setSelectedPokemonIndex(index);
   };
 
   return (
     <Style.Wrapper>
       <Style.PokemonWrapper>
-        {Object.values(myPokemons).map((pokemon) => (
+        {Object.values(myPokemons).map((pokemon, index) => (
           <div key={pokemon.name}>
-            <Style.Pokemon onClick={() => pokemonClickHandler(pokemon.sort)}>
+            <Style.Pokemon onClick={() => pokemonClickHandler(index)}>
               <Style.LeftWrapper>
-                {pokemonSelectedSort === pokemon.sort && <Style.Select>▶</Style.Select>}
+                {selectedPokemonIndex === index && <Style.Select>▶</Style.Select>}
                 <Style.IconWrapper>
                   <Icon icon={pokemon.sort as PokemonSort} size={SizeEnum.large} />
                 </Style.IconWrapper>
@@ -56,17 +89,23 @@ function PokemonListModal({ myPokemons, currentMyPokemonSort, changePokemon, bac
           </div>
         ))}
       </Style.PokemonWrapper>
-      <BorderBox height="35%">{pokemonSelectedSort ? '' : '포켓몬을 선택하세요'}</BorderBox>
-      {pokemonSelectedSort && (
-        <Style.SelectWrapper>
-          <BorderBox height="100%">
+      <BorderBox height="35%" />
+      <Style.SelectWrapper>
+        <BorderBox height="100%">
+          {myPokemons[myPokemonSorts[selectedPokemonIndex]].currentHP ? (
             <Style.SelectList>
-              <Style.SelectMenu onClick={changePokemonClickHandler}>교체하기</Style.SelectMenu>
-              <Style.SelectMenu onClick={backToGame}>전투로 돌아가기</Style.SelectMenu>
+              {selector.map((selector, index) => (
+                <Style.SelectMenu key={selector.text} onClick={selector.onClick}>
+                  {selectorIndex === index && <Style.Select>▶</Style.Select>}
+                  {selector.text}
+                </Style.SelectMenu>
+              ))}
             </Style.SelectList>
-          </BorderBox>
-        </Style.SelectWrapper>
-      )}
+          ) : (
+            <div>다른 포켓몬을 골라주세요</div>
+          )}
+        </BorderBox>
+      </Style.SelectWrapper>
     </Style.Wrapper>
   );
 }

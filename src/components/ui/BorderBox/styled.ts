@@ -29,7 +29,7 @@ export const InnerWrapper = styled.div<WrapperProps>`
   border: 5px solid black;
   border-top: 10px solid black;
   border-radius: 10px;
-  font-size: 40px;
+  font-size: 37px;
   font-family: 'NeoDunggeunmo', sans-serif;
   background-color: white;
 `;

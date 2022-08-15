@@ -79,6 +79,7 @@ export const SelectList = styled.ul`
 `;
 
 export const SelectMenu = styled.li`
+  position: relative;
   margin-bottom: 20px;
   cursor: pointer;
 `;
