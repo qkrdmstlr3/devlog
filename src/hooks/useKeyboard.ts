@@ -21,7 +21,6 @@ const keyMapper: { [key in KeyType]: string } = {
 
 const useKeyboard = ({ keyEvents }: KeyboardHandlerProps) => {
   const executeEvents = (event: KeyboardEvent) => {
-    console.log(event.key);
     keyEvents.forEach(({ key, keyEvent }) => {
       if (event.key === keyMapper[key]) keyEvent(event);
     });

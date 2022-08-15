@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { PokemonType } from '../../../hooks/usePokemon';
-import useKeyboard from '../../../utils/useKeyboard';
+import useKeyboard from '../../../hooks/useKeyboard';
 
 import BorderBox from '../BorderBox';
 import * as Style from './styled';

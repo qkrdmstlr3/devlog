@@ -7,7 +7,7 @@ import BorderBox from '../BorderBox';
 
 // Hooks
 import typingHook from '../../../hooks/useTyping';
-import useKeyboard from '../../../utils/useKeyboard';
+import useKeyboard from '../../../hooks/useKeyboard';
 
 interface TextBoxProps {
   content: string;

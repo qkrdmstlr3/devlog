@@ -10,7 +10,7 @@ import BorderBox from '../BorderBox';
 //Type
 import { SizeEnum } from '../types';
 import { MyPokemonList, PokemonSort } from '../../../hooks/usePokemon';
-import useKeyboard from '../../../utils/useKeyboard';
+import useKeyboard from '../../../hooks/useKeyboard';
 
 interface PokemonListModalProps {
   currentMyPokemonSort: PokemonSort;

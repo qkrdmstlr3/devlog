@@ -6,7 +6,7 @@ import * as Style from './styled';
 // Components
 import BorderBox from '../BorderBox';
 import { SELECT_OPTION_TYPE } from '../../../hooks/useGame';
-import useKeyboard from '../../../utils/useKeyboard';
+import useKeyboard from '../../../hooks/useKeyboard';
 
 interface SelectBoxProps {
   onClickOption: (type: SELECT_OPTION_TYPE) => void;
