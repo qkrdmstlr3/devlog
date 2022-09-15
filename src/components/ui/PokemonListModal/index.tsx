@@ -1,13 +1,13 @@
+/* eslint-disable no-nested-ternary */
 // Dependencies
 import React, { useState } from 'react';
 import * as Style from './styled';
-import { navigate } from 'gatsby';
 
 // Component
 import Icon from '../Icon';
 import BorderBox from '../BorderBox';
 
-//Type
+// Type
 import { SizeEnum } from '../types';
 import { MyPokemonList, PokemonSort } from '../../../hooks/usePokemon';
 import useKeyboard from '../../../hooks/useKeyboard';

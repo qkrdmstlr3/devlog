@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { match } from 'ts-pattern';
+import { navigate } from 'gatsby';
 import PokemonListModal from '../../ui/PokemonListModal';
 import SelectBox from '../../ui/SelectBox';
 import FightBox from '../../ui/FightBox';
@@ -8,7 +9,7 @@ import * as Style from './styled';
 import useGame, { GameAction, GameState, SELECT_OPTION_TYPE } from '../../../hooks/useGame';
 import usePokemon, { PokemonSort, PokemonType } from '../../../hooks/usePokemon';
 import Pokemon, { AnimSort } from '../../ui/Pokemon';
-import { navigate } from 'gatsby';
+import { mainPageRoute } from '../../../route';
 
 interface TextComponentProps {
   gameState: GameState;
@@ -91,7 +92,7 @@ function TextComponent({
     ))
     .with('retireMyState', () => <TextBox content="돌아와!" onClick={() => dispatch({ _t: 'RESUMMON' })} />)
     .with('myLoseState', () => (
-      <TextBox content={`야생의 ${enemyPokemon.name}에게 패배했다!`} onClick={() => navigate('/')} />
+      <TextBox content={`야생의 ${enemyPokemon.name}에게 패배했다!`} onClick={() => navigate(mainPageRoute)} />
     ))
     .otherwise(() => <TextBox content="" onClick={() => {}} isLoading />);
 }
