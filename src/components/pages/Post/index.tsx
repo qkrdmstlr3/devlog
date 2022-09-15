@@ -4,7 +4,7 @@ import { graphql, Link } from 'gatsby';
 import Prism from 'prismjs';
 import { Viewer } from '@toast-ui/react-editor';
 import codeSyntaxHighlight from '@toast-ui/editor-plugin-code-syntax-highlight';
-import SEO from '../../../libs/SEO';
+import SEO from '../../../utils/SEO';
 import * as Style from './styled';
 
 // Language Style
@@ -13,6 +13,7 @@ import 'prismjs/components/prism-tsx.js';
 import 'prismjs/components/prism-ocaml.js';
 import 'prismjs/components/prism-rescript.js';
 import 'prismjs/components/prism-typescript.js';
+import { mainPageRoute } from '../../../route';
 
 function Post({ data: { markdownRemark: post } }: any) {
   return (
@@ -23,7 +24,7 @@ function Post({ data: { markdownRemark: post } }: any) {
           <Style.Wrapper>
             <Style.Header>
               <Style.Back>
-                <Link to="/">◀뒤로가기</Link>
+                <Link to={mainPageRoute}>◀뒤로가기</Link>
               </Style.Back>
               <Style.Category>
                 {post.frontmatter.category}

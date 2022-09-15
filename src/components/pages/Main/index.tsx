@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'gatsby';
 import * as Style from './styled';
-import SEO from '../../../libs/SEO';
+import SEO from '../../../utils/SEO';
+import { gamePageRoute, generatePostPageRoute } from '../../../route';
 
 export interface PostMetaDataType {
   title: string;
@@ -37,7 +38,7 @@ function Main({ postMetaData }: MainProps) {
       <SEO />
       <Style.Wrapper>
         <Style.BackButton>
-          <Link to="/game">게임으로</Link>
+          <Link to={gamePageRoute}>게임으로</Link>
         </Style.BackButton>
         <Style.CategoryList>
           {categorys.map((category) => (
@@ -51,7 +52,7 @@ function Main({ postMetaData }: MainProps) {
           {postMetaData.map((data) =>
             selectedCategory === ALL_POSTS || selectedCategory === data.category ? (
               <Style.ItemContainer key={data.title}>
-                <Link to={`/${data.category}/${data.id}`}>
+                <Link to={generatePostPageRoute(data.category, data.id)}>
                   <Style.ItemCategory>[{data.category}]</Style.ItemCategory>
                   <Style.ItemTitle>{data.title}</Style.ItemTitle>
                   <Style.ItemContent>{data.summary}</Style.ItemContent>

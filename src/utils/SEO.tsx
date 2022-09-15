@@ -3,13 +3,13 @@ import { Helmet } from 'react-helmet';
 import { useLocation } from '@reach/router';
 import { graphql, useStaticQuery } from 'gatsby';
 
-interface SeoProps {
+interface SEOProps {
   title?: string;
   description?: string;
   author?: string;
 }
 
-function Seo({ title = '', description = '', author = 'shellboy' }: SeoProps) {
+function SEO({ title = '', description = '', author = 'shellboy' }: SEOProps) {
   const {
     site: { siteMetadata },
   } = useStaticQuery(query);
@@ -62,4 +62,4 @@ const query = graphql`
   }
 `;
 
-export default Seo;
+export default SEO;
