@@ -70,11 +70,11 @@ module.exports = {
         minimum: 0.5,
       },
     },
-    // {
-    //   resolve: `gatsby-plugin-layout`,
-    //   options: {
-    //     component: require.resolve('./src/components/layout/Layout/index.tsx'),
-    //   },
-    // },
+    {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: require.resolve('./src/components/Layout/index.tsx'),
+      },
+    },
   ],
 };
