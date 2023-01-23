@@ -79,7 +79,7 @@ exports.createPages = ({ graphql, actions }) => {
 
           createPage({
             path: `${String(post.node.frontmatter.category)}/${String(post.node.frontmatter.id)}`,
-            component: path.resolve(__dirname, './src/components/pages/Post/index.tsx'),
+            component: path.resolve(__dirname, './src/components/v2/pages/Post/index.tsx'),
             context: {
               slug: post.node.fields.slug,
               previous,

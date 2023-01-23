@@ -11,6 +11,7 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-sitemap`,
+    `gatsby-plugin-vanilla-extract`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -69,11 +70,11 @@ module.exports = {
         minimum: 0.5,
       },
     },
-    {
-      resolve: `gatsby-plugin-layout`,
-      options: {
-        component: require.resolve('./src/components/layout/Layout/index.tsx'),
-      },
-    },
+    // {
+    //   resolve: `gatsby-plugin-layout`,
+    //   options: {
+    //     component: require.resolve('./src/components/layout/Layout/index.tsx'),
+    //   },
+    // },
   ],
 };

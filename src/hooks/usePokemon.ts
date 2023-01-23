@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export type PokemonSort = 'react' | 'graphql' | 'docker';
 
@@ -105,7 +105,7 @@ const usePokemon = ({ currentMyPokemon }: UsePokemonParameter) => {
   return {
     myPokemonList: myPokemon,
     currentMyPokemon: myPokemon[currentMyPokemon],
-    enemyPokemon: enemyPokemon,
+    enemyPokemon,
     isAllDead,
     damageMy,
     damageEnemy,

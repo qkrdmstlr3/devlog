@@ -1,3 +1,5 @@
+/* eslint-disable no-await-in-loop */
+/* eslint-disable no-promise-executor-return */
 import { useState, useEffect } from 'react';
 
 interface TypingHookProps {
