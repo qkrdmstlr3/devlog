@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import mq from '../../../../styles/mq';
+import mq from '../../../../styles/v2/mq';
 
 interface WrapperProps {
   isMyPokemon: boolean;
