@@ -1,10 +1,14 @@
-import { globalStyle } from '@vanilla-extract/css';
+import { globalStyle, globalFontFace } from '@vanilla-extract/css';
+
+globalFontFace('goudyo', {
+  src: 'url(/fonts/goudyo.ttf)',
+});
 
 globalStyle('html, body, #root', {
   margin: 0,
   padding: 0,
   height: '100%',
-  backgroundColor: '#201919',
+  backgroundColor: '#f7f7f1',
 });
 
 globalStyle('body', {
@@ -20,6 +24,7 @@ globalStyle(
     fontSize: '100%',
     font: 'inherit',
     verticalAlign: 'baseline',
+    color: 'rgb(18, 18, 18)',
     fontFamily:
       '-apple-system, BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"',
   }

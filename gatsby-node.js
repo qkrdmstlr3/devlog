@@ -1,6 +1,15 @@
 const { createFilePath } = require(`gatsby-source-filesystem`);
 const path = require('path');
 
+exports.onCreateBabelConfig = ({ actions }) => {
+  actions.setBabelPlugin({
+    name: '@babel/plugin-transform-react-jsx',
+    options: {
+      runtime: 'automatic',
+    },
+  });
+};
+
 exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
   if (stage === 'build-html' || stage === 'develop-html') {
     actions.setWebpackConfig({
