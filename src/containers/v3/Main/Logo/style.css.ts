@@ -10,13 +10,13 @@ export const Wrapper = style({
 
 export const Title = style({
   fontFamily: 'goudyo',
-  fontWeight: 700,
-  fontSize: rem(42),
+  fontWeight: 500,
+  fontSize: '42px',
 });
 
 export const City = style({
   fontFamily: 'goudyo',
   fontSize: rem(20),
-  fontWeight: 'bold',
+  fontWeight: 500,
   letterSpacing: rem(1),
 });

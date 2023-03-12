@@ -14,12 +14,12 @@ export const Wrapper = style({
 export const Logo = style({
   fontFamily: 'goudyo',
   fontSize: rem(30),
-  fontWeight: 'bold',
+  fontWeight: 500,
   letterSpacing: rem(0.1),
 });
 
 export const Location = style({
   fontFamily: 'goudyo',
-  fontWeight: 'bold',
+  fontWeight: 500,
   letterSpacing: rem(5),
 });
