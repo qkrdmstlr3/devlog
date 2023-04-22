@@ -5,9 +5,11 @@ export const Wrapper = style({
   position: 'relative',
   width: rem(80),
   height: rem(36),
+  cursor: 'pointer',
 });
 
 export const TopLeft = style({
+  position: 'absolute',
   backgroundColor: 'rgb(18, 18, 18)',
   width: rem(15),
   height: rem(2),
@@ -16,6 +18,7 @@ export const TopLeft = style({
 });
 
 export const TopRight = style({
+  position: 'absolute',
   backgroundColor: 'rgb(18, 18, 18)',
   width: rem(15),
   height: rem(2),
@@ -24,6 +27,7 @@ export const TopRight = style({
 });
 
 export const BottomLeft = style({
+  position: 'absolute',
   backgroundColor: 'rgb(18, 18, 18)',
   width: rem(15),
   height: rem(2),
@@ -32,9 +36,19 @@ export const BottomLeft = style({
 });
 
 export const BottomRight = style({
+  position: 'absolute',
   backgroundColor: 'rgb(18, 18, 18)',
   width: rem(15),
   height: rem(2),
   transform: 'rotateZ(-130deg)',
   borderRadius: '3px',
+});
+
+export const MenuItem = style({
+  fontSize: rem(20),
+  width: '100%',
+  display: 'inline-block',
+  textAlign: 'center',
+  fontFamily: 'goudyo',
+  cursor: 'pointer',
 });

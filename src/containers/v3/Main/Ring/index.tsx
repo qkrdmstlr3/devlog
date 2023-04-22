@@ -13,14 +13,16 @@ export function Ring() {
   return coordinate ? (
     <motion.div
       className={Style.RingWrapper}
-      // style={{ top: coordinate.y - RING_WIDTH / 2, left: coordinate.x - RING_WIDTH / 2 }}
       initial={{
         opacity: 0,
+        left: '50%',
+        transform: 'translateX(-50%)',
       }}
       animate={{
         opacity: 1,
         top: coordinate.y - RING_WIDTH / 2,
         left: coordinate.x - RING_WIDTH / 2,
+        transform: 'none',
       }}
     >
       <RingUI />

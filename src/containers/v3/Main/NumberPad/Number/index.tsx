@@ -25,6 +25,9 @@ export function Number({ id, number, animationDelay, onClick }: NumberProps) {
         duration: 1.5,
         delay: animationDelay,
       }}
+      style={{
+        WebkitTapHighlightColor: 'transparent',
+      }}
     >
       {number}
     </motion.span>
