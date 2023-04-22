@@ -18,7 +18,7 @@ const ROUTE_MENU_MAPPING = {
 } as const;
 
 export function Stitch({ showing }: StitchProps) {
-  const currentRoute = window.location.pathname;
+  const currentRoute = typeof window === 'undefined' ? '' : window.location.pathname;
   const [menuOpened, setMenuOpened] = useState(false);
 
   const animate = match({ showing, menuOpened })
