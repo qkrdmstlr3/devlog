@@ -3,27 +3,26 @@ import { MouseEvent } from 'react';
 import * as Style from './style.css';
 
 export interface NumberProps {
+  id?: string;
   number: number;
   animationDelay?: number;
   onClick?: (event: MouseEvent<HTMLSpanElement>) => void;
 }
 
-export function Number({ number, animationDelay, onClick }: NumberProps) {
+export function Number({ id, number, animationDelay, onClick }: NumberProps) {
   return (
     <motion.span
+      id={id}
       className={Style.NumberWrapper}
       onClick={onClick}
       initial={{
         opacity: 0,
-        scale: 0,
       }}
       animate={{
-        // rotate: 360,
         opacity: 1,
-        scale: 1,
       }}
       transition={{
-        duration: 2,
+        duration: 1.5,
         delay: animationDelay,
       }}
     >

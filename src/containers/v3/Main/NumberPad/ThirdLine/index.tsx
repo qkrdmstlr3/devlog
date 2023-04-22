@@ -1,4 +1,3 @@
-import { MouseEvent } from 'react';
 import { 지명 } from '../../../../../constants';
 import { useCity } from '../../../../../contexts/CityContext';
 import { useRing } from '../../../../../contexts/RingContext';
@@ -7,22 +6,22 @@ import * as Style from './style.css';
 
 export function ThirdLine() {
   const { selectCity } = useCity();
-  const { updateCoordinate } = useRing();
+  const { updateSelectedId } = useRing();
 
-  const onNumberClick = (event: MouseEvent<HTMLSpanElement>, number: number) => {
-    const { x, y, width, height } = event.currentTarget.getBoundingClientRect();
+  const onNumberClick = (number: number) => {
     selectCity(지명[number]);
-    updateCoordinate({ x: x + width / 2, y: y + height / 2 });
+    updateSelectedId({ id: `number${number}` });
   };
 
   return (
     <div className={Style.Wrapper}>
       {[17, 18, 19, 20, 21, 22, 23].map((number, order) => (
         <Number
+          id={`number${number}`}
           key={number}
+          animationDelay={3.5}
           number={number}
-          animationDelay={3.2 + order * 0.05}
-          onClick={(event) => onNumberClick(event, number)}
+          onClick={(event) => onNumberClick(number)}
         />
       ))}
     </div>

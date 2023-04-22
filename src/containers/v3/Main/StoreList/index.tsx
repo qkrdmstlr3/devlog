@@ -15,7 +15,7 @@ export function StoreList() {
   return (
     <ul className={Style.List}>
       {bookStores.map(({ number, name, region, book, date }) => (
-        <li className={Style.Item}>
+        <li className={Style.Item} key={`${region}-${name}`}>
           <div className={Style.ItemTop}>
             <span>{number}</span>{' '}
             <span>

@@ -21,7 +21,7 @@ export function MainContainer() {
         style={{
           position: 'absolute',
           left: '50%',
-          transform: 'scale(1) translateX(-50%)',
+          transform: 'scale(1) translate(-50%, -50%)',
           top: '50%',
         }}
         onAnimationStart={() => {

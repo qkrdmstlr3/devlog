@@ -48,6 +48,8 @@ export const BOOKSTORES: {
     { number: 13, region: '북촌', name: '비화림', date: new Date('2022-10'), book: '지브리의 천재들' },
     { number: 14, region: '종합운동장', name: '하우스북스', date: new Date('2022-11'), book: '공간이 만든 공간' },
     { number: 18, region: '성수', name: '쎄임더스트', date: new Date('2023-03'), book: 'voyager' },
+    { number: 19, region: '서울대입구', name: '관객의 취향', date: new Date('2023-04'), book: '동주' },
+    { number: 20, region: '강남구청', name: '책과 얽힘', date: new Date('2023-04'), book: '피렌체 서점 이야기' },
   ],
   BUSAN: [],
   ULSAN: [

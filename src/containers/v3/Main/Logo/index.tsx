@@ -6,7 +6,12 @@ export function Logo() {
   const { city } = useCity();
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 5 }} className={Style.Wrapper}>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 3.5, duration: 1.5 }}
+      className={Style.Wrapper}
+    >
       <div className={Style.Title}>Maison Shellboy</div>
       {city ? (
         <motion.div className={Style.City} initial={{ translateY: -100 }} animate={{ translateY: 0 }}>

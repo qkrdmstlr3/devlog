@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useMemo, useState } from 'react';
+import { createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 
 interface Coordinate {
   x: number;
@@ -11,22 +11,44 @@ interface ProviderProps {
 
 interface RingContext {
   coordinate?: Coordinate;
-  updateCoordinate: ({ x, y }: Coordinate) => void;
+  updateCoordinate: () => void;
+  updateSelectedId: ({ id }: { id: string }) => void;
 }
 
 const DEFAULT_VALUE: RingContext = {
   coordinate: undefined,
   updateCoordinate: () => {},
+  updateSelectedId: () => {},
 };
 
 export const RingContext = createContext<RingContext>(DEFAULT_VALUE);
 
 export function RingContextProvider({ children }: ProviderProps) {
+  const [selectedId, setSelectedId] = useState<string>();
   const [coordinate, setCoordinate] = useState<Coordinate>();
 
-  const updateCoordinate = ({ x, y }: Coordinate) => {
-    setCoordinate({ x, y });
+  const updateSelectedId = ({ id }: { id: string }) => {
+    setSelectedId(id);
   };
+
+  const updateCoordinate = useCallback(() => {
+    if (!selectedId) {
+      return;
+    }
+
+    const numberElement = document.getElementById(selectedId);
+    if (numberElement) {
+      const { x, y, width, height } = numberElement.getBoundingClientRect();
+      setCoordinate({ x: x + width / 2, y: window.scrollY + y + height / 2 });
+    }
+  }, [selectedId]);
+
+  useEffect(() => {
+    updateCoordinate();
+    window.addEventListener('resize', updateCoordinate);
+
+    return () => window.removeEventListener('resize', updateCoordinate);
+  }, [selectedId]);
 
   return (
     <RingContext.Provider
@@ -34,6 +56,7 @@ export function RingContextProvider({ children }: ProviderProps) {
         () => ({
           coordinate,
           updateCoordinate,
+          updateSelectedId,
         }),
         [coordinate]
       )}
