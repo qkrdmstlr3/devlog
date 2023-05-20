@@ -26,6 +26,19 @@ function SEO({ title = '', description = '', author = 'shellboy' }: SEOProps) {
 
   return (
     <Helmet title={seo.title} htmlAttributes={{ lang: 'ko' }}>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-7VZF4D668D" />
+      <script
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{
+          __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+
+              gtag('config', 'G-7VZF4D668D');
+            `,
+        }}
+      />
       {/* <!--  Essential META Tags --> */}
       {seo.description && <meta name="description" content={seo.description} />}
       {seo.url && <meta property="og:url" content={seo.url} />}
