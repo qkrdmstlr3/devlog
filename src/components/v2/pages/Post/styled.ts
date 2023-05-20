@@ -4,26 +4,26 @@ import mq from '../../../../styles/v2/mq';
 export const Wrapper = styled.article`
   margin: 0 auto;
   margin-bottom: 30px;
-  max-width: 750px;
   height: 100%;
   padding-bottom: 70px;
-  font-family: 'NeoDunggeunmo', sans-serif;
 `;
 
 export const Header = styled.header`
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 20px;
 `;
 
 export const Title = styled.h1`
   font-size: 40px;
-  padding: 10px 0;
-  border-bottom: 1.5px solid black;
+  font-weight: 600;
 `;
 
 export const Date = styled.span`
   font-size: 1.2rem;
-  padding-left: 20px;
+  padding-left: 10px;
+  opacity: 0.8;
 
   ${mq('sm')} {
     font-size: 1rem;
@@ -32,7 +32,8 @@ export const Date = styled.span`
 `;
 
 export const Category = styled.span`
-  font-size: 2rem;
+  font-size: 1.5rem;
+  opacity: 0.8;
 
   ${mq('sm')} {
     font-size: 1.6rem;
@@ -60,7 +61,6 @@ export const WysiwygStyle = styled.div`
   h4,
   h5,
   h6 {
-    font-family: 'NeoDunggeunmo', sans-serif;
     line-height: 22px !important;
   }
 

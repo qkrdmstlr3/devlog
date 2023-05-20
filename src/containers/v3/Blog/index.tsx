@@ -60,6 +60,13 @@ export function BlogContainer({ postMetaData }: Props) {
         ))}
       </ul>
       <Spacing size={200} />
+      <div className={Style.Footer}>
+        <span className={Style.CopyRight}>Copyright © 2021 Shellboy</span>
+        <a href="https://github.com/qkrdmstlr3" className={Style.Github}>
+          Github
+        </a>
+      </div>
+      <Spacing size={20} />
     </>
   );
 }

@@ -13,8 +13,9 @@ import 'prismjs/components/prism-tsx.js';
 import 'prismjs/components/prism-ocaml.js';
 import 'prismjs/components/prism-rescript.js';
 import 'prismjs/components/prism-typescript.js';
-import { mainPageRoute } from '../../../../route';
+import { blogPageRoute } from '../../../../route';
 import Layout from '../../layout';
+import { Spacing } from '../../../v3/Spacing';
 
 function Post({ data: { markdownRemark: post } }: any) {
   return (
@@ -23,16 +24,16 @@ function Post({ data: { markdownRemark: post } }: any) {
       {post && (
         <>
           <Style.Wrapper>
+            <Style.Back>
+              <Link to={blogPageRoute}>◀ back</Link>
+            </Style.Back>
             <Style.Header>
-              <Style.Back>
-                <Link to={mainPageRoute}>◀뒤로가기</Link>
-              </Style.Back>
+              <Style.Title>{post.frontmatter.title}</Style.Title>
               <Style.Category>
-                {post.frontmatter.category}
                 <Style.Date>/ {post.frontmatter.date}</Style.Date>
               </Style.Category>
             </Style.Header>
-            <Style.Title>{post.frontmatter.title}</Style.Title>
+            <Spacing size={50} />
             <Style.WysiwygStyle>
               {typeof window !== `undefined` && (
                 <Viewer plugins={[[codeSyntaxHighlight, { highlighter: Prism }]]} initialValue={post.rawMarkdownBody} />

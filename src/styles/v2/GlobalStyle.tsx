@@ -7,12 +7,17 @@ function GlobalStyle(): React.ReactElement {
       styles={css`
         @import url('//cdn.jsdelivr.net/gh/Dalgona/neodgm-webfont@1.510/neodgm/style.css');
 
+        h2 {
+          margin-top: 60px !important;
+        }
+        h3 {
+          margin-top: 30px !important;
+        }
         html {
           height: 100%;
         }
         body {
           margin: 0;
-          background-color: #ddd;
           height: 100%;
         }
         * {

@@ -6,7 +6,6 @@ export const Layout = styled.main`
   min-height: 100vh;
   margin: 0 auto;
   padding: 30px 25px 50px 25px;
-  background-color: white;
   overflow: scroll;
 `;
 
@@ -20,10 +19,11 @@ export const Footer = styled.footer`
   justify-content: space-between;
   opacity: 0.8;
   font-size: 1.2rem;
-  font-family: 'NeoDunggeunmo', sans-serif;
 `;
 
-export const Copyright = styled.span``;
+export const Copyright = styled.span`
+  font-size: 13px;
+`;
 
 export const Information = styled.div``;
 
