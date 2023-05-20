@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { Logo } from '../../../components/v3/Logo';
 import { Stitch } from '../../../components/v3/Stitch';
+import SEO from '../../../utils/SEO';
 import { Contents } from './Contents';
 import { Ring } from './Ring';
 import * as Style from './style.css';
@@ -12,6 +13,7 @@ export function MainContainer() {
 
   return (
     <div className={Style.Wrapper}>
+      <SEO title="조개소년 개발블로그" description="조개소년 개발블로그" />
       <motion.div
         animate={{
           top: '2%',
